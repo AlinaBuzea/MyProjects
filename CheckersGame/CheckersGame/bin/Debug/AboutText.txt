@@ -1,0 +1,20 @@
+Joc de dame.
+Pe o tabla cu patratele de 8 linii si 8 coloane sunt asezate cate 12 piese albe, respectiv rosii. 
+Primul la mutare este jucatorul cu piesele rosii, urmand ca mutarile sa alterneze intre jucatori.
+Tipuri de mutări posibile:
+• Mutarea simpla – piesa se deplaseaza o casuta, pe diagonala, in fata. Daca piesa a reusit sa ajunga la capatul opus al tablei de joc, 
+atunci se va transforma in „rege” şi mutarea sa va fi tot cu o casuta, pe diagonala, dar se va putea deplasa atat in fata cat si in spate.
+• Saritura peste adversar – atunci cand o piesa are o piesa adversa pe una dintre pozitiile sale de mutare, atunci acea piesa va sari 
+peste cea adversa, facand-o sa dispara de pe tabla de joc. Jucatorul poate sari doar peste piesele adversarului pentru a le captura, 
+nu si peste piese de ale sale.
+• Sarituri multiple – daca un jucator a sarit peste o piesa adversa si in imediata vecinatate a sa se gaseste inca o piesa adversa care
+poate fi capturata, va face inca o saritura, si tot asa pana cand nu va mai putea captura piese adverse. (Aceasta varianta de mutare se va 
+alege din meniul de initializare) 
+Finalul jocului – jocul se incheie in momentul in care unul dintre jucatori nu mai are piese pe tabla de joc. Jucatorul advers va fi in
+acest caz castigatorul.
+
+In meniul de initializare Jucatorii isi vor trece numele in dreptul culorii dorite si vor avea optiunile de a alege Tipul de mutare
+"Saritura multipla" sau un joc inceput salvat (in acest caz primul care muta este sugerat de starea aleasa)
+
+
+Joc realizat de BUZEA ALINA GABRIELA

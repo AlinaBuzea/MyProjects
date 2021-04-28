@@ -1,0 +1,4 @@
+Red: Number of wins: 
+3
+White: Number of wins: 
+1

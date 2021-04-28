@@ -1,0 +1,25 @@
+﻿<Window x:Class="CheckersGame.DameGameOver"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CheckersGame"
+        xmlns:ctx="clr-namespace:CheckersGame"
+        mc:Ignorable="d"
+        Title="DameGameOver" Height="450" Width="800">
+    <Window.Background>
+        <ImageBrush ImageSource="Images\Background.png"/>
+    </Window.Background>
+    <Window.DataContext>
+        <ctx:GameOverWinnersVM/>
+    </Window.DataContext>
+    <StackPanel>
+        <Label Content="Winner:" FontSize="20" HorizontalAlignment="Center" Margin="0,100,0,20" Background="Beige"/>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Horizontal">
+            <Label Name="lblWinnerName" Content="Name -" FontSize="20" Background="Beige"/>
+            <Label Name="lblWinnerColor" Content="Color" FontSize="20" Background="Beige" />
+        </StackPanel>
+        <Button Name="btnStatistics" Content="Statistics" FontSize="22" Click="btnStatistics_Click" Width="150" Margin="10" Background="Cornsilk"/>
+        <ListBox Name="lbStatistics" ItemsSource="{Binding EvidenceOfWins}" Visibility="Hidden" Background="Beige"/>
+    </StackPanel>
+</Window>
