@@ -1,0 +1,7 @@
+6
+9x9_fs_1.txt
+9x9_fs_2.txt
+9x9_fs_3.txt
+9x9_fs_4.txt
+9x9_fs_5.txt
+9x9_fs_6.txt

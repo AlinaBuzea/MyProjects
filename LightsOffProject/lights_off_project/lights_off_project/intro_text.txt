@@ -1,0 +1,11 @@
+
+Great! You chose to play the game. These are the rules: There will be an mxn grid of lights.
+When you press on a light, that light and the adjacent lights will toggle their on/off state. 
+As the name suggests, your goal is to switch all the lights off. Since this is a more primitive 
+version of the game, you won't actually be able to press a light. Instead, you will be asked which
+light would you like to press, and you will enter the position of said light. The grid you'll 
+see will actually be a matrix, and the positions of the lights will be written with different colors: 
+white will be used for the lights that are off, and yellow for the ones that are on. Although this game
+doesn't have a graphical interface (yet), a lot of hard work went into it, so please, appreciate it. 
+Now, let's start. Have fun!
+

@@ -1,0 +1,26 @@
+Hello again! I see you are ready to become a 
+little more adventurous, and decided to  jazz up
+the game... That's great! 
+If you would like to create a marvelous board of 
+your own, to start the game with, you can do so,
+by clicking on the  "Personalized Map" button. 
+There you can toggle the lights on and off state 
+until  you are happy with  the board you created,
+then click save. In this case, however, you must 
+play using the standard rules (on a 5x5 board, 
+with horizontal and vertical neighbourhood).
+If, on the other hand, you consider yourself a 
+pro in this game, why not make it harder, and 
+change the settings by clicking the "Set 
+Configurations" button? You can, of course, make
+it easier if you wish! It's up to you! You get to 
+choose the size of the board, the lights on and
+off colours, as well as the neighbours that 
+change their on and off state, according to the 
+light you press. And,  before I forget, if you're
+really up for a challenge, you can play the game 
+in "fast game" mode. That should be interesting.
+But remember.. You can't choose your own
+settings, as well as create a personalized
+map.
+Now, go on, have fun!

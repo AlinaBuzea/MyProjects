@@ -1,0 +1,7 @@
+5 5
+hv
+sf::Color::Yellow
+sf::Color::Black
+normal game
+0
+5x5_hv_3.txt

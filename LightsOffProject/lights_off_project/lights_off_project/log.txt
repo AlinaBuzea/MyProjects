@@ -1,0 +1,72 @@
+[INFO] 2021-01-31.13:24:56  The game started.
+[INFO] 2021-01-31.13:24:56  The user selected option 1.
+[INFO] 2021-01-31.13:24:57  The player chose random rules to be set.
+[INFO] 2021-01-31.13:24:57  The player chose the fast game.
+[INFO] 2021-01-31.13:24:57  A board has been imported.
+[INFO] 2021-01-31.13:25:02  The game started.
+[INFO] 2021-01-31.13:25:03  The user selected option 1.
+[INFO] 2021-01-31.13:25:03  The player chose random rules to be set.
+[INFO] 2021-01-31.13:25:04  The player chose the fast game.
+[INFO] 2021-01-31.13:25:04  A board has been imported.
+[INFO] 2021-01-31.13:25:10  The game started.
+[INFO] 2021-01-31.13:25:10  The user selected option 1.
+[INFO] 2021-01-31.13:25:11  The player chose random rules to be set.
+[INFO] 2021-01-31.13:25:11  The player chose the fast game.
+[INFO] 2021-01-31.13:25:11  A board has been imported.
+[INFO] 2021-01-31.13:25:17  The game started.
+[INFO] 2021-01-31.13:25:18  The user selected option 1.
+[INFO] 2021-01-31.13:25:18  The player chose random rules to be set.
+[INFO] 2021-01-31.13:25:19  The player chose the fast game.
+[INFO] 2021-01-31.13:25:19  A board has been imported.
+[INFO] 2021-01-31.13:25:25  The game started.
+[INFO] 2021-01-31.13:25:25  The user selected option 1.
+[INFO] 2021-01-31.13:25:26  The player chose random rules to be set.
+[INFO] 2021-01-31.13:25:26  The player chose the fast game.
+[INFO] 2021-01-31.13:25:26  A board has been imported.
+[INFO] 2021-01-31.13:25:33  The game started.
+[INFO] 2021-01-31.13:25:33  The user selected option 1.
+[INFO] 2021-01-31.13:25:34  The player chose random rules to be set.
+[INFO] 2021-01-31.13:25:35  The player chose the fast game.
+[INFO] 2021-01-31.13:25:35  A board has been imported.
+[INFO] 2021-01-31.13:25:40  The game started.
+[INFO] 2021-01-31.13:25:41  The user selected option 1.
+[INFO] 2021-01-31.13:25:41  The player chose random rules to be set.
+[INFO] 2021-01-31.13:25:42  The player chose the fast game.
+[INFO] 2021-01-31.13:25:42  A board has been imported.
+[INFO] 2021-01-31.13:25:48  The game started.
+[INFO] 2021-01-31.13:25:49  The user selected option 1.
+[INFO] 2021-01-31.13:25:50  The player chose random rules to be set.
+[INFO] 2021-01-31.13:25:50  The player chose the fast game.
+[INFO] 2021-01-31.13:25:50  A board has been imported.
+[INFO] 2021-01-31.13:25:57  The game started.
+[INFO] 2021-01-31.13:25:57  The user selected option 1.
+[INFO] 2021-01-31.13:25:58  The player chose random rules to be set.
+[INFO] 2021-01-31.13:25:58  The player chose the fast game.
+[INFO] 2021-01-31.13:25:58  A board has been imported.
+[INFO] 2021-01-31.13:26:05  The game started.
+[INFO] 2021-01-31.13:26:05  The user selected option 1.
+[INFO] 2021-01-31.13:26:06  The player chose random rules to be set.
+[INFO] 2021-01-31.13:26:06  The player chose the fast game.
+[INFO] 2021-01-31.13:26:06  A board has been imported.
+[INFO] 2021-01-31.13:26:13  The game started.
+[INFO] 2021-01-31.13:26:13  The user selected option 1.
+[INFO] 2021-01-31.13:26:14  The player chose random rules to be set.
+[INFO] 2021-01-31.13:26:14  The player chose the fast game.
+[INFO] 2021-01-31.13:26:14  A board has been imported.
+[INFO] 2021-01-31.13:26:21  The game started.
+[INFO] 2021-01-31.13:26:21  The user selected option 1.
+[INFO] 2021-01-31.13:26:22  The player chose random rules to be set.
+[INFO] 2021-01-31.13:26:22  The player chose the fast game.
+[INFO] 2021-01-31.13:26:22  A board has been imported.
+[INFO] 2021-01-31.13:26:28  The game started.
+[INFO] 2021-01-31.13:26:29  The user selected option 1.
+[INFO] 2021-01-31.13:26:29  The player chose random rules to be set.
+[INFO] 2021-01-31.13:26:29  The player chose the fast game.
+[INFO] 2021-01-31.13:26:29  A board has been imported.
+[INFO] 2021-01-31.13:26:35  The game started.
+[INFO] 2021-01-31.13:26:36  The user selected option 1.
+[INFO] 2021-01-31.13:26:36  The player chose random rules to be set.
+[INFO] 2021-01-31.13:26:37  The player chose the fast game.
+[INFO] 2021-01-31.13:26:37  A board has been imported.
+[INFO] 2021-01-31.13:26:43  The game started.
+[INFO] 2021-01-31.13:26:44  The user selected 

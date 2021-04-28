@@ -1,0 +1,6 @@
+Left-right-up-down
+Left-right
+Up-down
+Main diagonal
+Secondary diagonal
+Left-right-up-down and diagonals

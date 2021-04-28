@@ -1,0 +1,16 @@
+Hello! I see you wish to know a little 
+bit more about this game. So, here are 
+the rules: the game consists of an MxN 
+grid of lights. When the game starts,
+a stored pattern of these lights is 
+switched on. Pressing any of the lights
+will toggle its and the adjacent lights
+on/off state. As the name suggests, the 
+goal is to switch all the lights off. 
+You can choose the rules you want to 
+play by in the settings. However, if 
+this is your first time playing Lights 
+Off, we recommend playing by the 
+standard rules.. You can easily find 
+some tips on how to solve it! :)
+Have fun!
