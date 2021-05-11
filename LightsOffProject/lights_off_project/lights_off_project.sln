@@ -9,8 +9,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lights_off_gui", "lights_of
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Logging", "Logging\Logging.vcxproj", "{1FCCFB92-05A5-4FC5-9E0B-36A604EC0C2B}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "UnitTests", "UnitTests\UnitTests.vcxproj", "{8B4C95A2-44C3-460D-A0AB-510A0852763F}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -43,14 +41,6 @@ Global
 		{1FCCFB92-05A5-4FC5-9E0B-36A604EC0C2B}.Release|x64.Build.0 = Release|x64
 		{1FCCFB92-05A5-4FC5-9E0B-36A604EC0C2B}.Release|x86.ActiveCfg = Release|Win32
 		{1FCCFB92-05A5-4FC5-9E0B-36A604EC0C2B}.Release|x86.Build.0 = Release|Win32
-		{8B4C95A2-44C3-460D-A0AB-510A0852763F}.Debug|x64.ActiveCfg = Debug|x64
-		{8B4C95A2-44C3-460D-A0AB-510A0852763F}.Debug|x64.Build.0 = Debug|x64
-		{8B4C95A2-44C3-460D-A0AB-510A0852763F}.Debug|x86.ActiveCfg = Debug|Win32
-		{8B4C95A2-44C3-460D-A0AB-510A0852763F}.Debug|x86.Build.0 = Debug|Win32
-		{8B4C95A2-44C3-460D-A0AB-510A0852763F}.Release|x64.ActiveCfg = Release|x64
-		{8B4C95A2-44C3-460D-A0AB-510A0852763F}.Release|x64.Build.0 = Release|x64
-		{8B4C95A2-44C3-460D-A0AB-510A0852763F}.Release|x86.ActiveCfg = Release|Win32
-		{8B4C95A2-44C3-460D-A0AB-510A0852763F}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
