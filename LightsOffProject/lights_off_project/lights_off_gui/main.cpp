@@ -13,7 +13,7 @@ int main()
 	logger.Log("The app started running.", Logging::Level::INFO);
 
 	sf::Music music;
-	if (!music.openFromFile("04 Boulevard of Broken Dreams.flac")) //04 Boulevard of Broken Dreams.flac, 10. Mirror Mirror.flac
+	if (!music.openFromFile("11 Wake Me Up When September Ends.flac")) //04 Boulevard of Broken Dreams.flac, 10. Mirror Mirror.flac
 		logger.Log("Couldn't find music", Logging::Level::ERROR);
 
 	sf::Font font;

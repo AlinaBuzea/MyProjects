@@ -59,7 +59,6 @@ User::User(bool readSettingsFromFile)
 				try
 				{
 					m_lightsOnColor = ConvertStringToColour(line);
-					throw "The string the user entered wasn't correct!";
 				}
 				catch (const char* message)
 				{
@@ -70,7 +69,6 @@ User::User(bool readSettingsFromFile)
 				try
 				{
 					m_lightsOffColor = ConvertStringToColour(line);
-					throw "The string the user entered wasn't correct!";
 				}
 				catch (const char* message)
 				{
