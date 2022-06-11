@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:EM.ViewModels"
+             Title="Lista de cumparaturi"
+             x:Class="EM.Pages.ShoppingListPage">
+    <ContentPage.BindingContext>
+        <viewmodels:ShoppingListVM/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid RowDefinitions="*, Auto">
+            <Image Grid.RowSpan="2" Source="Background2.png" Aspect="Fill"/>
+            <StackLayout Grid.Row="0">
+                <ScrollView VerticalScrollBarVisibility="Always" Margin="5,5">
+                    <Grid ColumnDefinitions="*,Auto,Auto" RowDefinitions="Auto, Auto, Auto, Auto">
+                        <Button Grid.Column="1" Grid.ColumnSpan="2" VerticalOptions="Center" HorizontalOptions="Center"
+                                            Text="Sterge Lista"  HeightRequest="40" BackgroundColor="Red"
+                                            Command="{Binding DeleteListCommand}"/>
+                        <Label Grid.Row="1" Text="Produs" Margin="15,5" FontSize="Medium" TextColor="Black"/>
+                        <Label x:Name="PriorityLbl" Grid.Row="1" Grid.Column="1" Text="Prioritar" Margin="0,5" FontSize="Medium" TextColor="Black"/>
+                        <Label x:Name="BoughtLbl" Grid.Row="1" Grid.Column="2" Text="Cumparat" Margin="0,5" FontSize="Medium" TextColor="Black"/>
+                        <StackLayout x:Name="ListedProductsView" BindableLayout.ItemsSource="{Binding ShoppingListItems, Mode=TwoWay}" 
+                                                 BindableLayout.EmptyView="No items to display" Grid.Row="2" Grid.ColumnSpan="3">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame BorderColor="#F11263" CornerRadius="20" HasShadow="True" Padding="15,2" VerticalOptions="CenterAndExpand">
+                                        <Grid BackgroundColor="Transparent"
+                                                    ColumnDefinitions="*,Auto,Auto">
+                                            <Grid.RowSpacing>
+                                                0
+                                            </Grid.RowSpacing>
+
+                                            <Editor Text="{Binding Item}" FontSize="20" Margin="5,0" TextColor="Black" 
+                                                    Placeholder="Produs nou" AutoSize="TextChanges" VerticalOptions="CenterAndExpand"/>
+                                            <Frame Grid.Column="1">
+                                                <CheckBox HorizontalOptions="Center" Color="DeepPink"
+                                                          IsChecked="{Binding IsAPriority, Mode=TwoWay}"
+                                                          VerticalOptions="Center" Scale="2"
+                                                              Grid.Column="1" />
+                                            </Frame>
+                                            <Frame Grid.Column="2" >
+                                                <CheckBox HorizontalOptions="Center" Color="Green"
+                                                          IsChecked="{Binding IsBought, Mode=TwoWay}"
+                                                          VerticalOptions="Center" Scale="2"
+                                                              />
+                                            </Frame>
+
+                                        </Grid>
+                                    </Frame>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+
+                        </StackLayout>
+                        <Button Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" VerticalOptions="Center" HorizontalOptions="Center"
+                                            Text="Adauga Produs"  HeightRequest="40" BackgroundColor="#16C6FC"
+                                            Command="{Binding Source={x:Reference ListedProductsView}, Path=BindingContext.AddNewRowCommand}"/>
+                    </Grid>
+                </ScrollView>
+            </StackLayout>
+            <Frame Grid.Row="1" Padding="0" BackgroundColor="Transparent">
+                <Grid ColumnDefinitions="*,*" VerticalOptions="End">
+                    <Button Text="Anuleaza" Command="{Binding CancelCommand}" Margin="5,5,0,5"
+                        VerticalOptions="End" HorizontalOptions="Center" FontSize="18" FontAttributes="Bold" 
+                        BackgroundColor="#16C6FC"
+                        WidthRequest="250"/>
+
+                    <Button Grid.Column="1" Text="Salveaza Lista" Command="{Binding SaveListCommand}" Margin="5"
+                        VerticalOptions="End" HorizontalOptions="Center" FontSize="18" FontAttributes="Bold" 
+                        BackgroundColor="#16C6FC" 
+                        WidthRequest="250"/>
+                </Grid>
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

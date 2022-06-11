@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:EM.ViewModels"
+             Title="ECONOMII"
+             x:Class="EM.Pages.SavingsPage">
+    <ContentPage.BindingContext>
+        <viewmodels:SavingsVM/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid RowDefinitions="*, Auto">
+            <Image Grid.RowSpan="2" Source="MeniulPrincipal.jpg" Aspect="Fill"/>
+            <StackLayout Grid.Row="0">
+                <Grid Margin="20" ColumnDefinitions="*,*,Auto" RowDefinitions="Auto, 4*, *, *, Auto ">
+                    <Button x:Name="InformationBtn" Grid.Column="2" Text="i" TextTransform="Lowercase" TextColor="White" 
+                            Command="{Binding InformationCommand}" BorderRadius="40"
+                            FontSize="18" FontAttributes="Bold" BackgroundColor="#3EA5F3" Margin="8,5" HorizontalOptions="Center" 
+                            WidthRequest="50" HeightRequest="{Binding Source={x:Reference InformationBtn}, Path=Width}"/>
+                    <StackLayout RadioButtonGroup.GroupName="TimeOption" Grid.ColumnSpan="3" Grid.Row="1"
+                         RadioButtonGroup.SelectedValue="{Binding Selection, Mode=TwoWay}">
+                        <Label Text="Selectati perioada de timp in functie de care doriti sa vizualizati economiile" 
+                               FontSize="Medium" TextColor="White"/>
+                        <RadioButton Content="Totale" Value="Total" />
+                        <RadioButton Content="Pe luna" Value="MonthYear" />
+                        <RadioButton Content="Pe an" Value="JustYear" />
+                    </StackLayout>
+                    <Label Grid.Row="2" Text="{Binding DescriptionOfMonthYear}" TextColor="White" FontSize="18" VerticalTextAlignment="Center"
+                           HorizontalOptions="CenterAndExpand" Margin="5,0" IsVisible="{Binding IsVisibleMonthYearText}"/>
+
+                    <Frame Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" BackgroundColor="Transparent" Padding="0">
+                        <Grid ColumnDefinitions="*,*">
+                            <Picker ItemsSource="{Binding CurrentMonthYearVM.Months}" SelectedItem="{Binding Month}" 
+                                    HorizontalTextAlignment="Center" IsVisible="{Binding IsVisibleMonth}"/>
+                            <Picker Grid.Column="1" ItemsSource="{Binding CurrentMonthYearVM.Years}" SelectedItem="{Binding Year}"
+                                    HorizontalTextAlignment="Center" IsVisible="{Binding IsVisibleYear}"/>
+                        </Grid>
+                    </Frame>
+
+                    <Label Grid.Row="3" Grid.ColumnSpan="3" Text="{Binding DescriptionOfSavings}" TextColor="Black" 
+                           FontSize="20" HorizontalTextAlignment="Center"/>
+                    <Label Grid.Row="4" Grid.ColumnSpan="3"  Text="{Binding SavingsValue}"
+                                                TextColor="White" FontSize="70" FontAttributes="Bold" 
+                                                HorizontalTextAlignment="Center"/>
+
+                </Grid>
+
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

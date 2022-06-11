@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EM.Pages.ShowReceiptPage"
+             Title="PROCESEAZA BON">
+    <ContentPage.Content >
+        <StackLayout Padding="10" BackgroundColor="LightPink">
+            <ScrollView VerticalScrollBarVisibility="Always" >
+                <StackLayout x:Name="photoCollection" BindableLayout.ItemsSource="{Binding PhotoCollection, Mode=TwoWay}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Padding="0" CornerRadius="20">
+                                <Image Source="{Binding .}"/>
+                            </Frame>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </ScrollView>
+            <Frame Padding="0" CornerRadius="20">
+                <Button Text="Proceseaza" Command="{Binding ProccessReceiptCommand}" 
+                    FontSize="18" FontAttributes="Bold" BackgroundColor="#16C6FC" />
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:EM.ViewModels"
+             x:Class="EM.Pages.AddCategoryPage"
+             Title="ADAUGA CATEGORIE">
+    <ContentPage.BindingContext>
+        <viewmodels:AddCategoryVM/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+            <Image Source="Fundal1.jpeg" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All" Aspect="AspectFill"/>
+            <ScrollView AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+                <StackLayout Spacing="0">
+                    <Label Text="Denumire*" Margin="20.0" TextColor="Black" FontAttributes="Bold" FontSize="Large"/>
+                    <Entry Placeholder="Denumire"  Text="{Binding CategoryName, Mode=TwoWay}" VerticalOptions="Center" 
+                           FontSize="20" Margin="20,0" TextColor="Black"/>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" Text="Anulare" Command="{Binding CancelCommand}" BorderRadius="10" 
+                                VerticalOptions="End" FontSize="18" FontAttributes="Bold" BackgroundColor="#16C6FC" Margin="8,5" />
+                        <Button Grid.Column="1"  Text="Adauga" Command="{Binding SaveCommand}" BorderRadius="10" 
+                                VerticalOptions="End" FontSize="18" FontAttributes="Bold" BackgroundColor="#16C6FC" Margin="8,5"/>
+
+                    </Grid>
+                </StackLayout>
+            </ScrollView>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

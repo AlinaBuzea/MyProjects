@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:EM.ViewModels.UserAutentication"
+             x:Class="EM.Pages.Autentication.LogInPage">
+    <ContentPage.BindingContext>
+        <viewmodels:UserLoginVM/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Image Source="BackgroundLogin.png" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All" Aspect="AspectFill"></Image>
+            <StackLayout AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="Transparent">
+
+                <Grid Margin="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Frame CornerRadius="100" Padding="0" HorizontalOptions="Center">
+                        <Image Source="UserLogo.png"/>
+                    </Frame>
+                    <Entry Grid.Row="1" Placeholder="Username" Text="{Binding Name, Mode=TwoWay}"  VerticalOptions="Center" FontSize="Title" Margin="20,0"/>
+                    <Entry Grid.Row="2" Placeholder="Parola" Text="{Binding Pin,Mode=TwoWay}" IsPassword="True" VerticalOptions="Center" FontSize="Title" MaxLength="15"  Margin="20,0" />
+                    <Button Grid.Row="3" Text="Logare" Command="{Binding LogInCommand}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="Large" BackgroundColor="#16C6FC" BorderRadius="30" WidthRequest="200"/>
+                    <Label Grid.Row="4" HorizontalOptions="Center" FontSize="Large">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Intregistreaza-te"
+                          TextColor="Blue"
+                          TextDecorations="Underline">
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding SignInCommand}" />
+                                    </Span.GestureRecognizers>
+                                </Span>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label Grid.Row="5" HorizontalOptions="Center" FontSize="Large">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Am uitat parola"
+                                      TextColor="Blue"
+                                      TextDecorations="Underline">
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding ForgotPasswordCommand}" />
+                                    </Span.GestureRecognizers>
+                                </Span>
+
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </Grid>
+            </StackLayout>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

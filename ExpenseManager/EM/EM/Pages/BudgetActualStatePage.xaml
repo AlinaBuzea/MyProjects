@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:EM.ViewModels"
+             xmlns:toolkit="http://xamarin.com/schemas/2020/toolkit"
+             Title="Stare Actuala"
+             x:Name="BudgetActualStatePg"
+             x:Class="EM.Pages.BudgetActualStatePage">
+    
+    <ContentPage.BindingContext>
+        <viewmodels:BudgetActualStateVM/>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="Medium"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto, *" RowSpacing="0">
+            <Frame Padding="0" Margin="0" >
+                <Grid ColumnDefinitions="*,*,*" BackgroundColor="Transparent">
+                    <Label  Text="Luna" FontSize="Medium" TextColor="White"
+                                        HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <Picker Grid.Column="1" ItemsSource="{Binding CurrentMonthYearVM.Months}" 
+                                                SelectedItem="{Binding Month, Mode=TwoWay}" 
+                                                HorizontalTextAlignment="Center"/>
+                    <Picker Grid.Column="2" ItemsSource="{Binding CurrentMonthYearVM.Years}" 
+                                                SelectedItem="{Binding Year, Mode=TwoWay}" 
+                                                HorizontalTextAlignment="Center"/>
+                </Grid>
+                <Frame.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Color="#8064F4" Offset="0.1"/>
+                        <GradientStop Color="#5B88EE" Offset="0.4"/>
+                        <GradientStop Color="#4DAAF3" Offset="0.8"/>
+                        <GradientStop Color="#4DE6F3" Offset="1.0"/>
+                    </LinearGradientBrush>
+                </Frame.Background>
+            </Frame>
+            <Image Grid.Row="1" Source="Background2.png" Aspect="AspectFill"/>
+            <toolkit:TabView Grid.Row="1"  VerticalOptions="FillAndExpand" 
+                TabItemsSource="{Binding BudgetStates}"
+                TabStripPlacement="Bottom"
+                TabStripBackgroundColor="Transparent"
+                TabIndicatorColor="White"
+                SelectedIndex="{Binding ActiveTabIndex, Mode=TwoWay}">
+                <toolkit:TabView.TabContentDataTemplate>
+                    <DataTemplate>
+                        <Frame HasShadow="True" BorderColor="DarkBlue" CornerRadius="0" 
+                                   HorizontalOptions="Center" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent">
+                            <Grid RowDefinitions="*,*,*,Auto,Auto,Auto,Auto,*,*" ColumnDefinitions="*,*">
+
+                                <Label Grid.ColumnSpan="2" Text="{Binding BudgetCategory.CategoryName}" FontSize="Title" 
+                                       TextColor="DarkBlue" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                <Label Grid.Row="1" Text="Luna" FontSize="Medium" TextColor="White"
+                                        HorizontalOptions="Center" VerticalOptions="Center"/>
+                                <Frame Grid.Row="1" Grid.Column="1"  BackgroundColor="Transparent" Padding="0" HeightRequest="20">
+                                    <Grid ColumnDefinitions="*,*">
+                                        <Label Text="{Binding Month, Mode=TwoWay}" 
+                                                HorizontalTextAlignment="Center"/>
+                                        <Label Grid.Column="1" Text="{Binding Year, Mode=TwoWay}" 
+                                                HorizontalTextAlignment="Center"/>
+                                    </Grid>
+                                </Frame>
+
+                                <Label Grid.Row="2" Text="Status" FontSize="Medium" TextColor="White" 
+                                       VerticalOptions="Center" HorizontalOptions="Center" />
+                                <Label Grid.Row="2" Grid.Column="1" Text="{Binding CurrentStateString}" 
+                                       FontSize="Medium" TextColor="White" 
+                                       VerticalOptions="Center" HorizontalOptions="Center" />
+                                <Frame Grid.Row="3" Grid.ColumnSpan="2" BackgroundColor="Transparent" Padding="0"
+                                       VerticalOptions="Center" HorizontalOptions="Center" CornerRadius="30" 
+                                       HeightRequest="{Binding Source={x:Reference StatusImage}, Path=Width}" 
+                                       WidthRequest="{Binding Source={x:Reference StatusImage}, Path=Width}" >
+                                    <Image x:Name="StatusImage" 
+                                           Source="{Binding StateImageUrl}"
+                                           HeightRequest="{Binding Source={x:Reference StatusImage}, Path=Width}" 
+                                           WidthRequest="170" HorizontalOptions="Center" />
+                                </Frame>
+                                <Label Grid.Row="4" Text="Buget Alocat" />
+                                <Label Grid.Row="4" Grid.Column="1" Text="{Binding AlocatedBudget}" />
+                                <Label Grid.Row="5" Text="Cheltuieli Curente" />
+                                <Label Grid.Row="5" Grid.Column="1" Text="{Binding CurrentValue}" />
+                                <Label Grid.Row="6" Text="Buget Ramas" />
+                                <Label Grid.Row="6" Grid.Column="1" Text="{Binding RemainingAmount}" />
+                                <Label Grid.Row="7"  Text="Limita Stabilita" />
+                                <Label Grid.Row="7" Grid.Column="1" Text="{Binding LimitNotificationValue}" 
+                                       MaxLines="5" LineBreakMode="TailTruncation" />
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </toolkit:TabView.TabContentDataTemplate>
+                <toolkit:TabView.TabViewItemDataTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Frame x:Name="TabFrame" BackgroundColor="Transparent" Padding="0">
+                                <Label Text="{Binding BudgetCategory.CategoryName}"
+                           HorizontalOptions="CenterAndExpand"
+                           HorizontalTextAlignment="Center"
+                           TextColor="White"
+                           Margin="5,0"/>
+                            </Frame>
+                        </Grid>
+                    </DataTemplate>
+                </toolkit:TabView.TabViewItemDataTemplate>
+            </toolkit:TabView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

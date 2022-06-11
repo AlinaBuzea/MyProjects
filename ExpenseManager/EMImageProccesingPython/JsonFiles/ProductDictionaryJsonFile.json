@@ -1,0 +1,1926 @@
+[
+  {
+    "ProdName": "caine",
+    "ProdCategory": "Altele"
+  },
+  {
+    "ProdName": "franzela",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "paine",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "paine neagra",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "cas",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "cascaval",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "cos de gunoi",
+    "ProdCategory": "Menaj"
+  },
+  {
+    "ProdName": "pui",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "cui",
+    "ProdCategory": "Constructii"
+  },
+  {
+    "ProdName": "gutui",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "alune",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "pasta de dinti",
+    "ProdCategory": "Igiena"
+  },
+  {
+    "ProdName": "sapun",
+    "ProdCategory": "Igiena"
+  },
+  {
+    "ProdName": "muschi file",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "piept de pui",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "ficat",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "lamai",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "portocale",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "pere",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "piersici",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "nectarine",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "clementine",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "mandarine",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "grapefruit",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "kiwi",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "salata verde",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "salata",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "varza",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "conopida",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "morcovi",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "telina",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "patrunjel",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "pastarnac",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "apio",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "ceapa alba",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "ceapa rosie",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "fasole boabe",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "fasole pastai",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "orez",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "orz",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "ovaz",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "fulgi de porumb",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "porumb",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "mere",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "mazare",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "spanac",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "bec",
+    "ProdCategory": "Constructii"
+  },
+  {
+    "ProdName": "mouse",
+    "ProdCategory": "Gaget-uri"
+  },
+  {
+    "ProdName": "carte",
+    "ProdCategory": "Hobby"
+  },
+  {
+    "ProdName": "dulciuri",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "naut",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "ciuperci",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "dovleac",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "seminte de dovleac",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "arahide",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "migdale",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "susan",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "apa minerala",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "apa plata",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "apa distilata",
+    "ProdCategory": "Sanatate"
+  },
+  {
+    "ProdName": "vata",
+    "ProdCategory": "Sanatate"
+  },
+  {
+    "ProdName": "vata de zahar",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "kurtos",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "avocado",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "mango",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "cartofi",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "rosii",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "marar",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "ardei",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "castraveti",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "dovlecel",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "banane",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "pate",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "ananas",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "lapte",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "vinete",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "pulpa",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "picior",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "sare",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "fistic",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "usturoi",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "piper",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "smantana",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "branza",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "pita",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "parmezan",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "cedar",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "iaurt",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "sana",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "chefir",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "chipsuri",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "oua",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "unt",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "guacamole",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "sos",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "uht",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "taitei",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "paste",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "pizza",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "bacon",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "carne",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "sticksuri",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "mustar",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "ketchup",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "ciocolata",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "gem",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "soia",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "caramele",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "ghimbir",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "bomboane",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "sandwich",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "barbecue",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "paprika",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "always",
+    "ProdCategory": "Igiena"
+  },
+  {
+    "ProdName": "persil",
+    "ProdCategory": "Curatenie"
+  },
+  {
+    "ProdName": "duck",
+    "ProdCategory": "Curatenie"
+  },
+  {
+    "ProdName": "gel de dus",
+    "ProdCategory": "Igiena"
+  },
+  {
+    "ProdName": "zewa",
+    "ProdCategory": "Igiena"
+  },
+  {
+    "ProdName": "tigaie",
+    "ProdCategory": "Bucatarie"
+  },
+  {
+    "ProdName": "tocator",
+    "ProdCategory": "Bucatarie"
+  },
+  {
+    "ProdName": "pasta de dinti",
+    "ProdCategory": "Igiena"
+  },
+  {
+    "ProdName": "unghii",
+    "ProdCategory": "Infrumusetare"
+  },
+  {
+    "ProdName": "pansamente",
+    "ProdCategory": "Sanatate"
+  },
+  {
+    "ProdName": "bratara",
+    "ProdCategory": "Bijuterii"
+  },
+  {
+    "ProdName": "colier",
+    "ProdCategory": "Bijuterii"
+  },
+  {
+    "ProdName": "sacosa",
+    "ProdCategory": "Menaj"
+  },
+  {
+    "ProdName": "piure",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "sana",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "covrig",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "finetti",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "prosciutto",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "pateu",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "tea",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "capse",
+    "ProdCategory": "Birou"
+  },
+  {
+    "ProdName": "gel dus",
+    "ProdCategory": "Igiena"
+  },
+  {
+    "ProdName": "creta",
+    "ProdCategory": "Birou"
+  },
+  {
+    "ProdName": "radiera",
+    "ProdCategory": "Birou"
+  },
+  {
+    "ProdName": "lenjerie",
+    "ProdCategory": "Imbracaminte"
+  },
+  {
+    "ProdName": "abonament",
+    "ProdCategory": "Hobby"
+  },
+  {
+    "ProdName": "bilet",
+    "ProdCategory": "Hobby"
+  },
+  {
+    "ProdName": "iphone",
+    "ProdCategory": "Gadget-uri"
+  },
+  {
+    "ProdName": "delimano",
+    "ProdCategory": "bucatarie"
+  },
+  {
+    "ProdName": "medicinal",
+    "ProdCategory": "Sanatate"
+  },
+  {
+    "ProdName": "husa",
+    "ProdCategory": "Gadget-uri"
+  },
+  {
+    "ProdName": "fitness",
+    "ProdCategory": "hobby"
+  },
+  {
+    "ProdName": "punga",
+    "ProdCategory": "necesitati"
+  },
+  {
+    "ProdName": "lentile",
+    "ProdCategory": "Sanatate"
+  },
+  {
+    "ProdName": "benzina",
+    "ProdCategory": "masina"
+  },
+  {
+    "ProdName": "balsam",
+    "ProdCategory": "Igiena"
+  },
+  {
+    "ProdName": "vita",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "pastrama",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "cotlet",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "sunca",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "toba",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "carnati",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "cartabos",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "struguri",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "parizer",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "somon",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "acadele",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "mozzarella",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "headband",
+    "ProdCategory": "Imbracaminte"
+  },
+  {
+    "ProdName": "neckwarmer",
+    "ProdCategory": "Imbracaminte"
+  },
+  {
+    "ProdName": "hat",
+    "ProdCategory": "Imbracaminte"
+  },
+  {
+    "ProdName": "tampoane",
+    "ProdCategory": "Igiena"
+  },
+  {
+    "ProdName": "abs",
+    "ProdCategory": "Igiena"
+  },
+  {
+    "ProdName": "batiste",
+    "ProdCategory": "Igiena"
+  },
+  {
+    "ProdName": "antricot",
+    "ProdCategory": "Imbracaminte"
+  },
+  {
+    "ProdName": "napolitane",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "biscuiti",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "ridichi",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "snitel",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "inghetata",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "cheddar",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "butter",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "cheese",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "felii",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "rucola",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "valeriana",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "toast",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "dovlecei",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "salam",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "gofre",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "budinca",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "ceai",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "telemea",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "hrana",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "bautura",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "danone",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "tuc",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "covrigei",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "crochete",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "burger",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "cosmetice",
+    "ProdCategory": "Igiena"
+  },
+  {
+    "ProdName": "placinta",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "cornisoni",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "fleica",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "aluat",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "patiserie",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "maioneza",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "masline",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "ulei",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "boxeri",
+    "ProdCategory": "Imbracaminte"
+  },
+  {
+    "ProdName": "cereale",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "brezel",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "faina",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "nuci",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "rondele",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "gorgonzola",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "odorizant",
+    "ProdCategory": "Menaj"
+  },
+  {
+    "ProdName": "labar",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "cacao",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "cafea",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "nutella",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "praline",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "fructe",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "tuns",
+    "ProdCategory": "Igiena"
+  },
+  {
+    "ProdName": "caciula",
+    "ProdCategory": "Imbracaminte"
+  },
+  {
+    "ProdName": "mamaliguta",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "tochitura",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "cappuccino",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "adeziv",
+    "ProdCategory": "Constructii"
+  },
+  {
+    "ProdName": "no-spa",
+    "ProdCategory": "Sanatate"
+  },
+  {
+    "ProdName": "oreo",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "dotera",
+    "ProdCategory": "Sanatate"
+  },
+  {
+    "ProdName": "ariel",
+    "ProdCategory": "Menaj"
+  },
+  {
+    "ProdName": "lenor",
+    "ProdCategory": "Menaj"
+  },
+  {
+    "ProdName": "boia",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "chips",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "alfers",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "unirea",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "pepsi",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "cola",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "lamaie",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "slanina",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "soric",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "talpici",
+    "ProdCategory": "Incaltaminte"
+  },
+  {
+    "ProdName": "burete",
+    "ProdCategory": "Igiena"
+  },
+  {
+    "ProdName": "vegeta",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "vegetal",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "curcan",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "scoici",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "ecler",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "pomelo",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "somn",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "nectar",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "colgate",
+    "ProdCategory": "Igiena"
+  },
+  {
+    "ProdName": "delaco",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "corega",
+    "ProdCategory": "Igiena"
+  },
+  {
+    "ProdName": "snickers",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "praf de copt",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "drojdie",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "vitamina",
+    "ProdCategory": "Sanatate"
+  },
+  {
+    "ProdName": "medica",
+    "ProdCategory": "Sanatate"
+  },
+  {
+    "ProdName": "crenvursti",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "lasagna",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "broccoli",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "croissant",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "cif",
+    "ProdCategory": "Menaj"
+  },
+  {
+    "ProdName": "cozonac",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "kinder",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "fruct",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "halva",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "pipote",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "listerine",
+    "ProdCategory": "Igiena"
+  },
+  {
+    "ProdName": "pur",
+    "ProdCategory": "Menaj"
+  },
+  {
+    "ProdName": "deo",
+    "ProdCategory": "Igiena"
+  },
+  {
+    "ProdName": "zucchini",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "prosop",
+    "ProdCategory": "Igiena"
+  },
+  {
+    "ProdName": "calcan",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "acadea",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "sparanghel",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "miere",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "prelungitor",
+    "ProdCategory": "Gadget-uri"
+  },
+  {
+    "ProdName": "Pantene",
+    "ProdCategory": "Igiena"
+  },
+  {
+    "ProdName": "sare de baie",
+    "ProdCategory": "Igiena"
+  },
+  {
+    "ProdName": "mascara",
+    "ProdCategory": "Infrumusetare"
+  },
+  {
+    "ProdName": "luciu buze",
+    "ProdCategory": "Infrumusetare"
+  },
+  {
+    "ProdName": "buze",
+    "ProdCategory": "Infrumusetare"
+  },
+  {
+    "ProdName": "balsam buze",
+    "ProdCategory": "Infrumusetare"
+  },
+  {
+    "ProdName": "ruj",
+    "ProdCategory": "Infrumusetare"
+  },
+  {
+    "ProdName": "scobitori",
+    "ProdCategory": "Igiena"
+  },
+  {
+    "ProdName": "betisoare",
+    "ProdCategory": "Igiena"
+  },
+  {
+    "ProdName": "tricou",
+    "ProdCategory": "Imbracaminte"
+  },
+  {
+    "ProdName": "cremsnit",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "dove",
+    "ProdCategory": "Igiena"
+  },
+  {
+    "ProdName": "leustean",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "praz",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "kapia",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "nutline",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "alka",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "schwarzkopf",
+    "ProdCategory": "Igiena"
+  },
+  {
+    "ProdName": "sardine",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "cocos",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "oral-b",
+    "ProdCategory": "Igiena"
+  },
+  {
+    "ProdName": "pulpe",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "bonduelle",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "spaghetti",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "scortisoara",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "oregano",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "gum",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "nacho",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "almette",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "chedar",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "peroni",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "lacalut",
+    "ProdCategory": "Igiena"
+  },
+  {
+    "ProdName": "parodontax",
+    "ProdCategory": "Igiena"
+  },
+  {
+    "ProdName": "cozi",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "emeka",
+    "ProdCategory": "Igiena"
+  },
+  {
+    "ProdName": "gelatina",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "pufuleti",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "teo",
+    "ProdCategory": "Igiena"
+  },
+  {
+    "ProdName": "muschiulet",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "gaina",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "pastrav",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "dorada",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "bucovina",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "ciorba",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "supa",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "prajituri",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "camasi",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "langos",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "marker",
+    "ProdCategory": "Hobby"
+  },
+  {
+    "ProdName": "chiloti",
+    "ProdCategory": "Imbracaminte"
+  },
+  {
+    "ProdName": "orbit",
+    "ProdCategory": "Igiena"
+  },
+  {
+    "ProdName": "parfum",
+    "ProdCategory": "Igiena"
+  },
+  {
+    "ProdName": "musli",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "caju",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "cake",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "det",
+    "ProdCategory": "Menaj"
+  },
+  {
+    "ProdName": "otet",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "vanish",
+    "ProdCategory": "Menaj"
+  },
+  {
+    "ProdName": "noodles",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "rufe",
+    "ProdCategory": "Menaj"
+  },
+  {
+    "ProdName": "domestos",
+    "ProdCategory": "Menaj"
+  },
+  {
+    "ProdName": "pronto",
+    "ProdCategory": "Menaj"
+  },
+  {
+    "ProdName": "nivea",
+    "ProdCategory": "Igiena"
+  },
+  {
+    "ProdName": "crutoane",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "chec",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "chimen",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "tortilla",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "pepene",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "piscoturi",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "mascarpone",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "aperitive",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "lactat",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "branzica",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "covor",
+    "ProdCategory": "Menaj"
+  },
+  {
+    "ProdName": "sauvignon",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "feteasca",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "dulceata",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "sampon",
+    "ProdCategory": "Igiena"
+  },
+  {
+    "ProdName": "curatare",
+    "ProdCategory": "Menaj"
+  },
+  {
+    "ProdName": "humus",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "gulii",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "gulie",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "penne",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "oyakata",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "glucoza",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "hochland",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "muller",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "oaie",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "vaca",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "cheeseburger",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "hering",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "turta",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "icre",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "smochine",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "lipie",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "saleuri",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "edamer",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "periuta",
+    "ProdCategory": "Igiena"
+  },
+  {
+    "ProdName": "vafe",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "vafa",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "melc",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "foietaj",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "pesmet",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "cotnari",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "menajer",
+    "ProdCategory": "Menaj"
+  },
+  {
+    "ProdName": "zmeura",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "clor",
+    "ProdCategory": "Menaj"
+  },
+  {
+    "ProdName": "ciabatta",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "caiet",
+    "ProdCategory": "Altele"
+  },
+  {
+    "ProdName": "nestle",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "choco",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "pijama",
+    "ProdCategory": "Imbracaminte"
+  },
+  {
+    "ProdName": "strudel",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "baton",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "pantaloni",
+    "ProdCategory": "Imbracaminte"
+  },
+  {
+    "ProdName": "panvirucidin",
+    "ProdCategory": "Sanatate"
+  },
+  {
+    "ProdName": "diavit",
+    "ProdCategory": "Sanatate"
+  },
+  {
+    "ProdName": "lucerna",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "castane",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "tchibo",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "macarons",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "capsuni",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "trufe",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "jeleuri",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "cuisoare",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "gogosi",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "gogoasa",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "cimbru",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "lighean",
+    "ProdCategory": "Menaj"
+  },
+  {
+    "ProdName": "garnier",
+    "ProdCategory": "Infrumusetare"
+  },
+  {
+    "ProdName": "spa",
+    "ProdCategory": "Infrumusetare"
+  },
+  {
+    "ProdName": "gris",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "merluciu",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "macrou",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "nuga",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "martipan",
+    "ProdCategory": ""
+  },
+  {
+    "ProdName": "rimel",
+    "ProdCategory": "Infrumusetare"
+  },
+  {
+    "ProdName": "capsune",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "spata",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "igienica",
+    "ProdCategory": "Igiena"
+  },
+  {
+    "ProdName": "popcorn",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "malai",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "ferrero",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "ton",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "condimente",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "anason",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "tofu",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "esente",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "bors",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "detergent",
+    "ProdCategory": "Menaj"
+  },
+  {
+    "ProdName": "galuste",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "prune",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "mix",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "sanitar",
+    "ProdCategory": "Sanatate"
+  },
+  {
+    "ProdName": "betisoare urechi",
+    "ProdCategory": "Igiena"
+  },
+  {
+    "ProdName": "betisoare de urechi",
+    "ProdCategory": "Igiena"
+  },
+  {
+    "ProdName": "pitar",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "compot",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "nap",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "napi",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "sarmale",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "rasol",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "butterfish",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "sfecla",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "kaki",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "merisoare",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "doritos",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "chifla",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "nuggets",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "pulover",
+    "ProdCategory": "Imbracaminte"
+  },
+  {
+    "ProdName": "dropsuri",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "raffaello",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "canvas",
+    "ProdCategory": "Hobby"
+  },
+  {
+    "ProdName": "actimel",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "farmec",
+    "ProdCategory": "Infrumusetare"
+  },
+  {
+    "ProdName": "sosete",
+    "ProdCategory": "Imbracaminte"
+  },
+  {
+    "ProdName": "hribi",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "ghebe",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "bors",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "papuci",
+    "ProdCategory": "Incaltaminte"
+  },
+  {
+    "ProdName": "elseve",
+    "ProdCategory": "Infrumusetare"
+  },
+  {
+    "ProdName": "amidon",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "rodie",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "grepfrut",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "tarta",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "dovl",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "capia",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "amestec mexican",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "marmelada",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "milkeria",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "champignon",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "scutece",
+    "ProdCategory": "Igiena"
+  },
+  {
+    "ProdName": "curmale",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "dafin",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "trigon",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "seni",
+    "ProdCategory": "Igiena"
+  },
+  {
+    "ProdName": "biborteni",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "dezinfectant",
+    "ProdCategory": "Igiena"
+  },
+  {
+    "ProdName": "bagheta",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "bol",
+    "ProdCategory": "Bucatarie"
+  },
+  {
+    "ProdName": "masti",
+    "ProdCategory": "Igiena"
+  },
+  {
+    "ProdName": "folie aluminiu",
+    "ProdCategory": "Menaj"
+  },
+  {
+    "ProdName": "cornetti",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "tarhon",
+    "ProdCategory": "Alimente"
+  }
+]

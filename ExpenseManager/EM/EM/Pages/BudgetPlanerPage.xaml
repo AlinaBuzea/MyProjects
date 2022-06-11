@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:EM.ViewModels"
+             xmlns:toolkit ="http://xamarin.com/schemas/2020/toolkit"
+             x:Name="BudgetPlanerPg"
+             Title="Planificator de buget"
+             x:Class="EM.Pages.BudgetPlanerPage">
+
+    <ContentPage.BindingContext>
+        <viewmodels:BudgetPlanerVM/>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <Style x:Key="InvalidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="Red" />
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid RowDefinitions="*, Auto">
+            <Image Grid.RowSpan="2" Source="Background2.png" Aspect="Fill"/>
+            <StackLayout Grid.Row="0">
+                <Grid ColumnDefinitions="Auto,*,Auto" RowDefinitions="Auto, *">
+                    <Label Text="Selectati luna:" TextColor="White" FontSize="18" VerticalTextAlignment="Center"
+                           HorizontalOptions="CenterAndExpand" Margin="5,0"/>
+                    <Frame Grid.Column="1" BackgroundColor="Transparent" Padding="0">
+                        <Grid ColumnDefinitions="*,*">
+                            <Picker ItemsSource="{Binding CurrentMonthYearVM.Months}" SelectedItem="{Binding Month}" 
+                                    HorizontalTextAlignment="Center"/>
+                            <Picker Grid.Column="1" ItemsSource="{Binding CurrentMonthYearVM.Years}" SelectedItem="{Binding Year}"
+                                    HorizontalTextAlignment="Center"/>
+                        </Grid>
+                    </Frame>
+                    <Button x:Name="InformationBtn" Grid.Column="2" Text="i" TextTransform="Lowercase" TextColor="White" 
+                            Command="{Binding InformationCommand}" BorderRadius="40"
+                            FontSize="18" FontAttributes="Bold" BackgroundColor="#3EA5F3" Margin="8,5" HorizontalOptions="Center" 
+                            WidthRequest="50" HeightRequest="{Binding Source={x:Reference InformationBtn}, Path=Width}"/>
+                    <ScrollView Grid.Row="1" Grid.ColumnSpan="3" VerticalScrollBarVisibility="Always" Margin="5,5">
+
+                        <StackLayout x:Name="ListedCategoryBudgetView" BindableLayout.ItemsSource="{Binding Budgets}" 
+                                                 BindableLayout.EmptyView="No items to display" Grid.Row="2" Grid.ColumnSpan="3">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame BorderColor="#F11263" CornerRadius="20" HasShadow="True" Padding="15,2" VerticalOptions="CenterAndExpand">
+                                        <Grid BackgroundColor="Transparent"
+                                                    ColumnDefinitions="*,Auto,Auto" RowDefinitions="*,*,Auto,*,*,Auto">
+                                            <Grid.RowSpacing>
+                                                0
+                                            </Grid.RowSpacing>
+                                            <Label Text="Categorie:" TextColor="Black" FontSize="20"/>
+                                            <Label Grid.Column="1" Grid.ColumnSpan="2"  Text="{Binding BudgetCategory.CategoryName}"
+                                                   TextColor="#3EA5F3" FontSize="20" FontAttributes="Bold" 
+                                                   HorizontalTextAlignment="Start"/>
+
+                                            <Label Grid.Row="1" Text="Buget:" TextColor="Black" FontSize="20" VerticalTextAlignment="Center"/>
+                                            <Entry x:Name="AlocatedBudgetEntry" Grid.Row="1" Grid.Column="1" Text="{Binding AlocatedBudget}" Margin="5,0" 
+                                                    Placeholder="Valoare in RON" VerticalOptions="CenterAndExpand"
+                                                    TextColor="Black" FontSize="20">
+                                                <Entry.Behaviors>
+                                                    <toolkit:NumericValidationBehavior InvalidStyle="{StaticResource InvalidEntryStyle}"
+                                                     Flags="ValidateOnAttaching, ValidateOnValueChanging"
+                                                     IsValid="{Binding IsValidAlocatedBudgetValue}"
+                                                     />
+                                                </Entry.Behaviors>
+                                            </Entry>
+                                            <Label Grid.Row="1" Grid.Column="2" Text="RON" TextColor="Black" FontSize="20"
+                                                   VerticalTextAlignment="Center"/>
+
+                                            <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="Invalid! Introduceti un numar pozitiv!" TextColor="Red"
+                                                   IsVisible="{Binding IsNotValidAlocatedBudgetValue}"/>
+
+                                            <Label Grid.Row="3" Grid.ColumnSpan="3" Text="Mesaj Apropiere Depasire Buget"
+                                                   TextColor="Black" FontSize="20" VerticalTextAlignment="Center"/>
+                                            <CheckBox Grid.Row="3" Grid.Column="2" 
+                                                      IsChecked="{Binding IsLimitNotificationActive, Mode=TwoWay}"
+                                                      VerticalOptions="CenterAndExpand"/>
+
+                                            <Label Grid.Row="4" Text="Limita minima:" IsVisible="{Binding IsLimitNotificationActive}"
+                                                   TextColor="Black" FontSize="20" VerticalOptions="CenterAndExpand"/>
+                                            <Entry Grid.Row="4" Grid.Column="1" Text="{Binding LimitNotificationValue}" 
+                                                    FontSize="20" Margin="5,0" TextColor="Black" 
+                                                    Placeholder="Valoare in RON" VerticalOptions="CenterAndExpand" 
+                                                    IsVisible="{Binding IsLimitNotificationActive}">
+                                                <Entry.Behaviors>
+                                                    <toolkit:NumericValidationBehavior 
+                                                        InvalidStyle="{StaticResource InvalidEntryStyle}" 
+                                                        Flags="ValidateOnAttaching, ValidateOnValueChanging"
+                                                        IsValid="{Binding IsValidNotificationValue}"
+                                                     />
+                                                </Entry.Behaviors>
+                                            </Entry>
+                                            <Label Grid.Row="4" Grid.Column="2" Text="RON" VerticalOptions="CenterAndExpand" 
+                                                   TextColor="Black" FontSize="20" IsVisible="{Binding IsLimitNotificationActive}"/>
+
+                                            <Label Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2" 
+                                                   Text="Invalid! Introduceti un numar!" TextColor="Red"
+                                                   IsVisible="{Binding IsNotValidNotificationValue}"/>
+
+                                        </Grid>
+                                    </Frame>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+
+                        </StackLayout>
+                    </ScrollView>
+                </Grid>
+
+            </StackLayout>
+            <Frame Grid.Row="1" Padding="0" BackgroundColor="Transparent">
+                <Grid ColumnDefinitions="*,*" VerticalOptions="End">
+                    <Button Text="Anuleaza" Command="{Binding CancelCommand}" Margin="5,5,0,5"
+                        VerticalOptions="End" HorizontalOptions="Center" FontSize="18" FontAttributes="Bold" 
+                        BackgroundColor="#16C6FC"
+                        WidthRequest="250"/>
+
+                    <Button Grid.Column="1" Text="Salveaza Datele" Command="{Binding SaveBudgetPlanCommand}" Margin="5"
+                        VerticalOptions="End" HorizontalOptions="Center" FontSize="18" FontAttributes="Bold" 
+                        BackgroundColor="#16C6FC" 
+                        WidthRequest="250"/>
+                </Grid>
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

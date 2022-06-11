@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels ="clr-namespace:EM.ViewModels"
+             x:Class="EM.Pages.AllBoughtProductsPage"
+             Title="TOATE PRODUSELE">
+    <ContentPage.BindingContext>
+        <viewmodels:AddProductVM/>
+    </ContentPage.BindingContext>
+    <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <Image Source="Fundal1.jpeg" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All" Aspect="AspectFill"/>
+        <StackLayout AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All" BackgroundColor="Transparent">
+            <CollectionView Margin="20" ItemsSource="{Binding Products}" SelectionMode="None" EmptyView="No items to display" 
+                            VerticalScrollBarVisibility="Always">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="10"  Orientation="Vertical"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="Orange" CornerRadius="20" HasShadow="True" Margin="0,5" Padding="10">
+                            <Grid BackgroundColor="Transparent">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding ProductName}" Grid.ColumnSpan="2" LineBreakMode="WordWrap" 
+                                       FontSize="24" Margin="5,0" TextColor="Black"/>
+                                <Label Grid.Row="1"  Text="{Binding ProdCategoryId}" LineBreakMode="WordWrap"
+                                    FontSize="20" TextColor="Black" Margin="5,0"/>
+                                <Label Grid.Row="2"  Text="{Binding ShopName}" Grid.ColumnSpan="2" LineBreakMode="WordWrap"
+                                    FontSize="20" TextColor="Black" Margin="5,0"/>
+                                <Label Grid.Column="1" Grid.Row="1"  Text="{Binding AquisitionDate.Date , StringFormat='{0:dd/mm/yyyy}'}" LineBreakMode="WordWrap"
+                                    FontSize="20" TextColor="Black" Margin="5,0" FontAttributes="Italic"/>
+                                <Label Grid.Row="0" Grid.Column="2" Text="{Binding Price}"  HorizontalOptions="Center" LineBreakMode="WordWrap"
+                                    FontSize="26" TextColor="#F33E86" FontFamily="CooperBlack" Margin="5,0"/>
+                                <CheckBox Grid.Row="1" Grid.RowSpan="2" HorizontalOptions="Center" Grid.Column="2" 
+                                          IsChecked="{Binding IsMarked, Mode=TwoWay}" VerticalOptions="Center" Margin="20,0" Scale="2"/>
+
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </StackLayout>
+
+    </AbsoluteLayout>
+</ContentPage>

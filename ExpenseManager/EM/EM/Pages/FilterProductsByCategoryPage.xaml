@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:EM.ViewModels"
+             xmlns:toolkit="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="EM.Pages.FilterProductsByCategoryPage"
+             x:Name="ProductListPerCategory"
+             Title="{Binding PageCategoryName}">
+
+    <Grid RowDefinitions="Auto,Auto,*">
+        <Image Grid.RowSpan="3" Source="Fundal1.jpeg" Aspect="AspectFill"/>
+        <Grid Margin="20,5" ColumnDefinitions="4*,*" >
+            <Button Text="Adauga Produs" Command="{Binding AddNewProductCommand}" BorderRadius="10"
+                                FontSize="18" FontAttributes="Bold" BackgroundColor="#F33E86" Margin="8,5" 
+                                HorizontalOptions="Center" TextColor="White" />
+            <Button Grid.Column="1" Text="i" TextTransform="Lowercase" Command="{Binding InformationCommand}" BorderRadius="40"
+                                FontSize="18" FontAttributes="Bold" BackgroundColor="#3EA5F3" Margin="8,5" 
+                                HorizontalOptions="Center" TextColor="White" />
+
+        </Grid>
+        <Grid  Grid.Row="1" Margin="20,0" ColumnDefinitions="*,*,2*" >
+            <Label Text="Filtrare cheltuieli:" FontSize="Medium" TextColor="White"/>
+            <Picker Grid.Column="1" ItemsSource="{Binding PeriodOption}" SelectedItem="{Binding SelectedPeriod,Mode=TwoWay}"/>
+            <Frame Grid.Column="2" BackgroundColor="Transparent" Padding="0">
+                <Grid ColumnDefinitions="1.5*,*">
+                    <Picker ItemsSource="{Binding CurrentMonthYearVM.Months}" SelectedItem="{Binding Month}" 
+                                    HorizontalTextAlignment="Center" IsVisible="{Binding IsVisibleMonth}"/>
+                    <Picker Grid.Column="1" ItemsSource="{Binding CurrentMonthYearVM.Years}" SelectedItem="{Binding Year}"
+                                    HorizontalTextAlignment="Center" IsVisible="{Binding IsVisibleYear}"/>
+                </Grid>
+            </Frame>
+        </Grid>
+        <CollectionView Grid.Row="2" Margin="20" ItemsSource="{Binding CategoryProducts}" SelectionMode="None" EmptyView="Nu exista date" 
+                            VerticalScrollBarVisibility="Always">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="10"  Orientation="Vertical"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame BorderColor="#F33E86" CornerRadius="20" HasShadow="True" Margin="0,5" Padding="10">
+                        <Grid BackgroundColor="Transparent">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="1.5*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1.5*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="1.5*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Text="{Binding ProductName}" Grid.ColumnSpan="4" LineBreakMode="WordWrap" 
+                                    FontSize="24" Margin="5,0" TextColor="Black"/>
+                            <Label Grid.Row="1"  Text="{Binding AquisitionShop.ShopName, Mode=TwoWay}" Grid.ColumnSpan="4" LineBreakMode="WordWrap"
+                                FontSize="18" FontAttributes="Italic" TextColor="Black" Margin="5,0"/>
+                            <Label Grid.Row="0" Grid.Column="4" Text="{Binding Price}"  HorizontalOptions="Center" 
+                                        LineBreakMode="WordWrap" FontSize="26" TextColor="#F33E86" FontFamily="CooperBlack" Margin="5,0"/>
+                            <CheckBox Grid.Row="1"  HorizontalOptions="Center" Grid.Column="4" 
+                                                    IsChecked="{Binding IsMarked, Mode=TwoWay}"
+                                                    toolkit:TouchEffect.Command="{Binding Source={x:Reference ProductListPerCategory}, Path=BindingContext.ModifyIsMarkedProductCommand}"
+                                                    toolkit:TouchEffect.CommandParameter="{Binding Id}"
+                                                    VerticalOptions="Center" Margin="5,0" Scale="2">
+
+                            </CheckBox>
+                            <Label Grid.Row="2" Grid.ColumnSpan="2" 
+                                        Text="{Binding AquisitionDate , StringFormat='{0:dd/MM/yyyy}'}"
+                                        VerticalTextAlignment="Center"
+                                        FontSize="20" TextColor="Black" Margin="5,0" FontAttributes="Italic"/>
+                            <ImageButton Grid.Row="2" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="Center" Source="Edit.png"  
+                                                Background="Transparent" HeightRequest="40" 
+                                                Command="{Binding Source={x:Reference ProductListPerCategory}, Path=BindingContext.ModifyProductCommand}" 
+                                                CommandParameter="{Binding Id}"/>
+                            <ImageButton Grid.Row="2" Grid.Column="4"  VerticalOptions="Center" HorizontalOptions="Center" Source="Garbage.jpg" 
+                                                Background="Transparent" HeightRequest="40"
+                                                Command="{Binding Source={x:Reference ProductListPerCategory}, Path=BindingContext.DeleteProductCommand}" 
+                                                CommandParameter="{Binding Id}"/>
+
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

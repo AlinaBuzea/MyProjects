@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:EM.ViewModels"
+             x:Name="AddProductPg"
+             x:Class="EM.Pages.AddProductPage"
+             Title="ADAUGA PRODUS">
+
+    <ContentPage.Content>
+        <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+            <Image Source="Fundal1.jpeg" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All" Aspect="AspectFill"/>
+            <RefreshView AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="1,1,1,1" 
+                         Command="{Binding UpdateCategoriesAndShopsDataCommand}" IsRefreshing="{Binding IsRefreshing}">
+
+                <ScrollView AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+                    <StackLayout Spacing="0">
+                        <Label Text="Denumire*" Margin="20.0" TextColor="Black" FontAttributes="Bold" FontSize="Large"/>
+                        <Entry Placeholder="Denumire"  Text="{Binding ProductName, Mode=TwoWay}" VerticalOptions="Center" FontSize="20"
+                       Margin="20,0" TextColor="Black" ClearButtonVisibility="WhileEditing" />
+                        <Label Text="Categorie*" Margin="20.0" TextColor="Black" FontAttributes="Bold" FontSize="Large"/>
+                        <Grid Margin="0,0,10,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Picker Title="Selecteaza categoria" 
+                                    ItemsSource="{Binding Categories}"
+                                    ItemDisplayBinding="{Binding CategoryName}" 
+                                    SelectedItem="{Binding ProdCategory, Mode=TwoWay}" 
+                                    VerticalOptions="Center" FontSize="20" Margin="20,0,10,0" TextColor="Black"/>
+                            <Button x:Name="AddCategoryBtn" Grid.Column="1" Text="+" 
+                                    Command="{Binding Source={x:Reference AddProductPg}, Path=BindingContext.AddNewCategoryCommand}" BorderRadius="40" 
+                                    HeightRequest="70" BindingContext="{x:Reference Name=AddCategoryBtn}" WidthRequest="{Binding Height}"
+                                    FontSize="37" TextColor="White" VerticalOptions="End" HorizontalOptions="End" 
+                                    BackgroundColor="#F33E86"/>
+                        </Grid>
+                        <Label Text="Adresa Magazin" Margin="20.0" TextColor="Black" FontAttributes="Bold" FontSize="Large"/>
+                        <Grid Margin="0,0,10,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Picker Title="Selecteaza magazinul" 
+                                    ItemsSource="{Binding Shops}"
+                                    ItemDisplayBinding="{Binding ShopName}" 
+                                    SelectedItem="{Binding AquisitionShop, Mode=TwoWay}" 
+                                    VerticalOptions="Center" FontSize="20" Margin="20,0,10,0" TextColor="Black"/>
+                            <Button Grid.Column="1" Text="+" Command="{Binding Source={x:Reference AddProductPg}, Path=BindingContext.AddNewShopCommand}" 
+                                    BindingContext="{x:Reference Name=AddCategoryBtn}" WidthRequest="{Binding Height}" 
+                                    BorderRadius="{Binding BorderRadius}" FontSize="{Binding FontSize}" 
+                                    TextColor="White" VerticalOptions="End" HorizontalOptions="End" 
+                                    BackgroundColor="#F33E86"/>
+                        </Grid>
+                        <Label Text="Cantitate" Margin="20.0" TextColor="Black" FontAttributes="Bold" FontSize="Large"/>
+                        <Entry Placeholder="Cantitate" Text="{Binding Quantity, Mode=TwoWay}" VerticalOptions="Center" FontSize="20" 
+                       Margin="20,0" TextColor="Black" ClearButtonVisibility="WhileEditing"/>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Pret*" Margin="20.0" TextColor="Black" FontAttributes="Bold" FontSize="Large"/>
+                            <Entry Placeholder="Pret in RON" Text="{Binding Price, Mode=TwoWay}" VerticalOptions="Center" FontSize="20"
+                           Margin="20,0" TextColor="Black" ClearButtonVisibility="WhileEditing"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Data Achizitiei*" Margin="20.0" TextColor="Black" FontAttributes="Bold" FontSize="Large"/>
+                            <DatePicker Date="{Binding AquisitionDate, Mode=TwoWay}" MaximumDate="{Binding TodaysDate}" VerticalOptions="Center" FontSize="20" 
+                           Margin="10,0" WidthRequest="120" TextColor="Black"/>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="Preferate" Margin="20.0" TextColor="Black" FontAttributes="Bold" FontSize="Large"/>
+                            <CheckBox IsChecked="{Binding IsMarked, Mode=TwoWay}" VerticalOptions="Center" Margin="20,0" Color="#16C6FC" Scale="2"/>
+                        </StackLayout>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0" Text="Anulare" Command="{Binding CancelCommand}" BorderRadius="10" VerticalOptions="End" 
+                                FontSize="16" FontAttributes="Bold" BackgroundColor="#16C6FC" Margin="5" />
+                            <Button Grid.Column="1"  Text="Salveaza Produs" Command="{Binding SaveCommand}" BorderRadius="10" VerticalOptions="End" 
+                                FontSize="16" FontAttributes="Bold" BackgroundColor="#16C6FC" Margin="5"/>
+
+                        </Grid>
+                    </StackLayout>
+                </ScrollView>
+            </RefreshView>
+        </AbsoluteLayout>
+
+    </ContentPage.Content>
+</ContentPage>
