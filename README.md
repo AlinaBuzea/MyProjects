@@ -12,4 +12,5 @@ Aceasta are scopul de a oferi o mana de ajutor utilizatorului in gestiunea chelt
 Aplicatia urmeaza a fi dezvoltata pentru a oferi o experienta cat mai buna utilizatorului. Dezvoltarile viitoare implica vizualizarea statisticilor legate de cheltuieli, buget si economii, posibilitatea importarii bonurilor sub forma de pdf, procesarea unei multitudini de imagini in acelasi timp si extinderea ariei de tipare ale bonurilor pe care le poate procesa. 
 
 
-Observație: pentru a se putea face conexiunea dintre proiectul scris in C# și serverul de python, este necesară modificarea valorii variabilelor HOST din cadrul ambelor proiecte.
+Observație: pentru a se putea face conexiunea dintre proiectul scris in C# și serverul de python, este necesară modificarea valorii variabilei HOSTNAME (din fișierul flaskWebServer.py) și a constantei PYTHON_SERVER_HOST (din fișierul ProductDictionaryFileManager.cs) cu adresa rețelei de internet folosite. Ambele trebuie să aibă aceeași valoare!
+
