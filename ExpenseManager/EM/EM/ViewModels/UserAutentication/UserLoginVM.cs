@@ -1,7 +1,6 @@
 ﻿using EM.Data;
 using EM.Models.Entity;
 using EM.Pages;
-using EM.Pages.Autentication;
 using MvvmHelpers;
 using System;
 using System.Collections.Generic;
@@ -16,9 +15,8 @@ namespace EM.ViewModels.UserAutentication
     public class UserLoginVM : BaseViewModel
     {
         #region Fields
-        private string name;
         private string pin;
-        public string userId { get; set; }
+        public string userId;
         public UserDB userDB;
         #endregion
 
@@ -37,13 +35,6 @@ namespace EM.ViewModels.UserAutentication
         }
 
         #region Properties
-        public string Name
-        {
-            get => name;
-            set => SetProperty(ref name, value);
-
-        }
-
         public string Pin
         {
             get => pin;
@@ -53,92 +44,58 @@ namespace EM.ViewModels.UserAutentication
 
         public string UserId
         {
-            get
-            {
-                return userId;
-            }
-            set
-            {
-                userId = value;
-                LoadUserId(value);
-            }
+            get => userId;
+            set => SetProperty(ref userId, value);
         }
         #endregion
 
-        public void OnLogInCommand()
+        public async void OnLogInCommand()  // de modificat
         {
-            //if (string.IsNullOrWhiteSpace(Name) ||
-            //    string.IsNullOrWhiteSpace(Pin))
-            //{
-            //    await Application.Current.MainPage.DisplayAlert("Alerta", "Numele si Parola sunt obligatorii", "OK");
-            //    return;
-            //}
-
-            //User currentUser = await App.Database.databaseConn.Table<User>().Where(user => user.UserName.Equals(Name) && user.UserPIN.Equals(Pin)).FirstOrDefaultAsync();
-            //List<User> users = await userDB.GetListAsync();
-            //foreach(User myUser in users)
-            //{
-            //    Console.WriteLine("userName: " + myUser.UserName + " userPass:" + myUser.UserPIN);
-            //}
-
-            //if (currentUser == null)
-            //{
-            //    await Application.Current.MainPage.DisplayAlert("Alerta", "Date invalide", "OK");
-            //    return;
-            //}
-
-            //UserId = currentUser.UserId.ToString();
-
-            UserId = "1";
-            Device.BeginInvokeOnMainThread(async()=> await Application.Current.MainPage.Navigation.PushAsync(new MainMenuPage()));
-
-        }
-
-        public void LoadUserId(string userId)
-        {
-            Task.Run(async () =>
-           {
-               try
-               {
-                   var user = await userDB.GetAsync(Int32.Parse(userId));
-                   Name = user.UserName;
-                   Pin = user.UserPIN;
-               }
-               catch (Exception)
-               {
-                   Debug.WriteLine("Failed to Load User");
-               }
-           });
-        }
-
-        private void OnSignInCommand()
-        {
-            Device.BeginInvokeOnMainThread(async () => await Application.Current.MainPage.Navigation.PushAsync(new RegistrationPage()));
-        }
-
-        private void OnForgotPasswordCommand()
-        {
-            if (string.IsNullOrWhiteSpace(Name))
+            User currentUser = await userDB.GetAsync(1);
+            if (currentUser == null)
             {
-                Device.BeginInvokeOnMainThread(() => 
-                    Application.Current.MainPage.DisplayAlert("Alert", "Completati numele!", "OK"));
+                await Application.Current.MainPage.DisplayAlert("Nu ai stabilit nici-o parola", "Setaza-ti o parola!", "OK");
                 return;
             }
 
-            User currentUser = Task.Run(async () => await App.Database.databaseConn.Table<User>()
-                                                                                    .Where(user => user.UserName.Equals(Name))
-                                                                                    .FirstOrDefaultAsync()
-                                        ).Result;
+            if (string.IsNullOrWhiteSpace(Pin))
+            {
+                await Application.Current.MainPage.DisplayAlert("Alerta", "Introduce parola!", "OK");
+                return;
+            }
+
+            List<User> users = await userDB.GetListAsync();
+            foreach (User myUser in users)
+            {
+                Console.WriteLine("userEmail: " + myUser.UserEmail + " userPass:" + myUser.UserPIN);
+            }
+
+            if (!currentUser.UserPIN.Equals(Pin))
+            {
+                await Application.Current.MainPage.DisplayAlert("Alerta", "Parola incorecta", "OK");
+                return;
+            }
+
+            Application.Current.MainPage = new AppShell();
+        }
+
+        private async void OnSignInCommand()
+        {
+            await Application.Current.MainPage.Navigation.PushAsync(new RegistrationPage());
+        }
+
+        private async void OnForgotPasswordCommand()
+        {
+            User currentUser = await userDB.GetAsync(1);
             if (currentUser == null)
             {
-                Device.BeginInvokeOnMainThread(() => 
-                    Application.Current.MainPage.DisplayAlert("Alert", "Nume inexistent!", "OK"));
+                await Application.Current.MainPage.DisplayAlert("Alert", "Nu te-ai inregistrat. Te rugam inregistreaza-te!", "OK");
                 return;
             }
 
             UserId = currentUser.UserId.ToString();
             Pin = "";
-            Device.BeginInvokeOnMainThread(async () => await Application.Current.MainPage.Navigation.PushAsync(new ChangePasswordPage()));
+            await Application.Current.MainPage.Navigation.PushAsync(new ChangePasswordPage());
         }
 
     }

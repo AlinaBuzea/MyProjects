@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="EM.Pages.ShowReceiptPage"
              Title="PROCESEAZA BON">
-    <ContentPage.Content >
-        <StackLayout Padding="10" BackgroundColor="LightPink">
+    <ContentPage.Content>
+        <Grid RowDefinitions="Auto,Auto" Padding="10" BackgroundColor="LightPink">
             <ScrollView VerticalScrollBarVisibility="Always" >
                 <StackLayout x:Name="photoCollection" BindableLayout.ItemsSource="{Binding PhotoCollection, Mode=TwoWay}">
                     <BindableLayout.ItemTemplate>
@@ -16,10 +16,11 @@
                     </BindableLayout.ItemTemplate>
                 </StackLayout>
             </ScrollView>
-            <Frame Padding="0" CornerRadius="20">
+            <ActivityIndicator Grid.RowSpan="2" Color="#16C6FC" IsRunning="{Binding IsRunning}" Margin="50"/>
+            <Frame Grid.Row="1" Padding="0" CornerRadius="20">
                 <Button Text="Proceseaza" Command="{Binding ProccessReceiptCommand}" 
                     FontSize="18" FontAttributes="Bold" BackgroundColor="#16C6FC" />
             </Frame>
-        </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

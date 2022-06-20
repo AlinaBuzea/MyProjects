@@ -2408,11 +2408,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Alina\\Documents\\GitHub\\MyProjects\\ExpenseManager\\EM\\EM.iOS\\EM.iOS.csproj",
+      "projectUniqueName": "C:\\Users\\Alina\\Documents\\GitHub\\Licenta\\ExpenseManager\\EM\\EM.iOS\\EM.iOS.csproj",
       "projectName": "EM.iOS",
-      "projectPath": "C:\\Users\\Alina\\Documents\\GitHub\\MyProjects\\ExpenseManager\\EM\\EM.iOS\\EM.iOS.csproj",
+      "projectPath": "C:\\Users\\Alina\\Documents\\GitHub\\Licenta\\ExpenseManager\\EM\\EM.iOS\\EM.iOS.csproj",
       "packagesPath": "C:\\Users\\Alina\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Alina\\Documents\\GitHub\\MyProjects\\ExpenseManager\\EM\\EM.iOS\\obj\\",
+      "outputPath": "C:\\Users\\Alina\\Documents\\GitHub\\Licenta\\ExpenseManager\\EM\\EM.iOS\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
@@ -2435,8 +2435,8 @@
       "frameworks": {
         "xamarinios10": {
           "projectReferences": {
-            "C:\\Users\\Alina\\Documents\\GitHub\\MyProjects\\ExpenseManager\\EM\\EM\\EM.csproj": {
-              "projectPath": "C:\\Users\\Alina\\Documents\\GitHub\\MyProjects\\ExpenseManager\\EM\\EM\\EM.csproj"
+            "C:\\Users\\Alina\\Documents\\GitHub\\Licenta\\ExpenseManager\\EM\\EM\\EM.csproj": {
+              "projectPath": "C:\\Users\\Alina\\Documents\\GitHub\\Licenta\\ExpenseManager\\EM\\EM\\EM.csproj"
             }
           }
         }

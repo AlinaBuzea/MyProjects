@@ -30,8 +30,8 @@ def detect_text_binary(image_bytes) -> str:
 def write_in_file_detect_text_result_file_from_bytearray(image_bytes, result_file_path) -> None:
     """Executes detect_text and writes the result inside a txt file"""
 
-    print(detect_text_binary(image_bytes))
     result_string = detect_text_binary(image_bytes)
+    print(result_string)
     f = open(result_file_path, "ab")
     f.write(result_string.encode('utf8'))
     f.close()
@@ -41,8 +41,8 @@ def write_in_file_detect_text_result_file_from_bytearray(image_bytes, result_fil
 
 
 def write_in_file_detect_text_result_from_bytearray(image_bytes) -> str:
-    """Executes detect_text and writes the result inside a txt file"""
+    """Executes detect_text and returns the result as string"""
 
-    print(detect_text_binary(image_bytes))
     result_string = detect_text_binary(image_bytes)
+    print(result_string)
     return result_string

@@ -244,13 +244,15 @@ namespace EM.ViewModels
                 currentBudget.CurrentValue = newPrice;
                 if (currentBudget.AlocatedBudget != 0 && currentBudget.AlocatedBudget <= currentBudget.CurrentValue)
                 {
-                    await NotificationCenter.Current.Show(NotificationClass.ShowBudgetExceededNotification(currentCategory.CategoryName));
+                    await NotificationCenter.Current.Show(NotificationClass.ShowBudgetExceededNotification(currentCategory.CategoryName, 
+                                                           ((MonthYearVM.MonthEnum)AquisitionDate.Month).ToString(), AquisitionDate.Year));
                     return await budgetDB.SaveAsync(currentBudget);
                 }
 
                 if (currentBudget.LimitNotificationValue != 0 && currentBudget.AlocatedBudget - currentBudget.CurrentValue <= currentBudget.LimitNotificationValue)
                 {
-                    await NotificationCenter.Current.Show(NotificationClass.ShowLimitBudgetExceededNotification(currentCategory.CategoryName));
+                    await NotificationCenter.Current.Show(NotificationClass.ShowLimitBudgetExceededNotification(currentCategory.CategoryName,
+                                                          ((MonthYearVM.MonthEnum)AquisitionDate.Month).ToString(), AquisitionDate.Year));
                     return await budgetDB.SaveAsync(currentBudget);
                 }
                 return await budgetDB.SaveAsync(currentBudget);

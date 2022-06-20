@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:EM.ViewModels.UserAutentication"
+             xmlns:toolkit="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="EM.Pages.RegistrationPage"
+             Title="PAGINA DE INREGISTRARE">
+    <ContentPage.BindingContext>
+        <viewmodels:UserRegistrationVM/>
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <Style x:Key="InvalidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="Red" />
+        </Style>
+    </ContentPage.Resources>
+    <Grid>
+        <Image Source="Background1.png" Aspect="AspectFill"></Image>
+        <Grid Margin="20" RowDefinitions="*,*,*,*,*,*,0.5*,Auto">
+
+            <Label Text="Email*" VerticalOptions="Center" FontSize="Title" Margin="20,0" />
+            <Entry Grid.Row="1" Text="{Binding Email, Mode=TwoWay}" Placeholder="Email" 
+                        VerticalOptions="Center" FontSize="Title" MaxLength="50"  Margin="20,0">
+                <Entry.Behaviors>
+                    <toolkit:EmailValidationBehavior
+                            DecorationFlags="Trim"
+                            InvalidStyle="{StaticResource InvalidEntryStyle}"
+                            IsValid="{Binding IsValidEmail}"/>
+                </Entry.Behaviors>
+            </Entry>
+            <Label Grid.Row="2" Text="Parola*" VerticalOptions="Center" FontSize="Title" Margin="20,0" />
+            <Entry x:Name="Pin" Grid.Row="3" Text="{Binding Pin, Mode=TwoWay}" Placeholder="Parola" 
+                        IsPassword="True" VerticalOptions="Center" FontSize="Title" MaxLength="15"  Margin="20,0" />
+            <Label Grid.Row="4" Text="Introduceti inca o data parola*" VerticalOptions="Center" FontSize="Title" Margin="20,0" />
+            <Entry Placeholder="Repeta Parola" Grid.Row="5" Text="{Binding ConfirmPin}" 
+                        IsPassword="True" VerticalOptions="Center" FontSize="Title" MaxLength="15"  Margin="20,0" >
+                <Entry.Behaviors>
+                    <toolkit:RequiredStringValidationBehavior
+                                RequiredString="{Binding Text, Source={x:Reference Pin}}" 
+                                InvalidStyle="{StaticResource InvalidEntryStyle}"/>
+                </Entry.Behaviors>
+            </Entry>
+            <!--<Label Grid.Row="6" x:Name="mandatoryFieldsLabel" Text="*Toate campurile sunt obligatorii" TextColor="Red" IsVisible="False"/>-->
+
+            <Button Grid.Row="7" Text="Inregistreaza-te" FontSize="20" FontAttributes="Bold" BorderRadius="30" Command="{Binding SaveCommand}">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="1,0">
+                        <GradientStop Color="#16C6FC" Offset="0.1" />
+                        <GradientStop Color="#FC16C7"  Offset="1.0" />
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+        </Grid>
+
+    </Grid>
+</ContentPage>

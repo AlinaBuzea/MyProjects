@@ -1,6 +1,5 @@
 ﻿using EM.Data;
 using EM.Pages;
-using EM.Pages.Autentication;
 using Plugin.LocalNotification;
 using Plugin.LocalNotification.EventArgs;
 using System;
@@ -30,12 +29,13 @@ namespace EM
 
             NotificationCenter.Current.NotificationTapped += OnLocalNotificationTapped;
 
+            MainPage = new NavigationPage(new LogInPage());
             //MainPage = new NavigationPage(new LogInPage());
             //MainPage = new NavigationPage(new AddProductPage());
             //MainPage = new NavigationPage(new MainMenuPage());
             //MainPage = new MainPage();
             //MainPage = new NavigationPage(new ImportReceiptPage());
-            MainPage = new AppShell();
+            //MainPage = new AppShell();
         }
 
         private void OnLocalNotificationTapped(NotificationEventArgs e)

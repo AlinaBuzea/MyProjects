@@ -38,7 +38,7 @@
                                  Background="Transparent"
                                  Command="{Binding BindingContext.ImportPDFCommand, Source={x:Reference ImportReceiptPg}}" 
                                  BindingContext="{x:Reference Name=ImageButtonName}"  WidthRequest="{Binding HeightRequest}" 
-                                 HeightRequest="{Binding HeightRequest}" IsEnabled="False"/>
+                                 HeightRequest="{Binding HeightRequest}"/>
                 </Frame>
             </Grid>
         </AbsoluteLayout>

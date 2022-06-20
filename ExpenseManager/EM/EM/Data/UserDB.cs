@@ -13,6 +13,7 @@ namespace EM.Data
         {
             try
             {
+                //App.Database.databaseConn.DropTableAsync<User>().Wait();
                 App.Database.databaseConn.CreateTableAsync<User>().Wait();
             }
             catch (Exception e)
@@ -30,6 +31,13 @@ namespace EM.Data
         {
             return await App.Database.databaseConn.Table<User>()
                             .Where(i => i.UserId == id)
+                            .FirstOrDefaultAsync();
+        }
+
+        public async Task<User> GetByEmailAsync(string email)
+        {
+            return await App.Database.databaseConn.Table<User>()
+                            .Where(i => i.UserEmail.Equals(email))
                             .FirstOrDefaultAsync();
         }
 

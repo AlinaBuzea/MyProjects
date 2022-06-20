@@ -118,45 +118,45 @@ namespace EM.ViewModels
                 "care va va informa ca bugetul alocat per categoria respectiva este aproape de epuizare", "OK"));
         }
 
-        public void OnSaveBudgetPlanCommand()
+        public async void OnSaveBudgetPlanCommand()
         {
             foreach (BudgetVM budgetVM in budgets)
             {
                 if (budgetVM.IsNotValidNotificationValue || budgetVM.IsNotValidAlocatedBudgetValue)
                 {
-                    App.Current.MainPage.DisplayAlert("Eroare", $"Date invalide la categoria {budgetVM.BudgetCategory.CategoryName}!", "OK");
+                    await App.Current.MainPage.DisplayAlert("Eroare", $"Date invalide la categoria {budgetVM.BudgetCategory.CategoryName}!", "OK");
                     return;
                 }
             }
-            List<Budget> budgets1 = Task.Run(async () => await budgetDB.GetListAsync()).Result;
-            foreach (Budget newBudget in budgets1)
+            List<Budget> budgets1 = await budgetDB.GetListAsync();
+            _ = Task.Run(() =>
             {
-                Console.WriteLine("BudgetCategory: " + newBudget.CategoryId + "; AlocatedBudget: " + newBudget.AlocatedBudget.ToString() +
-                       "; IsLimitNotificationActive: " + newBudget.LimitNotificationValue.ToString() + "; CurrentValue: " + newBudget.CurrentValue.ToString()
-                       + "; MonthYear: " + newBudget.Month + "; MonthYear: " + newBudget.Year);
-            }
-            Task.Run(async () =>
-            {
-                ProductDB productDB = new ProductDB();
-
-                foreach (BudgetVM budgetVM in budgets)
+                foreach (Budget newBudget in budgets1)
                 {
-                    Budget newBudget = new Budget();
-                    newBudget.CategoryId = budgetVM.BudgetCategory.CategoryId;
-                    newBudget.CurrentValue = Task.Run(async () => await productDB.GetTotalPriceFromProductsWithTheGivenCategoryAndBoughtInMonthYearAsync(newBudget.CategoryId, Year, currentMonthYearVM.Months.IndexOf(Month))).Result;
-                    newBudget.AlocatedBudget = budgetVM.AlocatedBudget;
-                    newBudget.LimitNotificationValue = budgetVM.IsLimitNotificationActive ? budgetVM.LimitNotificationValue : 0;
-                    newBudget.Month = Month;
-                    newBudget.Year = Year;
-
-                    await budgetDB.SaveAsync(newBudget);
                     Console.WriteLine("BudgetCategory: " + newBudget.CategoryId + "; AlocatedBudget: " + newBudget.AlocatedBudget.ToString() +
-                         "; IsLimitNotificationActive: " + newBudget.LimitNotificationValue.ToString() + "; CurrentValue: " + newBudget.CurrentValue.ToString()
-                         + "; MonthYear: " + newBudget.Month + "; MonthYear: " + newBudget.Year);
+                           "; IsLimitNotificationActive: " + newBudget.LimitNotificationValue.ToString() + "; CurrentValue: " + newBudget.CurrentValue.ToString()
+                           + "; MonthYear: " + newBudget.Month + "; MonthYear: " + newBudget.Year);
                 }
+            });
+            ProductDB productDB = new ProductDB();
 
+            foreach (BudgetVM budgetVM in budgets)
+            {
+                Budget newBudget = new Budget();
+                newBudget.CategoryId = budgetVM.BudgetCategory.CategoryId;
+                newBudget.CurrentValue = await productDB.GetTotalPriceFromProductsWithTheGivenCategoryAndBoughtInMonthYearAsync(newBudget.CategoryId, Year, currentMonthYearVM.Months.IndexOf(Month));
+                newBudget.AlocatedBudget = budgetVM.AlocatedBudget;
+                newBudget.LimitNotificationValue = budgetVM.IsLimitNotificationActive ? budgetVM.LimitNotificationValue : 0;
+                newBudget.Month = Month;
+                newBudget.Year = Year;
 
-            }).Wait();
+                await budgetDB.SaveAsync(newBudget);
+               
+                Console.WriteLine("BudgetCategory: " + newBudget.CategoryId + "; AlocatedBudget: " + newBudget.AlocatedBudget.ToString() +
+                        "; IsLimitNotificationActive: " + newBudget.LimitNotificationValue.ToString() + "; CurrentValue: " + newBudget.CurrentValue.ToString()
+                        + "; MonthYear: " + newBudget.Month + "; MonthYear: " + newBudget.Year);
+            }
+            await App.Current.MainPage.DisplayAlert("Informare", "Setarile au fost salvate!", "OK");
             InitializeBudgetsList();
         }
 

@@ -20,6 +20,8 @@ namespace EM
         public AppShell()
         {
             InitializeComponent();
+            SetTabBarIsVisible(this, false);
+            BindingContext = this;
             Routing.RegisterRoute($"{nameof(CategoryListPage)}", typeof(CategoryListPage));
             Routing.RegisterRoute($"{nameof(AddDataPage)}", typeof(AddDataPage));
             Routing.RegisterRoute($"{nameof(ShoppingListPage)}", typeof(ShoppingListPage));
@@ -27,9 +29,9 @@ namespace EM
             Routing.RegisterRoute($"{nameof(SavingsPage)}", typeof(SavingsPage));
         }
 
-        private async void OnMenuItemClicked(object sender, EventArgs e)
+        private void OnMenuItemClicked(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync("//LoginPage");
+            Application.Current.MainPage = new NavigationPage(new LogInPage());
         }
     }
 }

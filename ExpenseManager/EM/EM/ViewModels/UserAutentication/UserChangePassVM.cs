@@ -16,29 +16,40 @@ namespace EM.ViewModels.UserAutentication
     {
         #region Fields
         private string userId;
-        private string recoveryCode;
         private string email;
+        private string recoveryCode;
         private string newPin;
         private string confirmPin;
-        public string Id { get; set; }
+
+        private bool isEmailUIElemEnabled;
+        private bool isCodeUIElemEnabled;
+        private bool isPasswordUIElemEnabled;
+        private string emailImageSource;
+        private bool isValidEmail;
+
         public UserDB userDB;
         private List<User> _list;
-        #endregion
 
-        private string emailRecoveryCode;
+        private const string emailImage = "Email.png";
+        private const string emailImage_Incorrect = "IncorrectEmailAddress.png";
+        private const string emailImage_Correct = "CorrectEmailAddress.png";
+        #endregion
 
         #region Commands
         public ICommand SaveCommand { get; }
         public ICommand CancelCommand { get; }
-        public ICommand SendRecoveryCodeCommand { get; }
+        public ICommand VerifyEmailAddressCommand { get; }
         #endregion
 
         public UserChangePassVM()
         {
+            IsEmailUIElemEnabled = true;
+            IsPasswordUIElemEnabled = false;
             SaveCommand = new Command(OnSaveCommand);
             CancelCommand = new Command(OnCancelCommand);
-            SendRecoveryCodeCommand = new Command(OnSendRecoveryCodeCommand);
+            VerifyEmailAddressCommand = new Command(OnVerifyEmailAddressCommand);
             userDB = new UserDB();
+            EmailImageSource = emailImage;
         }
 
         #region Properties
@@ -69,7 +80,6 @@ namespace EM.ViewModels.UserAutentication
 
         }
 
-
         public string UserId
         {
             get
@@ -82,61 +92,79 @@ namespace EM.ViewModels.UserAutentication
                 LoadUserId(value);
             }
         }
+        public string EmailImageSource
+        {
+            get => emailImageSource;
+            set => SetProperty(ref emailImageSource, value);
+        }
+
+        public bool IsValidEmail
+        {
+            get => isValidEmail;
+            set => SetProperty(ref isValidEmail, value);
+        }
+
+        public bool IsEmailUIElemEnabled
+        {
+            get => isEmailUIElemEnabled;
+            set => SetProperty(ref isEmailUIElemEnabled, value);
+        }
+        public bool IsCodeUIElemEnabled
+        {
+            get => isCodeUIElemEnabled;
+            set => SetProperty(ref isCodeUIElemEnabled, value);
+        }
+        public bool IsPasswordUIElemEnabled
+        {
+            get => isPasswordUIElemEnabled;
+            set => SetProperty(ref isPasswordUIElemEnabled, value);
+        }
         #endregion
 
-        public void OnSaveCommand()
+        public async void OnSaveCommand()
         {
-            if (string.IsNullOrWhiteSpace(Email) ||
-                string.IsNullOrWhiteSpace(NewPin) ||
-                string.IsNullOrWhiteSpace(ConfirmPin))
+            if (string.IsNullOrWhiteSpace(NewPin) ||
+                 string.IsNullOrWhiteSpace(ConfirmPin))
             {
-                Device.BeginInvokeOnMainThread(() => 
-                    Application.Current.MainPage.DisplayAlert("Alerta", "Toate campurile sunt obligatorii!", "OK")
-                    );
+                await Application.Current.MainPage.DisplayAlert("Alerta", "Toate campurile sunt obligatorii!", "OK");
                 return;
             }
 
-            if (ConfirmPin.Equals(NewPin))
+            if (!ConfirmPin.Equals(NewPin))
             {
-                Console.WriteLine(" UserEmail: " + Email + " UserPIN: " + NewPin);
-
-                User currentUser = Task.Run(async () => 
-                                        await App.Database.databaseConn.Table<User>().Where(user => user.UserEmail.Equals(Email)).FirstOrDefaultAsync()
-                                        ).Result;
-
-                if (currentUser == null)
-                {
-                    Device.BeginInvokeOnMainThread(() =>
-                        Application.Current.MainPage.DisplayAlert("Alerta", "Adresa de email nu a fost gasita!", "OK")
-                        );
-                    return;
-                }
-
-                currentUser.UserPIN = NewPin;
-                Task.Run(async () =>
-                {
-                    await userDB.SaveAsync(currentUser);
-                    _list = await userDB.GetListAsync();
-                });
-                foreach (User user in _list)
-                {
-                    Console.WriteLine("UserID: " + user.UserId + " UserName: " + user.UserName + " UserEmail: " + user.UserEmail + " UserPIN: " + user.UserPIN);
-                }
-                Device.BeginInvokeOnMainThread(async () => await Application.Current.MainPage.Navigation.PopAsync());
+                await Application.Current.MainPage.DisplayAlert("Alerta", "Valorile campurilor Parola Noua si Confirma Parola trebuie sa coincida", "OK");
+                return;
             }
+
+            User currentUser = await userDB.GetByEmailAsync(Email);
+
+            if (currentUser == null)
+            {
+                await Application.Current.MainPage.DisplayAlert("Alerta", "Adresa de email nu a fost gasita!", "OK");
+                return;
+            }
+
+            currentUser.UserPIN = NewPin;
+            await userDB.SaveAsync(currentUser);
+            _list = await userDB.GetListAsync();
+            foreach (User user in _list)
+            {
+                Console.WriteLine("UserID: " + user.UserId + " UserEmail: " + user.UserEmail + " UserPIN: " + user.UserPIN);
+            }
+
+            await Application.Current.MainPage.Navigation.PopAsync();
         }
 
-        private void OnCancelCommand()
+        private async void OnCancelCommand()
         {
-            Device.BeginInvokeOnMainThread(async () => await Application.Current.MainPage.Navigation.PopAsync());
+            await Application.Current.MainPage.Navigation.PopAsync();
         }
-
-        public void LoadUserId(string userId)
+        public async void LoadUserId(string userId)
         {
             try
             {
-                var user = Task.Run(async () => await userDB.GetAsync(Int32.Parse(userId))).Result;
-                Id = user.UserId.ToString();
+                var user = await userDB.GetAsync(Int32.Parse(userId));
+                UserId = user.UserId.ToString();
                 Email = user.UserEmail;
                 NewPin = user.UserPIN;
             }
@@ -146,9 +174,33 @@ namespace EM.ViewModels.UserAutentication
             }
         }
 
-        private void OnSendRecoveryCodeCommand()
+        private async void OnVerifyEmailAddressCommand()// de modificat
         {
-            emailRecoveryCode = "asY34p";
+            if (string.IsNullOrWhiteSpace(Email))
+            {
+                EmailImageSource = emailImage_Incorrect;
+                await Application.Current.MainPage.DisplayAlert("Alerta", "Introduceti adresa de email!", "OK");
+                return;
+            }
+
+            if (!IsValidEmail)
+            {
+                EmailImageSource = emailImage_Incorrect;
+                await Application.Current.MainPage.DisplayAlert("Alerta", "Sirul de caractere inscris in campul \"Email\" NU este o adresa de email", "OK");
+                return;
+            }
+
+            User currentUser = await userDB.GetByEmailAsync(Email);
+            if (currentUser == null)
+            {
+                EmailImageSource = emailImage_Incorrect;
+                await Application.Current.MainPage.DisplayAlert("Alerta", "Adresa de email nu a fost gasita!", "OK");
+                return;
+            }
+
+            IsEmailUIElemEnabled = false;
+            IsPasswordUIElemEnabled = true;
+            EmailImageSource = emailImage_Correct;
         }
 
         private void ReinitializeFields()

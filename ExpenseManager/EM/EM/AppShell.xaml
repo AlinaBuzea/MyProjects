@@ -77,6 +77,7 @@
 
     <FlyoutItem Title="Meniu Principal">
         <ShellContent Route="MainMenuPage" ContentTemplate="{DataTemplate pages:MainMenuPage}" />
+        <ShellContent Route="LogInPage" ContentTemplate="{DataTemplate pages:LogInPage}" />
     </FlyoutItem>
     <MenuItem>
         <Shell.MenuItemTemplate>
@@ -88,15 +89,16 @@
     <FlyoutItem Title="Cheltuieli" Icon="Expenses.png" >
         <ShellContent Route="CategoryListPage" ContentTemplate="{DataTemplate pages:CategoryListPage}" />
     </FlyoutItem>
-    <FlyoutItem Title="Statistici" Icon="Statistics2.png">
-        <ShellContent Route="MainMenuPage" ContentTemplate="{DataTemplate pages:MainMenuPage}" />
-    </FlyoutItem>
     <FlyoutItem Title="Economii" Icon="Moneybox.png" >
-        <ShellContent Route="MainMenuPage" ContentTemplate="{DataTemplate pages:MainMenuPage}" />
+        <ShellContent Route="MainMenuPage" ContentTemplate="{DataTemplate pages:SavingsPage}" />
     </FlyoutItem>
     <FlyoutItem Title="Buget" Icon="Budget2.png" >
-        <ShellContent Route="MainMenuPage" ContentTemplate="{DataTemplate pages:MainMenuPage}" />
+        <ShellContent Route="BudgetMenuPage" ContentTemplate="{DataTemplate pages:BudgetMenuPage}" />
     </FlyoutItem>
+    <FlyoutItem Title="Lista de cumparaturi" Icon="ShppingList.png" >
+        <ShellContent Route="ShoppingListPage" ContentTemplate="{DataTemplate pages:ShoppingListPage}" />
+    </FlyoutItem>
+
     <MenuItem>
         <Shell.MenuItemTemplate>
             <DataTemplate>
@@ -125,7 +127,7 @@
         </Shell.MenuItemTemplate>
     </MenuItem>
 
-    <MenuItem Text="Logout" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked">
+    <MenuItem Text="Delogare" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked">
     </MenuItem>
     <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
 
@@ -137,10 +139,10 @@
         content you can do so by calling 
         await Shell.Current.GoToAsync("//LoginPage");
     -->
-    <TabBar>
-        <ShellContent Route="LoginPage" ContentTemplate="{DataTemplate pages:MainMenuPage}" />
+    <!--<TabBar>
         <ShellContent Route="MainMenuPage" ContentTemplate="{DataTemplate pages:MainMenuPage}" />
-    </TabBar>
+        <ShellContent Route="LogInPage" ContentTemplate="{DataTemplate pages:LogInPage}" />
+    </TabBar>-->
 
     <!-- Optional Templates 
     // These may be provided inline as below or as separate classes.

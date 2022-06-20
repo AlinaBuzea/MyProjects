@@ -24,6 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Pages\Autentication\" />
     <Folder Include="Resources\Fonts\" />
   </ItemGroup>
 
@@ -46,13 +47,13 @@
     <EmbeddedResource Update="Pages\AllBoughtProductsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\Autentication\ChangePasswordPage.xaml">
+    <EmbeddedResource Update="Pages\ChangePasswordPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\Autentication\LogInPage.xaml">
+    <EmbeddedResource Update="Pages\LogInPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Pages\Autentication\RegistrationPage.xaml">
+    <EmbeddedResource Update="Pages\RegistrationPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\BudgetActualStatePage.xaml">

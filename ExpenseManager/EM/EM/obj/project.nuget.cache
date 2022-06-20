@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0dW5hflq77gdSC6XxDoVf53zZspRdWoZTXwS2p+z6qigGXtCHjZMLuMg8z1CpmrCr/4UWGW6mTmGAbYsq1yPFw==",
+  "dgSpecHash": "ltL69y2bo/OGDwnzj6dl3gWAscqTQeEPXebJk2uPXOskhzM+vhVrfIEpV9Ismzb1p8KI00ulnXyGaD8yHUtvhg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Alina\\Documents\\GitHub\\MyProjects\\ExpenseManager\\EM\\EM\\EM.csproj",
+  "projectFilePath": "C:\\Users\\Alina\\Documents\\GitHub\\Licenta\\ExpenseManager\\EM\\EM\\EM.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Alina\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\5.0.0\\microsoft.bcl.asyncinterfaces.5.0.0.nupkg.sha512",
     "C:\\Users\\Alina\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",

@@ -3018,11 +3018,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Alina\\Documents\\GitHub\\MyProjects\\ExpenseManager\\EM\\EM.Android\\EM.Android.csproj",
+      "projectUniqueName": "C:\\Users\\Alina\\Documents\\GitHub\\Licenta\\ExpenseManager\\EM\\EM.Android\\EM.Android.csproj",
       "projectName": "EM.Android",
-      "projectPath": "C:\\Users\\Alina\\Documents\\GitHub\\MyProjects\\ExpenseManager\\EM\\EM.Android\\EM.Android.csproj",
+      "projectPath": "C:\\Users\\Alina\\Documents\\GitHub\\Licenta\\ExpenseManager\\EM\\EM.Android\\EM.Android.csproj",
       "packagesPath": "C:\\Users\\Alina\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Alina\\Documents\\GitHub\\MyProjects\\ExpenseManager\\EM\\EM.Android\\obj\\",
+      "outputPath": "C:\\Users\\Alina\\Documents\\GitHub\\Licenta\\ExpenseManager\\EM\\EM.Android\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
@@ -3045,8 +3045,8 @@
       "frameworks": {
         "monoandroid11.0": {
           "projectReferences": {
-            "C:\\Users\\Alina\\Documents\\GitHub\\MyProjects\\ExpenseManager\\EM\\EM\\EM.csproj": {
-              "projectPath": "C:\\Users\\Alina\\Documents\\GitHub\\MyProjects\\ExpenseManager\\EM\\EM\\EM.csproj"
+            "C:\\Users\\Alina\\Documents\\GitHub\\Licenta\\ExpenseManager\\EM\\EM\\EM.csproj": {
+              "projectPath": "C:\\Users\\Alina\\Documents\\GitHub\\Licenta\\ExpenseManager\\EM\\EM\\EM.csproj"
             }
           }
         }

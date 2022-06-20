@@ -16,11 +16,14 @@ namespace EM.ViewModels
 {
     public class ShowReceiptVM : BaseViewModel
     {
+        #region Fields
         private readonly string pythonServerHost = "192.168.100.14"; //facultate: "10.146.1.102"
         private readonly int pythonPort = 9000;
 
+        private bool isRunning;
         IEnumerable<FileResult> imageResults;
         private List<Xamarin.Forms.ImageSource> photoCollection;
+        #endregion
 
         public ICommand ProccessReceiptCommand { get; }
 
@@ -29,22 +32,33 @@ namespace EM.ViewModels
             imageResults = new List<FileResult>(result);
             InitializeCollectionItemsSource();
             ProccessReceiptCommand = new Command(OnProccessReceiptCommand);
+            IsRunning = false;
         }
 
         public ShowReceiptVM(FileResult result)
         {
             imageResults = new List<FileResult>() { result };
             InitializeCollectionItemsSource();
+            IsRunning = false;
         }
 
+        #region Properties
+
+        public bool IsRunning
+        {
+            get => isRunning;
+            set => SetProperty(ref isRunning, value);
+        }
         public List<Xamarin.Forms.ImageSource> PhotoCollection
         {
             get => photoCollection;
             set => SetProperty(ref photoCollection, value);
         }
+        #endregion
 
         private async void OnProccessReceiptCommand()//nu functioneaza pt mai multe poze
         {
+            IsRunning = true;
             List<string> receiptsText = new List<string>();
             using (MemoryStream memoryStream = new MemoryStream())
             {
@@ -60,6 +74,7 @@ namespace EM.ViewModels
                     {
                         InformationExtractor informationExtractor = new InformationExtractor();
                         var filteredInformationTuples = informationExtractor.GetFilteredInformation(receiptTextString);
+                        IsRunning = false;
                         await App.Current.MainPage.Navigation.PushAsync(new ReceiptInformationPage(filteredInformationTuples));
                     }
                     //interpreteaza textul 

@@ -15,18 +15,27 @@ namespace EM.Pages
     {
         public ICommand AccessCameraCommand => new Command(async () =>
         {
-            FileResult result = await MediaPicker.CapturePhotoAsync();
-            ShowImage(result);
+            var status = await Permissions.RequestAsync<Permissions.Camera>();
+            if (status.Equals(PermissionStatus.Granted))
+            {
+                FileResult result = await MediaPicker.CapturePhotoAsync();
+                ShowImage(result);
+            }
+
         });
 
         public ICommand ImportImageFromGaleryCommand => new Command(async () =>
         {
-            FileResult result = await MediaPicker.PickPhotoAsync(new MediaPickerOptions
+            var status = await Permissions.RequestAsync<Permissions.StorageRead>();
+            if (status.Equals(PermissionStatus.Granted))
             {
-                Title = "Selecteaza o poza"
-            });
+                FileResult result = await MediaPicker.PickPhotoAsync(new MediaPickerOptions
+                {
+                    Title = "Selecteaza o poza"
+                });
 
-            ShowImage(result);
+                ShowImage(result);
+            }
         });
 
         private async void ShowImage(FileResult result)

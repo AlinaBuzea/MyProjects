@@ -1,4 +1,5 @@
-﻿using Plugin.LocalNotification;
+﻿using EM.Data;
+using Plugin.LocalNotification;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -22,13 +23,14 @@ namespace EM.Models
             };
         }
 
-        public static NotificationRequest ShowBudgetExceededNotification(string categoryName)
+        public static NotificationRequest ShowBudgetExceededNotification(string categoryName, string month, int year)
         {
             return new NotificationRequest
             {
                 NotificationId = 102,
                 Title = "Budget Depasit!",
-                Description = "Bugetul stabilit pentru categoria " + categoryName + " a fost depasit!",
+                Description = "Bugetul stabilit pentru categoria " + categoryName + " a fost depasit pe luna " + month +
+                                " a anului " + year.ToString() + "!",
                 ReturningData = categoryName,
                 Schedule =
                 {
@@ -37,13 +39,14 @@ namespace EM.Models
             };
         }
 
-        public static NotificationRequest ShowLimitBudgetExceededNotification(string categoryName)
+        public static NotificationRequest ShowLimitBudgetExceededNotification(string categoryName, string month, int year)
         {
             return new NotificationRequest
             {
                 NotificationId = 103,
                 Title = "Budget ajuns la limita",
-                Description = "Bugetul stabilit pentru categoria " + categoryName + " a ajuns la limita!",
+                Description = "Bugetul stabilit pentru categoria " + categoryName + " a ajuns la limita pe luna " + month +
+                                " a anului " + year.ToString() + "!",
                 ReturningData = categoryName,
                 Schedule =
                 {

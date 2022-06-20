@@ -16,12 +16,11 @@ namespace EM.ViewModels.UserAutentication
     {
         #region Fields
         private string userId;
-        private string name;
         private string email;
         private string pin;
         private string confirmPin;
-        public string Id { get; set; }
-        public UserDB userDB;
+        private bool isValidEmail;
+        private UserDB userDB;
         private List<User> _list;
         #endregion
 
@@ -34,13 +33,6 @@ namespace EM.ViewModels.UserAutentication
         }
 
         #region Properties
-        public string Name
-        {
-            get => name;
-            set => SetProperty(ref name, value);
-
-        }
-
         public string Email
         {
             get => email;
@@ -72,76 +64,63 @@ namespace EM.ViewModels.UserAutentication
                 LoadUserId(value);
             }
         }
-        #endregion
-        public void OnSaveCommand()
+        public bool IsValidEmail
         {
-            if (string.IsNullOrWhiteSpace(Name) ||
-                string.IsNullOrWhiteSpace(Email) ||
+            get => isValidEmail;
+            set => SetProperty(ref isValidEmail, value);
+        }
+        #endregion
+        public async void OnSaveCommand()
+        {
+            if (string.IsNullOrWhiteSpace(Email) ||
                 string.IsNullOrWhiteSpace(Pin) ||
                 string.IsNullOrWhiteSpace(ConfirmPin))
             {
-                Device.BeginInvokeOnMainThread(() => 
-                    Application.Current.MainPage.DisplayAlert("Alert", "Toate campurile sunt obligatorii!", "OK"));
+                await Application.Current.MainPage.DisplayAlert("Alerta", "Toate campurile sunt obligatorii!", "OK");
                 return;
             }
 
-            if (ConfirmPin.Equals(Pin))
+            if (!IsValidEmail)
             {
-                User newUser = new User();
-                newUser.UserEmail = Email;
-                newUser.UserName = Name;
-                newUser.UserPIN = Pin;
-
-                Console.WriteLine("UserName: " + newUser.UserName + " UserEmail: " + newUser.UserEmail + " UserPIN: " + newUser.UserPIN);
-
-                User currentUser = Task.Run(async()=> 
-                                        await App.Database.databaseConn.Table<User>()
-                                                                        .Where(user => user.UserName.Equals(Name) || user.UserEmail.Equals(Email))
-                                                                        .FirstOrDefaultAsync()
-                                        ).Result;
-
-                if (currentUser != null)
-                {
-                    if (currentUser.UserName.Equals(newUser.UserName))
-                    {
-                        Device.BeginInvokeOnMainThread(() =>
-                            Application.Current.MainPage.DisplayAlert("Alerta", "Numele exista deja in baza de date! Alege altul!", "OK"));
-                        return;
-                    }
-                    if (currentUser.UserEmail.Equals(newUser.UserEmail))
-                    {
-                        Device.BeginInvokeOnMainThread(() =>
-                            Application.Current.MainPage.DisplayAlert("Alerta", "Aceasta adresa de email exista deja in baza de date! Alege alta!", "OK"));
-                        return;
-                    }
-                }
-
-                Task.Run(async () =>
-                {
-                    await userDB.SaveAsync(newUser);
-                    _list = await userDB.GetListAsync();
-                
-                    foreach (User user in _list)
-                    {
-                        Console.WriteLine("UserID: " + user.UserId + " UserName: " + user.UserName + " UserEmail: " + user.UserEmail + " UserPIN: " + user.UserPIN);
-                    }
-                });
-                Device.BeginInvokeOnMainThread(async () => await Application.Current.MainPage.Navigation.PopAsync());
+                await Application.Current.MainPage.DisplayAlert("Alerta", "Sirul de caractere inscris in campul \"Email\" NU este o adresa de email", "OK");
+                return;
             }
-            else
+
+            if (!ConfirmPin.Equals(Pin))
             {
-                Device.BeginInvokeOnMainThread(() =>
-                    Application.Current.MainPage.DisplayAlert("Alert", "Valorile campurilor Parola si Confirma Parola trebuie sa coincida", "OK"));
+                await Application.Current.MainPage.DisplayAlert("Alerta", "Valorile campurilor Parola si Confirma Parola trebuie sa coincida", "OK");
+                return;
             }
+
+            User newUser = new User();
+            newUser.UserEmail = Email;
+            newUser.UserPIN = Pin;
+
+            Console.WriteLine(" UserEmail: " + newUser.UserEmail + " UserPIN: " + newUser.UserPIN);
+            _list = await userDB.GetListAsync();
+
+            if (_list.Count != 0)
+            {
+                await Application.Current.MainPage.DisplayAlert("Alerta", "Aveti deja datele de securitate setate", "OK");
+                return;
+            }
+
+            await userDB.SaveAsync(newUser);
+            _list = await userDB.GetListAsync();
+            foreach (User user in _list)
+            {
+                Console.WriteLine("UserID: " + user.UserId + " UserEmail: " + user.UserEmail + " UserPIN: " + user.UserPIN);
+            }
+
+            await Application.Current.MainPage.Navigation.PopAsync();
         }
 
-        public void LoadUserId(string userId)
+        public async void LoadUserId(string userId)
         {
             try
             {
-                var user = Task.Run(async () => await userDB.GetAsync(Int32.Parse(userId))).Result;
-                Id = user.UserId.ToString();
-                Name = user.UserName;
+                var user = await userDB.GetAsync(Int32.Parse(userId));
+                UserId = user.UserId.ToString();
                 Email = user.UserEmail;
                 Pin = user.UserPIN;
             }
