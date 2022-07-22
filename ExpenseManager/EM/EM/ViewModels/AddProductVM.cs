@@ -34,6 +34,8 @@ namespace EM.ViewModels
         List<Category> categories;
         List<Shop> shops;
 
+        private int selectedIndexProdCategory;
+        private int selectedIndexAquisitionShop;
         private bool isRefreshing;
         private bool updateProduct;
         public DateTime TodaysDate { get; }
@@ -65,6 +67,8 @@ namespace EM.ViewModels
             InitializeCategoryProductsList();
 
             updateProduct = false;
+            selectedIndexProdCategory = -1;
+            selectedIndexAquisitionShop = -1;
         }
 
         public AddProductVM(Product product)
@@ -78,12 +82,15 @@ namespace EM.ViewModels
             AddNewShopCommand = new Command(OnAddNewShopCommand);
             UpdateCategoriesAndShopsDataCommand = new Command(OnUpdateCategoriesAndShopsDataCommand);
             productDB = new ProductDB();
+            budgetDB = new BudgetDB();
             InitializeCategoriesList();
             InitializeShopsList();
             InitializeCategoryProductsList();
 
             updateProduct = true;
             InitializeFields(product);
+            selectedIndexProdCategory = FindIndexOfProdCategoryInsideCategories();
+            selectedIndexAquisitionShop = FindIndexOfAquisitionShopInsideCategories();
         }
 
         #region Properties
@@ -123,6 +130,18 @@ namespace EM.ViewModels
             set => SetProperty(ref prodCategory, value);
         }
 
+        public int SelectedIndexProdCategory
+        {
+            get => selectedIndexProdCategory;
+            set => SetProperty(ref selectedIndexProdCategory, value);
+        }
+
+        public int SelectedIndexAquisitionShop
+        {
+            get => selectedIndexAquisitionShop;
+            set => SetProperty(ref selectedIndexAquisitionShop, value);
+        }
+
         public bool IsMarked
         {
             get => isMarked;
@@ -158,6 +177,34 @@ namespace EM.ViewModels
             set => SetProperty(ref shops, value);
         }
         #endregion
+
+        private int FindIndexOfProdCategoryInsideCategories()
+        {
+            if (ProdCategory != null)
+            {
+                int nbOfCategories = Categories.Count;
+                for (int index = 0; index < nbOfCategories; index++)
+                {
+                    if (Categories[index].CategoryId == ProdCategory.CategoryId)
+                        return index;
+                }
+            }
+            return -1;
+        }
+
+        private int FindIndexOfAquisitionShopInsideCategories()
+        {
+            if (AquisitionShop != null)
+            {
+                int nbOfShops = Shops.Count;
+                for (int index = 0; index < nbOfShops; index++)
+                {
+                    if (Shops[index].Id == AquisitionShop.Id)
+                        return index;
+                }
+            }
+            return -1;
+        }
 
         private void OnCancelCommand()
         {
@@ -226,6 +273,7 @@ namespace EM.ViewModels
 
         private async Task<int> UpdateAndVerifyBudget()
         {
+            Category categ = ProdCategory;
             Budget currentBudget = await budgetDB.GetByCategoryMonthYearAsync(ProdCategory.CategoryId,
                                                                    ((MonthYearVM.MonthEnum)AquisitionDate.Month).ToString(), AquisitionDate.Year);
             Category currentCategory = new Category() { CategoryId = ProdCategory.CategoryId, CategoryName = ProdCategory.CategoryName };
@@ -323,7 +371,7 @@ namespace EM.ViewModels
         {
             Device.BeginInvokeOnMainThread(async () => {
                 await Application.Current.MainPage.Navigation.PushAsync(new AddCategoryPage());
-                InitializeCategoriesList();
+                OnUpdateCategoriesAndShopsDataCommand();
             });
         }
 
@@ -332,7 +380,7 @@ namespace EM.ViewModels
             Device.BeginInvokeOnMainThread(async () =>
             {
                 await Application.Current.MainPage.Navigation.PushAsync(new AddShopPage());
-                InitializeShopsList();
+                OnUpdateCategoriesAndShopsDataCommand();
             });
         }
 
@@ -343,8 +391,22 @@ namespace EM.ViewModels
 
         private void OnUpdateCategoriesAndShopsDataCommand()
         {
+            int aqusitionShopId = AquisitionShop == null ? -1 : AquisitionShop.Id;
+            int prodCategoryId = ProdCategory == null ? -1 : ProdCategory.CategoryId;
             InitializeCategoriesList();
             InitializeShopsList();
+            ProdCategory = Task.Run(async () =>
+            {
+                CategoryDB categoryDB = new CategoryDB();
+                return await categoryDB.GetAsync(prodCategoryId);
+            }).Result;
+            AquisitionShop = Task.Run(async () =>
+            {
+                ShopDB shopDB = new ShopDB();
+                return await shopDB.GetAsync(aqusitionShopId);
+            }).Result;
+            SelectedIndexProdCategory = FindIndexOfProdCategoryInsideCategories();
+            SelectedIndexAquisitionShop = FindIndexOfAquisitionShopInsideCategories();
             IsRefreshing = false;
         }
 
@@ -384,20 +446,38 @@ namespace EM.ViewModels
         {
             Id = product.ProductId.ToString();
             ProductName = product.ProductName;
-            AquisitionShop = Task.Run(async () =>
-            {
-                ShopDB shopDB = new ShopDB();
-                return await shopDB.GetAsync(product.AquisitionShopId);
-            }).Result;
+            InitializeAquisitionShop(product.AquisitionShopId);
             Quantity = product.Quantity;
             Price = product.Price.ToString();
             AquisitionDate = product.AquisitionDate;
-            ProdCategory = Task.Run(async () =>
+            InitializeProdCategory(product.ProdCategoryId);
+            IsMarked = product.IsMarked;
+        }
+
+        private void InitializeAquisitionShop(int shopId)
+        {
+            Shop shop = Task.Run(async () =>
+            {
+                ShopDB shopDB = new ShopDB();
+                return await shopDB.GetAsync(shopId);
+            }).Result;
+            if (shop != null)
+            {
+                AquisitionShop = new Shop() { Id = shop.Id, ShopAddress = shop.ShopAddress, ShopName = shop.ShopName };
+            }
+        }
+
+        private void InitializeProdCategory(int categoryId)
+        {
+            Category newCategory = Task.Run(async () =>
             {
                 CategoryDB categoryDB = new CategoryDB();
-                return await categoryDB.GetAsync(product.ProdCategoryId);
+                return await categoryDB.GetAsync(categoryId);
             }).Result;
-            IsMarked = product.IsMarked;
+            if (newCategory != null)
+            {
+                ProdCategory = new Category() { CategoryId = newCategory.CategoryId, CategoryName = newCategory.CategoryName };
+            }
         }
 
         private void ReinitializeFields()

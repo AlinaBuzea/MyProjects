@@ -31,6 +31,7 @@
                                     ItemsSource="{Binding Categories}"
                                     ItemDisplayBinding="{Binding CategoryName}" 
                                     SelectedItem="{Binding ProdCategory, Mode=TwoWay}" 
+                                    SelectedIndex="{Binding SelectedIndexProdCategory, Mode=TwoWay}"
                                     VerticalOptions="Center" FontSize="20" Margin="20,0,10,0" TextColor="Black"/>
                             <Button x:Name="AddCategoryBtn" Grid.Column="1" Text="+" 
                                     Command="{Binding Source={x:Reference AddProductPg}, Path=BindingContext.AddNewCategoryCommand}" BorderRadius="40" 
@@ -49,9 +50,11 @@
                             </Grid.ColumnDefinitions>
                             <Picker Title="Selecteaza magazinul" 
                                     ItemsSource="{Binding Shops}"
-                                    ItemDisplayBinding="{Binding ShopName}" 
+                                    ItemDisplayBinding="{Binding ShopName, Mode=TwoWay}" 
                                     SelectedItem="{Binding AquisitionShop, Mode=TwoWay}" 
+                                    SelectedIndex="{Binding SelectedIndexAquisitionShop, Mode=TwoWay}"
                                     VerticalOptions="Center" FontSize="20" Margin="20,0,10,0" TextColor="Black"/>
+                            
                             <Button Grid.Column="1" Text="+" Command="{Binding Source={x:Reference AddProductPg}, Path=BindingContext.AddNewShopCommand}" 
                                     BindingContext="{x:Reference Name=AddCategoryBtn}" WidthRequest="{Binding Height}" 
                                     BorderRadius="{Binding BorderRadius}" FontSize="{Binding FontSize}" 
@@ -85,7 +88,7 @@
                             </Grid.ColumnDefinitions>
                             <Button Grid.Column="0" Text="Anulare" Command="{Binding CancelCommand}" BorderRadius="10" VerticalOptions="End" 
                                 FontSize="16" FontAttributes="Bold" BackgroundColor="#16C6FC" Margin="5" />
-                            <Button Grid.Column="1"  Text="Salveaza Produs" Command="{Binding SaveCommand}" BorderRadius="10" VerticalOptions="End" 
+                            <Button Grid.Column="1"  Text="Salveaza" Command="{Binding SaveCommand}" BorderRadius="10" VerticalOptions="End" 
                                 FontSize="16" FontAttributes="Bold" BackgroundColor="#16C6FC" Margin="5"/>
 
                         </Grid>

@@ -9,6 +9,7 @@ public class MonoPackageManager_Resources {
 		"MvvmHelpers.dll",
 		"Newtonsoft.Json.dll",
 		"Plugin.LocalNotification.dll",
+		"Plugin.Media.dll",
 		"RestSharp.dll",
 		"SQLite-net.dll",
 		"SQLiteNetExtensions.dll",

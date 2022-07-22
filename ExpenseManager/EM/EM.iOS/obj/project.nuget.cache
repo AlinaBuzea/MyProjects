@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "IUtGLT6Y896N5x0J81mfiaiZQStG8hGB7e0GAF1L+HYD3B00z80iU+S2YcXBi1Z1XVNARa9GbEcZjNE5zU/aRQ==",
+  "dgSpecHash": "q5lYtR+rvTxrB7PpS3rXL2gC9vlEdfGMlUUtYI9iIgXOLwLWCf48CjqTblKupx3xRtvBTskj/zs+RlnnZ8C/0A==",
   "success": true,
   "projectFilePath": "C:\\Users\\Alina\\Documents\\GitHub\\Licenta\\ExpenseManager\\EM\\EM.iOS\\EM.iOS.csproj",
   "expectedPackageFiles": [
@@ -22,6 +22,7 @@
     "C:\\Users\\Alina\\.nuget\\packages\\system.text.encodings.web\\5.0.0\\system.text.encodings.web.5.0.0.nupkg.sha512",
     "C:\\Users\\Alina\\.nuget\\packages\\system.text.json\\5.0.0\\system.text.json.5.0.0.nupkg.sha512",
     "C:\\Users\\Alina\\.nuget\\packages\\system.valuetuple\\4.5.0\\system.valuetuple.4.5.0.nupkg.sha512",
+    "C:\\Users\\Alina\\.nuget\\packages\\xam.plugin.media\\5.0.1\\xam.plugin.media.5.0.1.nupkg.sha512",
     "C:\\Users\\Alina\\.nuget\\packages\\xamarin.communitytoolkit\\1.0.0\\xamarin.communitytoolkit.1.0.0.nupkg.sha512",
     "C:\\Users\\Alina\\.nuget\\packages\\xamarin.communitytoolkit.markup\\1.0.0\\xamarin.communitytoolkit.markup.1.0.0.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\xamarin.essentials\\1.6.1\\xamarin.essentials.1.6.1.nupkg.sha512",

@@ -14,8 +14,7 @@ namespace EM.ViewModels.SubViewModels
         {
             Good,
             CloseToLimit,
-            OverLimit,
-            LackOfInformation // fara buget stabilit si cu limita 0
+            OverLimit
         }
 
         #region Fields
@@ -170,8 +169,15 @@ namespace EM.ViewModels.SubViewModels
             CurrentValue = Task.Run(async () => await productDB.GetTotalPriceFromProductsWithTheGivenCategoryAndBoughtInMonthYearAsync(
                    budgetCategory.CategoryId, Year, currentMonthYearVM.Months.IndexOf(Month) + 1)
                    ).Result;
-
             AlocatedBudget = budget == null ? 0 : budget.AlocatedBudget;
+
+            if(budget!=null)
+            {
+                budget.CurrentValue = CurrentValue;
+                Task.Run(async () =>
+                                    await budgetDB.SaveAsync(budget)
+                                    ).Wait();
+            }
         }
         private void ReinitializeStateValues()
         {

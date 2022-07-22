@@ -27,11 +27,6 @@ namespace EM.Pages
             await Application.Current.MainPage.Navigation.PushAsync(new AddCategoryPage());
         });
 
-        public ICommand OpenAllBoughtProductsCommand => new Command(async () =>
-        {
-            await Application.Current.MainPage.Navigation.PushAsync(new AllBoughtProductsPage());
-        });
-
         public ICommand AddReceiptCommand => new Command(async () =>
         {
             await Application.Current.MainPage.Navigation.PushAsync(new ImportReceiptPage());

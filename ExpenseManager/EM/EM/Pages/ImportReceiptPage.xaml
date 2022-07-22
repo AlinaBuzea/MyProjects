@@ -7,39 +7,35 @@
     <ContentPage.Content>
         <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <Image Source="Background2.png" AbsoluteLayout.LayoutBounds="1,1,1,1" AbsoluteLayout.LayoutFlags="All" Aspect="Fill"/>
-            <Grid HorizontalOptions="CenterAndExpand" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="1,1,1,1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+            <Grid HorizontalOptions="CenterAndExpand" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="1,1,1,1"
+                  RowDefinitions="*,Auto, Auto, Auto,Auto,Auto,Auto,*" ColumnDefinitions="*,Auto, *">
+                
                 <Frame Grid.Column="1" Grid.Row="1" Background="White" CornerRadius="15" Padding="2" Margin="5">
                     <ImageButton x:Name="ImageButtonName" Source="AccessCamera.png" VerticalOptions="Center" HorizontalOptions="Center" 
                                  Background="Transparent" HeightRequest="145"
                                  Command="{Binding BindingContext.AccessCameraCommand, Source={x:Reference ImportReceiptPg}}" 
                                  BindingContext="{x:Reference Name=ImageButtonName}"  WidthRequest="{Binding HeightRequest}"/>
                 </Frame>
-                <Frame Grid.Column="1" Grid.Row="2" Background="White" CornerRadius="15" Padding="2" Margin="5">
+                <Label Grid.Column="1" Grid.Row="2" Text="Acceseaza Camera" TextColor="White" FontSize="17" FontAttributes="Bold"
+                      Margin="5,0,5,10" HorizontalOptions="Center"/>
+                <Frame Grid.Column="1" Grid.Row="3" Background="White" CornerRadius="15" Padding="2" Margin="5">
                     <ImageButton Source="ImportImage.png" VerticalOptions="Center" HorizontalOptions="Center" 
                                  Background="Transparent"
                                  Command="{Binding BindingContext.ImportImagesCommand, Source={x:Reference ImportReceiptPg}}" 
                                  BindingContext="{x:Reference Name=ImageButtonName}"  WidthRequest="{Binding HeightRequest}" 
                                  HeightRequest="{Binding HeightRequest}"/>
                 </Frame>
-                <Frame Grid.Column="1" Grid.Row="3" Background="White" CornerRadius="15" Padding="2" Margin="5">
+                <Label Grid.Column="1" Grid.Row="4" Text="Galerie" TextColor="White" FontSize="17" FontAttributes="Bold"
+                      Margin="5,0,5,10" HorizontalOptions="Center"/>
+                <Frame Grid.Column="1" Grid.Row="5" Background="White" CornerRadius="15" Padding="2" Margin="5" IsVisible="false">
                     <ImageButton Source="ImportPDF.png" VerticalOptions="Center" HorizontalOptions="Center" 
                                  Background="Transparent"
                                  Command="{Binding BindingContext.ImportPDFCommand, Source={x:Reference ImportReceiptPg}}" 
                                  BindingContext="{x:Reference Name=ImageButtonName}"  WidthRequest="{Binding HeightRequest}" 
                                  HeightRequest="{Binding HeightRequest}"/>
                 </Frame>
+                <Label Grid.Column="1" Grid.Row="6" Text="Importa PDF" TextColor="White" FontSize="17" FontAttributes="Bold"
+                      Margin="5,0" HorizontalOptions="Center" IsVisible="false"/>
             </Grid>
         </AbsoluteLayout>
     </ContentPage.Content>

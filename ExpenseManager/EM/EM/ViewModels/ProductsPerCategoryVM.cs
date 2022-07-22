@@ -5,6 +5,7 @@ using EM.ViewModels.SubViewModels;
 using MvvmHelpers;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -16,7 +17,6 @@ namespace EM.ViewModels
     {
         #region Fields
         private Category prodCategory;
-        //private bool isMarked;
         private ProductDB productDB;
 
         private string month;
@@ -31,6 +31,7 @@ namespace EM.ViewModels
         List<ProductsVM> categoryProducts;
         List<Product> products;
         private bool isRefreshing;
+        private bool priorityToFavorites;
         #endregion
 
         #region Commands
@@ -56,6 +57,7 @@ namespace EM.ViewModels
             SelectedPeriod = currentPeriod.ToString();
             Month = month != null ? month : currentMonthYearVM.Months[DateTime.Today.Month - 1];
             Year = year != null ? year.Value : DateTime.Today.Year;
+            PriorityToFavorites = false;
             InitializeCategoryProductsList();
         }
 
@@ -66,11 +68,15 @@ namespace EM.ViewModels
             set => SetProperty(ref prodCategory, value);
         }
 
-        //public bool IsMarked
-        //{
-        //    get => isMarked;
-        //    set => SetProperty(ref isMarked, value);
-        //}
+        public bool PriorityToFavorites
+        {
+            get => priorityToFavorites;
+            set
+            {
+                SetProperty(ref priorityToFavorites, value);
+                ReorderProductsByFavorites();
+            }
+        }
 
         public string Month
         {
@@ -157,19 +163,22 @@ namespace EM.ViewModels
                 Application.Current.MainPage.DisplayAlert("Instructiuni", "Pentru a modifica un produs, apasati pe cele 3 puncte", "OK"));
         }
 
-        private void OnModifyIsMarkedProductCommand(string productId)
+        private async void OnModifyIsMarkedProductCommand(string productId)
         {
-            Product product = Task.Run(async () => await productDB.GetAsync(Int32.Parse(productId))).Result;
+            Product product = await productDB.GetAsync(Int32.Parse(productId));
             product.IsMarked = !product.IsMarked;
-            Task.Run(async () => await productDB.SaveAsync(product)).Wait();
+            await productDB.SaveAsync(product);
             PageCategoryName = ProdCategory.CategoryName.ToUpper();
+            if (PriorityToFavorites)
+            {
+                InitializeCategoryProductsList(ProdCategory);
+            }
         }
 
         private void OnModifyProductCommand(string productId)
         {
             Device.BeginInvokeOnMainThread(async () => {
-                Product product = Task.Run(async () => await productDB.GetAsync(Int32.Parse(productId))).Result;
-                //_= Application.Current.MainPage.DisplayAlert("Alert", "View Product: " + index, "OK");
+                Product product = await productDB.GetAsync(Int32.Parse(productId));
                 await Application.Current.MainPage.Navigation.PushAsync(new AddProductPage(product));
             });
         }
@@ -206,21 +215,24 @@ namespace EM.ViewModels
 
         private void SelectionChangedEnum(Category referencedCategory)
         {
-            if (selectedPeriod.Equals(nameof(ProductDB.Period.TOTALE)))
+            Task.Run(async () =>
             {
-                IsVisibleMonth = false;
-                IsVisibleYear = false;
-                products = Task.Run(async () => await productDB.GetProductsWithTheGivenCategoryOrderByDateAsync(referencedCategory.CategoryId)).Result;
-            }
-            else if (selectedPeriod.Equals(nameof(ProductDB.Period.PE_LUNA)))
-            {
-                int? currentMonth = currentMonthYearVM.Months.IndexOf(month) + 1;
-                products = Task.Run(async () => await productDB.GetProductsWithTheGivenCategoryAndBoughtInMonthYearAsync(referencedCategory.CategoryId, year, currentMonth)).Result;
-            }
-            else
-            {
-                products = Task.Run(async () => await productDB.GetProductsWithTheGivenCategoryAndBoughtInMonthYearAsync(referencedCategory.CategoryId, year)).Result;
-            }
+                if (selectedPeriod.Equals(nameof(ProductDB.Period.TOTALE)))
+                {
+                    IsVisibleMonth = false;
+                    IsVisibleYear = false;
+                    products = await productDB.GetProductsWithTheGivenCategoryOrderByDateAsync(referencedCategory.CategoryId);
+                }
+                else if (selectedPeriod.Equals(nameof(ProductDB.Period.PE_LUNA)))
+                {
+                    int? currentMonth = currentMonthYearVM.Months.IndexOf(month) + 1;
+                    products = await productDB.GetProductsWithTheGivenCategoryAndBoughtInMonthYearAsync(referencedCategory.CategoryId, year, currentMonth);
+                }
+                else
+                {
+                    products = await productDB.GetProductsWithTheGivenCategoryAndBoughtInMonthYearAsync(referencedCategory.CategoryId, year);
+                }
+            }).Wait();
 
             if (products.Count == 0)
             {
@@ -228,6 +240,10 @@ namespace EM.ViewModels
                 return;
             }
             FormCategoryProductList();
+            if (priorityToFavorites)
+            {
+                ReorderProductsByFavorites();
+            }
         }
 
         public void InitializeCategoryProductsList(Category referencedCategory = null)
@@ -257,15 +273,27 @@ namespace EM.ViewModels
 
             foreach (Product currentProd in products)
             {
-                Console.WriteLine("ProductID: " + currentProd.ProductId + " ProductName: " + currentProd.ProductName +
-                        " Category: " + currentProd.ProdCategoryId + " ShopName: " + currentProd.AquisitionShopId +
-                        " Quantity: " + currentProd.Quantity + " AquisitionDate: " + currentProd.AquisitionDate.Date.ToString() +
-                        " Price: " + currentProd.Price + " IsMarked: " + currentProd.IsMarked);
+                //Console.WriteLine("ProductID: " + currentProd.ProductId + " ProductName: " + currentProd.ProductName +
+                //        " Category: " + currentProd.ProdCategoryId + " ShopName: " + currentProd.AquisitionShopId +
+                //        " Quantity: " + currentProd.Quantity + " AquisitionDate: " + currentProd.AquisitionDate.Date.ToString() +
+                //        " Price: " + currentProd.Price + " IsMarked: " + currentProd.IsMarked);
 
                 list.Add(new ProductsVM(currentProd));
             }
 
             CategoryProducts = new List<ProductsVM>(list);
+        }
+
+        private void ReorderProductsByFavorites()
+        {
+            if (priorityToFavorites)
+            {
+                CategoryProducts = CategoryProducts.OrderByDescending(categProducts => categProducts.IsMarked).ToList();
+            }
+            else
+            {
+                FormCategoryProductList();
+            }
         }
 
         public void OnUpdateProductsCommand()

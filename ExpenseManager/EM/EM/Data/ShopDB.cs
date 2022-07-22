@@ -30,7 +30,7 @@ namespace EM.Data
         {
             Shop shop = await App.Database.databaseConn.Table<Shop>()
                                                         .Where(shop1 => shop1.ShopName.ToUpper().Equals(shopName.ToUpper())
-                                                        && shop1.ShopAddress.ToUpper().Equals(address.ToUpper())) /// apeleaza levenstein
+                                                        && shop1.ShopAddress.ToUpper().Equals(address.ToUpper()))
                                                         .FirstOrDefaultAsync();
             return shop == null ? 0 : Int32.Parse(shop.Id.ToString());
         }

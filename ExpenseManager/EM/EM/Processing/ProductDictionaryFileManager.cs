@@ -11,10 +11,6 @@ namespace EM.Processing
 {
     public class ProductDictionaryFileManager : IDisposable
     {
-        private const string PYTHON_SERVER_HOST = "192.168.100.14"; //facultate: "10.146.1.102"; /"10.146.1.156"; /"10.146.1.98"; 
-        private const int PYTHON_PORT = 9000;
-
-
         private List<ProductDictionary> productDictionaryList;
         private List<string> productNameList;
         private string productDictionaryString;
@@ -65,26 +61,27 @@ namespace EM.Processing
         //https://restsharp.dev/usage.html#making-a-call
         public string GetProductDictionaryJsonFileString()
         {
-            var client = new RestClient("http://" + PYTHON_SERVER_HOST + ":" + PYTHON_PORT + "/json");
+            var client = new RestClient("http://" + App.pythonServerHost + ":" + App.pythonPort + "/json");
 
             var request = new RestRequest();
             var responseMessage = client.ExecuteGetAsync(request).Result;
 
-            return responseMessage.Content.ToString();
+            if (responseMessage != null)
+            {
+                return responseMessage.Content.ToString();
+            }
+            return null;
         }
 
         public async void UpdateProductDictionaryJsonFile()
         {
-            var client = new RestClient("http://" + PYTHON_SERVER_HOST + ":" + PYTHON_PORT + "/json");
+            var client = new RestClient("http://" + App.pythonServerHost + ":" + App.pythonPort + "/json");
 
             var jsonBody = JsonConvert.SerializeObject(productDictionaryList);
 
             var request = new RestRequest().AddJsonBody(jsonBody);
 
-            var responseMessage = await client.PostAsync(request);
-
-            var x = responseMessage.Content.ToString();
-            Console.WriteLine("x" + x);
+            _ = await client.PostAsync(request);
         }
 
         private void UpdateListWithInformationWithinJsonFile()

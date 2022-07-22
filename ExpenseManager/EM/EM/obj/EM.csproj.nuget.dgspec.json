@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Alina\\Documents\\GitHub\\Licenta\\ExpenseManager\\EM\\EM\\EM.csproj": {}
+    "C:\\Users\\Alina\\Documents\\GitHub\\MyProjects\\ExpenseManager\\EM\\EM\\EM.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Alina\\Documents\\GitHub\\Licenta\\ExpenseManager\\EM\\EM\\EM.csproj": {
+    "C:\\Users\\Alina\\Documents\\GitHub\\MyProjects\\ExpenseManager\\EM\\EM\\EM.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Alina\\Documents\\GitHub\\Licenta\\ExpenseManager\\EM\\EM\\EM.csproj",
+        "projectUniqueName": "C:\\Users\\Alina\\Documents\\GitHub\\MyProjects\\ExpenseManager\\EM\\EM\\EM.csproj",
         "projectName": "EM",
-        "projectPath": "C:\\Users\\Alina\\Documents\\GitHub\\Licenta\\ExpenseManager\\EM\\EM\\EM.csproj",
+        "projectPath": "C:\\Users\\Alina\\Documents\\GitHub\\MyProjects\\ExpenseManager\\EM\\EM\\EM.csproj",
         "packagesPath": "C:\\Users\\Alina\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Alina\\Documents\\GitHub\\Licenta\\ExpenseManager\\EM\\EM\\obj\\",
+        "outputPath": "C:\\Users\\Alina\\Documents\\GitHub\\MyProjects\\ExpenseManager\\EM\\EM\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -75,6 +75,10 @@
             "System.ObjectModel": {
               "target": "Package",
               "version": "[4.3.0, )"
+            },
+            "Xam.Plugin.Media": {
+              "target": "Package",
+              "version": "[5.0.1, )"
             },
             "Xamarin.CommunityToolkit": {
               "target": "Package",

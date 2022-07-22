@@ -32,6 +32,14 @@
     "ProdCategory": "Alimente"
   },
   {
+    "ProdName": "cocktail",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "fidea",
+    "ProdCategory": "Alimente"
+  },
+  {
     "ProdName": "cui",
     "ProdCategory": "Constructii"
   },
@@ -416,6 +424,10 @@
     "ProdCategory": "Alimente"
   },
   {
+    "ProdName": "sticks",
+    "ProdCategory": "Alimente"
+  },
+  {
     "ProdName": "mustar",
     "ProdCategory": "Alimente"
   },
@@ -452,6 +464,14 @@
     "ProdCategory": "Alimente"
   },
   {
+    "ProdName": "linte",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "ceapa verde",
+    "ProdCategory": "Alimente"
+  },
+  {
     "ProdName": "barbecue",
     "ProdCategory": "Alimente"
   },
@@ -460,16 +480,28 @@
     "ProdCategory": "Alimente"
   },
   {
+    "ProdName": "kaiser",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "quatro fromagi",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "fromagi",
+    "ProdCategory": "Alimente"
+  },
+  {
     "ProdName": "always",
     "ProdCategory": "Igiena"
   },
   {
     "ProdName": "persil",
-    "ProdCategory": "Curatenie"
+    "ProdCategory": "Menaj"
   },
   {
     "ProdName": "duck",
-    "ProdCategory": "Curatenie"
+    "ProdCategory": "Menaj"
   },
   {
     "ProdName": "gel de dus",
@@ -577,7 +609,7 @@
   },
   {
     "ProdName": "delimano",
-    "ProdCategory": "bucatarie"
+    "ProdCategory": "Bucatarie"
   },
   {
     "ProdName": "medicinal",
@@ -589,19 +621,15 @@
   },
   {
     "ProdName": "fitness",
-    "ProdCategory": "hobby"
+    "ProdCategory": "Hobby"
   },
   {
     "ProdName": "punga",
-    "ProdCategory": "necesitati"
+    "ProdCategory": "Necesitati"
   },
   {
     "ProdName": "lentile",
     "ProdCategory": "Sanatate"
-  },
-  {
-    "ProdName": "benzina",
-    "ProdCategory": "masina"
   },
   {
     "ProdName": "balsam",
@@ -812,6 +840,10 @@
     "ProdCategory": "Alimente"
   },
   {
+    "ProdName": "kefir",
+    "ProdCategory": "Alimente"
+  },
+  {
     "ProdName": "masline",
     "ProdCategory": "Alimente"
   },
@@ -905,6 +937,10 @@
   },
   {
     "ProdName": "oreo",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "latte",
     "ProdCategory": "Alimente"
   },
   {
@@ -1352,6 +1388,10 @@
     "ProdCategory": "Menaj"
   },
   {
+    "ProdName": "fino",
+    "ProdCategory": "Menaj"
+  },
+  {
     "ProdName": "pronto",
     "ProdCategory": "Menaj"
   },
@@ -1649,7 +1689,7 @@
   },
   {
     "ProdName": "martipan",
-    "ProdCategory": ""
+    "ProdCategory": "Alimente"
   },
   {
     "ProdName": "rimel",
@@ -1836,7 +1876,15 @@
     "ProdCategory": "Alimente"
   },
   {
+    "ProdName": "afine",
+    "ProdCategory": "Alimente"
+  },
+  {
     "ProdName": "rodie",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "rodii",
     "ProdCategory": "Alimente"
   },
   {
@@ -1916,11 +1964,111 @@
     "ProdCategory": "Menaj"
   },
   {
+    "ProdName": "monorola",
+    "ProdCategory": "Menaj"
+  },
+  {
+    "ProdName": "pungi",
+    "ProdCategory": "Menaj"
+  },
+  {
     "ProdName": "cornetti",
     "ProdCategory": "Alimente"
   },
   {
     "ProdName": "tarhon",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "heidi",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "seminte",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "saratele",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "perla harghitei",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "antricot",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "xilitol",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "twix",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "pepsi",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "roshen",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "nat crem eco",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "grana padano",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "motorina",
+    "ProdCategory": "Utilitati"
+  },
+  {
+    "ProdName": "benzina",
+    "ProdCategory": "Utilitati"
+  },
+  {
+    "ProdName": "diesel",
+    "ProdCategory": "Utilitati"
+  },
+  {
+    "ProdName": "GPL",
+    "ProdCategory": "Utilitati"
+  },
+  {
+    "ProdName": "parbriz",
+    "ProdCategory": "Utilitati"
+  },
+  {
+    "ProdName": "nano",
+    "ProdCategory": "Utilitati"
+  },
+  {
+    "ProdName": "parusan",
+    "ProdCategory": "Sanatate"
+  },
+  {
+    "ProdName": "sequoia",
+    "ProdCategory": "Sanatate"
+  },
+  {
+    "ProdName": "cioc.menta",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "menta",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "andiva",
+    "ProdCategory": "Alimente"
+  },
+  {
+    "ProdName": "andive",
     "ProdCategory": "Alimente"
   }
 ]

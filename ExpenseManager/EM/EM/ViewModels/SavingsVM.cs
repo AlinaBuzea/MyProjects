@@ -27,9 +27,6 @@ namespace EM.ViewModels
         private bool isVisibleYear;
         private bool isVisibleMonthYearText;
 
-
-        private List<Income> incomes;
-        private List<Product> products;
         private readonly ProductDB productDB;
         private readonly IncomeDB incomeBD;
 
@@ -46,9 +43,6 @@ namespace EM.ViewModels
             selection = "Total";
             Month = currentMonthYearVM.Months[DateTime.Today.Month - 1];
             Year = DateTime.Today.Year;
-
-            //InitializeIncomes();
-            //InitializeProducts();
         }
 
         #region Properties
@@ -122,28 +116,13 @@ namespace EM.ViewModels
         }
         #endregion
 
-        private void InitializeIncomes()
-        {
-            incomes = Task.Run(async () =>
-            {
-                IncomeDB incomeDB = new IncomeDB();
-                return await incomeDB.GetListAsync();
-            }).Result;
-        }
-        private void InitializeProducts()
-        {
-            products = Task.Run(async () =>
-            {
-                return await productDB.GetListAsync();
-            }).Result;
-        }
-        private void OnInformationCommand() // de inlocuit mesajul!
+        private void OnInformationCommand()
         {
             Device.BeginInvokeOnMainThread(() =>
                 Application.Current.MainPage.DisplayAlert("Instructiuni", "Pentru a adauga o suma de bani, apasati pe \"+\"", "OK"));
         }
 
-        private void SelectionChanged() /// de adaugat info
+        private void SelectionChanged()
         {
             if (selection.Equals("Total"))
             {
@@ -185,6 +164,7 @@ namespace EM.ViewModels
                 }).Result;
             }
             IsVisibleMonthYearText = IsVisibleMonth || IsVisibleYear;
+            SavingsValue= Math.Round(savingsValue, 2);
         }
     }
 }

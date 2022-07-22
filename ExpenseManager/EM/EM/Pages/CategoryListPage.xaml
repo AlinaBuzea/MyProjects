@@ -22,11 +22,13 @@
                                 HorizontalOptions="Center" TextColor="White" />
 
             </Grid>
-            <Grid  Grid.Row="1" Margin="20,0" ColumnDefinitions="*,*,2*" >
-                <Label Text="Filtrare cheltuieli:" FontSize="Medium" TextColor="White"/>
-                <Picker Grid.Column="1" ItemsSource="{Binding PeriodOption}" SelectedItem="{Binding SelectedOption,Mode=TwoWay}"/>
-                <Frame Grid.Column="2" BackgroundColor="Transparent" Padding="0">
-                    <Grid ColumnDefinitions="1.5*,*">
+            <Grid  Grid.Row="1" Margin="10,0" ColumnDefinitions="Auto,*,2*" RowDefinitions="*,*">
+                <Label Text="Filtrare" FontSize="Medium" TextColor="White" Margin="0" VerticalOptions="Center"/>
+                <Label Grid.Row="1"  Text="cheltuieli:" FontSize="Medium" TextColor="White" Margin="0" VerticalOptions="Center"/>
+                <Picker Grid.Column="1" Grid.RowSpan="2" ItemsSource="{Binding PeriodOption}" 
+                        SelectedItem="{Binding SelectedOption,Mode=TwoWay}" Margin="0"/>
+                <Frame Grid.Column="2" Grid.RowSpan="2" BackgroundColor="Transparent" Padding="0">
+                    <Grid ColumnDefinitions="2*,*">
                         <Picker ItemsSource="{Binding CurrentMonthYearVM.Months}" SelectedItem="{Binding Month}" 
                                     HorizontalTextAlignment="Center" IsVisible="{Binding IsVisibleMonth}"/>
                         <Picker Grid.Column="1" ItemsSource="{Binding CurrentMonthYearVM.Years}" SelectedItem="{Binding Year}"

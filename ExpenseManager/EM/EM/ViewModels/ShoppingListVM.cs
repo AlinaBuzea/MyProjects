@@ -87,19 +87,6 @@ namespace EM.ViewModels
             });
         }
 
-        private void InitializeList()
-        {
-            ShoppingListItems = Task.Run(async () => await shoppingItemDB.GetListAsync()).Result;
-            Task.Run(() =>
-            {
-                foreach (ShoppingItem shoppingItem in ShoppingListItems)
-                {
-                    Console.WriteLine("item: " + shoppingItem.Item + "  isAPriority: " + shoppingItem.IsAPriority +
-                        "  isBought: " + shoppingItem.IsBought);
-                }
-            });
-        }
-
         private void OnAddNewRowCommand()
         {
             List<ShoppingItem> list = new List<ShoppingItem>(ShoppingListItems);

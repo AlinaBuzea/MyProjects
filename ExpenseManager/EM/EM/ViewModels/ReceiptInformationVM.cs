@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -17,6 +18,7 @@ namespace EM.ViewModels
     public class ReceiptInformationVM : BaseViewModel
     {
         #region Fields
+        private const string errorHexColor = "#E68888";
         private string shopName;
         private string shopAddress;
         private DateTime aquisitionDate;
@@ -24,7 +26,8 @@ namespace EM.ViewModels
         private Category currentProcessedProductCategory;
 
         private bool isRefreshing;
-        private List<Category> processedProductsCategories; // ? poate rezolvi problema categoriilor cu lista
+        private bool isSaveButtonEnabled;
+        private List<Category> processedProductsCategories;
         public DateTime TodaysDate { get; }
         #endregion
 
@@ -69,13 +72,18 @@ namespace EM.ViewModels
             get => isRefreshing;
             set => SetProperty(ref isRefreshing, value);
         }
+        public bool IsSaveButtonEnabled
+        {
+            get => isSaveButtonEnabled;
+            set => SetProperty(ref isSaveButtonEnabled, value);
+        }
         #endregion
 
         public ReceiptInformationVM(List<Tuple<InformationExtractor.InformationType, string>> filteredInformationTuples)
         {
             processedProductsCategories = new List<Category>();
             ProcessedProducts = new List<ProductsVM>();
-            AquisitionDate = DateTime.Today; // de modificat
+            AquisitionDate = DateTime.Today;
             TodaysDate = DateTime.Today;
 
             InitializeInformationFromInformationTuples(filteredInformationTuples);
@@ -84,6 +92,7 @@ namespace EM.ViewModels
             SaveProductsCommand = new Command(OnSaveProductsCommand);
             UpdateProcessedProductsCommand = new Command(OnUpdateProcessedProductsCommand);
             CancelCommand = new Command(OnCancelCommand);
+            IsSaveButtonEnabled = true;
         }
 
         public ReceiptInformationVM()
@@ -124,16 +133,13 @@ namespace EM.ViewModels
         {
             ProcessedProducts.Remove(currentProcessedProduct);
             List<ProductsVM> list = ProcessedProducts;
-            ProcessedProducts = new List<ProductsVM>(list); // apelare setter pt notificare UI; OnPropertyChanged(nameof(ProcessedProducts)); nu merge
-
-            //IsRefreshing = true;
-            //OnUpdateProcessedProductsCommand();
+            ProcessedProducts = new List<ProductsVM>(list); 
         }
 
         private void OnUpdateProcessedProductsCommand()
         {
             List<ProductsVM> list = ProcessedProducts;
-            ProcessedProducts = new List<ProductsVM>(list); // apelare setter pt notificare UI; OnPropertyChanged(nameof(ProcessedProducts)); nu merge
+            ProcessedProducts = new List<ProductsVM>(list);
             IsRefreshing = false;
         }
 
@@ -144,75 +150,91 @@ namespace EM.ViewModels
         }
         private async void OnSaveProductsCommand()
         {
-
-            Console.WriteLine("ShopName: " + ShopName + "\nShopAddress: " + ShopAddress + "\nAquisitionDate: " + AquisitionDate.ToString());
-            foreach (ProductsVM product in ProcessedProducts)
+            if (IsSaveButtonEnabled)
             {
-                Console.WriteLine(" ProductName: " + product.ProductName +
-                    " Category: " + product.ProdCategory.CategoryName +
-                    " Quantity: " + product.Quantity +
-                    " Price: " + product.Price);
-            }
-
-            ShopDB shopDB = new ShopDB();
-            int shopId = await shopDB.GetIdByNameAndAddressAsync(ShopName, ShopAddress); // cautare cu levenstein
-            if (shopId == 0)
-            {
-                shopId = await shopDB.SaveAsync(new Shop() { ShopName = this.ShopName, ShopAddress = this.ShopAddress });
-            }
-            await Task.Run(async () =>
-            {
-                List<Shop> _list = await shopDB.GetListAsync();
-                foreach (Shop shop in _list)
+                IsSaveButtonEnabled = false;
+                Console.WriteLine("ShopName: " + ShopName + "\nShopAddress: " + ShopAddress + "\nAquisitionDate: " + AquisitionDate.ToString());
+                foreach (ProductsVM product in ProcessedProducts)
                 {
-                    Console.WriteLine("shopId = " + shop.Id + " shopName = " + shop.ShopName + " shopAddress = " + shop.ShopAddress);
-                }
-            });
-
-            CategoryDB categoryDB = new CategoryDB();
-            ProductDB productDB = new ProductDB();
-            foreach (ProductsVM productVM in ProcessedProducts)
-            {
-                int currentCategId = await categoryDB.GetIdByNameAsync(productVM.ProdCategory.CategoryName);
-                if (currentCategId == 0)
-                {
-                    currentCategId = await categoryDB.SaveAsync(productVM.ProdCategory);
+                    Console.WriteLine(" ProductName: " + product.ProductName +
+                        " Category: " + product.ProdCategory.CategoryName +
+                        " Quantity: " + product.Quantity +
+                        " Price: " + product.Price);
                 }
 
-                Product product = new Product();
-                product.ProductName = productVM.ProductName;
-                product.ProdCategoryId = currentCategId;
-                product.Price = Double.Parse(productVM.Price, NumberStyles.AllowDecimalPoint);
-                product.Quantity = productVM.Quantity;
-                product.AquisitionDate = AquisitionDate;
-                product.AquisitionShopId = shopId;
-                product.IsMarked = false;
-
-                await Task.Run(async () => await productDB.SaveAsync(product));
-
-
-            }
-
-            await Task.Run(async () =>
-            {
-                List<Product> products = await productDB.GetListAsync();
-                foreach (Product product in products)
+                ShopDB shopDB = new ShopDB();
+                int shopId = await shopDB.GetIdByNameAndAddressAsync(ShopName, ShopAddress); 
+                if (shopId == 0)
                 {
-                    Console.WriteLine("ProductID: " + product.ProductId + " ProductName: " + product.ProductName +
-                        " Category: " + product.ProdCategoryId + " ShopName: " + product.AquisitionShopId +
-                        " Quantity: " + product.Quantity + " AquisitionDate: " + product.AquisitionDate.ToString() +
-                        " Price: " + product.Price + " IsMarked: " + product.IsMarked);
+                    await shopDB.SaveAsync(new Shop() { ShopName = this.ShopName, ShopAddress = this.ShopAddress });
+                    shopId = await shopDB.GetIdByNameAndAddressAsync(ShopName, ShopAddress);
                 }
-            });
+                await Task.Run(async () =>
+                {
+                    List<Shop> _list = await shopDB.GetListAsync();
+                    foreach (Shop shop in _list)
+                    {
+                        Console.WriteLine("shopId = " + shop.Id + " shopName = " + shop.ShopName + " shopAddress = " + shop.ShopAddress);
+                    }
+                });
 
-            await Application.Current.MainPage.Navigation.PopAsync();//ReceiptInformationPage
-            await Application.Current.MainPage.Navigation.PopAsync();//ShowReceiptPage
-            await Application.Current.MainPage.Navigation.PushAsync(new CategoryListPage());
+                CategoryDB categoryDB = new CategoryDB();
+                ProductDB productDB = new ProductDB();
+                if (await HasWrongInputs())
+                {
+                    IsSaveButtonEnabled = true;
+                    return;
+                }
+
+                foreach (ProductsVM productVM in ProcessedProducts)
+                {
+                    int currentCategId = await categoryDB.GetIdByNameAsync(productVM.ProdCategory.CategoryName);
+                    if (currentCategId == 0)
+                    {
+                        await categoryDB.SaveAsync(productVM.ProdCategory);
+                        currentCategId = await categoryDB.GetIdByNameAsync(productVM.ProdCategory.CategoryName);
+                    }
+
+                    Product product = new Product();
+                    product.ProductName = productVM.ProductName;
+                    product.ProdCategoryId = currentCategId;
+                    try
+                    {
+                        product.Price = Double.Parse(productVM.Price, NumberStyles.AllowDecimalPoint);
+                    }
+                    catch (Exception)
+                    {
+                        return;
+                    }
+                    productVM.BackgroundColor = Color.White;
+                    product.Quantity = productVM.Quantity;
+                    product.AquisitionDate = AquisitionDate;
+                    product.AquisitionShopId = shopId;
+                    product.IsMarked = false;
+
+                    await productDB.SaveAsync(product);
+                }
+
+                //await Task.Run(async () =>
+                //{
+                //    List<Product> products = await productDB.GetListAsync();
+                //    foreach (Product product in products)
+                //    {
+                //        Console.WriteLine("ProductID: " + product.ProductId + " ProductName: " + product.ProductName +
+                //            " Category: " + product.ProdCategoryId + " ShopName: " + product.AquisitionShopId +
+                //            " Quantity: " + product.Quantity + " AquisitionDate: " + product.AquisitionDate.ToString() +
+                //            " Price: " + product.Price + " IsMarked: " + product.IsMarked);
+                //    }
+                //});
+
+                await Application.Current.MainPage.Navigation.PopAsync();//ReceiptInformationPage
+                await Application.Current.MainPage.Navigation.PopAsync();//ShowReceiptPage
+                await Application.Current.MainPage.Navigation.PushAsync(new CategoryListPage());
+            }
         }
 
         private void InitializeInformationFromInformationTuples(List<Tuple<InformationExtractor.InformationType, string>> filteredInformationTuples)
         {
-            CategoryDB categoryDB = new CategoryDB();
             Product currentProduct = new Product();
             ShopName = "";
             ShopAddress = "";
@@ -243,10 +265,10 @@ namespace EM.ViewModels
                         if (tuple.Item2.Contains(","))
                         {
                             string newStringPrice = tuple.Item2.Replace(',', '.');
-                            currentProduct.Price = Double.Parse(newStringPrice, NumberStyles.AllowDecimalPoint);
+                            currentProduct.Price = Double.Parse(newStringPrice, CultureInfo.InvariantCulture);
                             break;
                         }
-                        currentProduct.Price = Double.Parse(tuple.Item2, NumberStyles.AllowDecimalPoint);
+                        currentProduct.Price = Double.Parse(tuple.Item2, CultureInfo.InvariantCulture);
                         break;
                     case InformationExtractor.InformationType.Quantity:
                         currentProduct.Quantity = tuple.Item2;
@@ -272,27 +294,105 @@ namespace EM.ViewModels
             }
 
             ProcessedProducts.Add(new ProductsVM(currentProduct));
-            Console.WriteLine("ShopName: " + ShopName + "\nShopAddress: " + ShopAddress + "\nAquisitionDate: " + AquisitionDate.ToString());
-            foreach (ProductsVM product in ProcessedProducts)
-            {
-                Console.WriteLine(" ProductName: " + product.ProductName +
-                    " Category: " + product.ProdCategory.CategoryName +
-                    " Quantity: " + product.Quantity +
-                    " Price: " + product.Price);
-            }
+            //Console.WriteLine("ShopName: " + ShopName + "\nShopAddress: " + ShopAddress + "\nAquisitionDate: " + AquisitionDate.ToString());
+            //foreach (ProductsVM product in ProcessedProducts)
+            //{
+            //    Console.WriteLine(" ProductName: " + product.ProductName +
+            //        " Category: " + product.ProdCategory.CategoryName +
+            //        " Quantity: " + product.Quantity +
+            //        " Price: " + product.Price);
+            //}
 
             UpdateProcessedProducts();
-            Task.Run(() =>
+            //Task.Run(() =>
+            //{
+            //    Console.WriteLine("ShopName: " + ShopName + "\nShopAddress: " + ShopAddress + "\nAquisitionDate: " + AquisitionDate.ToString());
+            //    foreach (ProductsVM product in ProcessedProducts)
+            //    {
+            //        Console.WriteLine(" ProductName: " + product.ProductName +
+            //            " Category: " + product.ProdCategory.CategoryName +
+            //            " Quantity: " + product.Quantity +
+            //            " Price: " + product.Price);
+            //    }
+            //});
+        }
+        private async Task<bool> HasWrongInputs()
+        {
+            bool noCategory = false;
+            bool nameFieldIsNotCompleted = false;
+            bool priceFieldIsZeroOrNegative = false;
+            bool isNotNumber = false;
+            bool isNumberInAWrongFormat = false;
+            foreach (ProductsVM productVM in ProcessedProducts)
             {
-                Console.WriteLine("ShopName: " + ShopName + "\nShopAddress: " + ShopAddress + "\nAquisitionDate: " + AquisitionDate.ToString());
-                foreach (ProductsVM product in ProcessedProducts)
+                if(string.IsNullOrWhiteSpace(productVM.ProductName) || productVM.ProductName.Equals(""))
                 {
-                    Console.WriteLine(" ProductName: " + product.ProductName +
-                        " Category: " + product.ProdCategory.CategoryName +
-                        " Quantity: " + product.Quantity +
-                        " Price: " + product.Price);
+                    nameFieldIsNotCompleted = true;
+                    productVM.BackgroundColor = Color.FromHex(errorHexColor);
                 }
-            });
+                if (productVM.ProdCategory == null || (string.IsNullOrWhiteSpace(productVM.ProdCategory.CategoryName) ||
+                    productVM.ProdCategory.CategoryName.Equals("")))
+                {
+                    noCategory = true;
+                    productVM.BackgroundColor = Color.FromHex(errorHexColor);
+                }
+                double validPrice = -1;
+                try
+                {
+
+                    validPrice = double.Parse(productVM.Price, CultureInfo.InvariantCulture);
+                     _= Double.Parse(productVM.Price, NumberStyles.AllowDecimalPoint);
+                    productVM.BackgroundColor = (string.IsNullOrWhiteSpace(productVM.ProductName) || productVM.ProductName.Equals("") ||
+                                            productVM.ProdCategory == null || (string.IsNullOrWhiteSpace(productVM.ProdCategory.CategoryName) ||
+                                                 productVM.ProdCategory.CategoryName.Equals(""))) ? 
+                                                Color.FromHex(errorHexColor): Color.White;
+                }
+                catch (Exception)
+                {
+                    productVM.BackgroundColor = Color.FromHex(errorHexColor);
+                    if (validPrice == -1)
+                    {
+                        isNumberInAWrongFormat = true;
+                    }
+                    else
+                    {
+                        isNotNumber = true;
+                    }
+                }
+                if (validPrice <= 0)
+                {
+                    priceFieldIsZeroOrNegative = true;
+                    productVM.BackgroundColor = Color.FromHex(errorHexColor);
+                }
+            }
+
+            if (nameFieldIsNotCompleted)
+            {
+                await Application.Current.MainPage.DisplayAlert("Denumire - Date invalide!", "Fiecare produs trebuie sa aiba o denumire", "OK");
+                return true;
+            }
+            if (noCategory)
+            {
+                await Application.Current.MainPage.DisplayAlert("Categorie - Date invalide!", "Fiecare produs trebuie sa aiba o categorie", "OK");
+                return true;
+            }
+            if (isNotNumber)
+            {
+                await Application.Current.MainPage.DisplayAlert("Pret - Date invalide!", "Pretul este camp numeric! Introduceti un numar!", "OK");
+                return true;
+            }
+            if (isNumberInAWrongFormat)
+            {
+                await Application.Current.MainPage.DisplayAlert("Pret - Date invalide!", "Zecimalele se despart de intreg prin virgula! Inlocuiti .(punct) cu ,(virgula) si reciproc!", "OK");
+                return true;
+            }
+            if (priceFieldIsZeroOrNegative)
+            {
+                await Application.Current.MainPage.DisplayAlert("Pret - Date invalide!", "Pretul unui produs NU poate fi mai mic sau egal cu 0!", "OK");
+                return true;
+            }
+
+            return false;
         }
         private void UpdateProcessedProducts()
         {

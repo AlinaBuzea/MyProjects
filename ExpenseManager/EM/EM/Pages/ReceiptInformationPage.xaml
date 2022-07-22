@@ -5,76 +5,64 @@
              Title="LISTARE PRODUSE BON"
              x:Class="EM.Pages.ReceiptInformationPage">
     <ContentPage.Content>
-        <StackLayout BackgroundColor= "LightPink" >
-            <RefreshView Command="{Binding UpdateProcessedProductsCommand}" IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}">
-                <ScrollView>
-                    <Grid Margin="20" ColumnDefinitions="*, 2*" RowDefinitions ="Auto, Auto, Auto, Auto, *">
-                        <Grid.RowSpacing>0</Grid.RowSpacing>
-                        <Label Text="Denumire Magazin:" FontSize="Medium" VerticalOptions="Center" LineBreakMode="WordWrap" 
-                           BindingContext="{x:Reference Name=ShopNameEditor}"  HeightRequest="{Binding Height}"/>
-                        <Editor x:Name="ShopNameEditor" Grid.Column="1" Text="{Binding ShopName, Mode=TwoWay}" 
-                            AutoSize="TextChanges" VerticalOptions="FillAndExpand"/>
+        <Grid RowDefinitions="*, Auto" BackgroundColor= "LightPink" >
+            <ScrollView>
+                <Grid Margin="20" ColumnDefinitions="*, 2*" RowDefinitions ="Auto, Auto, Auto, *, Auto">
+                    <Grid.RowSpacing>0</Grid.RowSpacing>
+                    <Label Text="Denumire Magazin:" FontSize="Medium" VerticalOptions="Center" LineBreakMode="WordWrap" />
+                    <Editor x:Name="ShopNameEditor" Grid.Column="1" Text="{Binding ShopName, Mode=TwoWay}" AutoSize="TextChanges" />
 
-                        <Label Grid.Row="1" Text="Adresa Magazin:" FontSize="Medium" VerticalOptions="Center" LineBreakMode="WordWrap" />
-                        <Editor Grid.Row="1" Grid.Column="1" Text="{Binding ShopAddress, Mode=TwoWay}" AutoSize="TextChanges"/>
+                    <Label Grid.Row="1" Text="Adresa Magazin:" FontSize="Medium" VerticalOptions="Center" LineBreakMode="WordWrap" />
+                    <Editor Grid.Row="1" Grid.Column="1" Text="{Binding ShopAddress, Mode=TwoWay}" AutoSize="TextChanges"/>
 
-                        <Label Grid.Row="2" Text="Data Achizitiei" FontSize="Medium" VerticalOptions="Center" LineBreakMode="WordWrap" />
-                        <DatePicker Grid.Row="2" Grid.Column="1" Date="{Binding AquisitionDate,Mode=TwoWay}" MaximumDate="{Binding TodaysDate}" />
+                    <Label Grid.Row="2" Text="Data Achizitiei" FontSize="Medium" VerticalOptions="Center" LineBreakMode="WordWrap" />
+                    <DatePicker Grid.Row="2" Grid.Column="1" Date="{Binding AquisitionDate,Mode=TwoWay}" MaximumDate="{Binding TodaysDate}" />
 
-                        <ScrollView Grid.Row="3" Grid.ColumnSpan="2" VerticalScrollBarVisibility="Always" Margin="0,5">
-                            <StackLayout x:Name="ProcessedProductsCollectionView" BindableLayout.ItemsSource="{Binding ProcessedProducts, Mode=TwoWay}" 
+                    <ScrollView Grid.Row="3" Grid.ColumnSpan="2" VerticalScrollBarVisibility="Always" Margin="0,5">
+                        <StackLayout x:Name="ProcessedProductsCollectionView" BindableLayout.ItemsSource="{Binding ProcessedProducts, Mode=TwoWay}" 
                                              BindableLayout.EmptyView="No items to display" >
-                                <BindableLayout.ItemTemplate>
-                                    <DataTemplate>
-                                        <Frame BorderColor="#F11263" CornerRadius="20" HasShadow="True" Margin="0,5" Padding="15,2,15,2">
-                                            <Grid BackgroundColor="Transparent">
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame BorderColor="#F11263" BackgroundColor="{Binding BackgroundColor}" CornerRadius="20" HasShadow="True" Margin="0,5" Padding="15,2,15,2">
+                                        <Grid BackgroundColor="Transparent" RowDefinitions="Auto,*,*,*" RowSpacing="-10" ColumnDefinitions="Auto,*,Auto">
 
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition/>
-                                                    <RowDefinition/>
-                                                    <RowDefinition/>
-                                                    <RowDefinition/>
-                                                </Grid.RowDefinitions>
-                                                <Grid.RowSpacing>
-                                                    -10
-                                                </Grid.RowSpacing>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="0.5*"/>
-                                                    <ColumnDefinition Width="*"/>
-                                                    <ColumnDefinition Width="0.25*"/>
-                                                </Grid.ColumnDefinitions>
-                                                <Editor Grid.ColumnSpan="2" Text="{Binding ProductName}" FontSize="20" Margin="5,0" TextColor="Black" />
-                                                <Label Grid.Row="1" Text="Pret:" FontSize="Medium" TextColor="Black" VerticalOptions="Center"/>
-                                                <Entry Grid.Row="1" Grid.Column="1" Text="{Binding Price}" FontSize="20" Margin="5,0" TextColor="Black" />
-                                                <Label Grid.Row="2" Text="Cantitate:" FontSize="Medium" TextColor="Black" VerticalOptions="Center"/>
-                                                <Entry Grid.Row="2" Grid.Column="1" Text="{Binding Quantity}" Placeholder="Nespecificata" FontSize="20" Margin="5,0" TextColor="Black" />
+                                            <Editor Grid.ColumnSpan="2" Text="{Binding ProductName}" FontSize="20" Margin="5,0" TextColor="Black"
+                                                    AutoSize="TextChanges" />
+                                            <Label Grid.Row="1" Text="Pret:" FontSize="Medium" TextColor="Black" VerticalOptions="Center"/>
+                                            <Entry Grid.Row="1" Grid.Column="1" Text="{Binding Price}" FontSize="20" Margin="5,0" 
+                                                   TextColor="Black" />
+                                            <Label Grid.Row="2" Text="Cantitate:" FontSize="Medium" TextColor="Black" VerticalOptions="Center"/>
+                                            <Entry Grid.Row="2" Grid.Column="1" Text="{Binding Quantity}" Placeholder="Nespecificata" FontSize="20" Margin="5,0" TextColor="Black" />
 
-                                                <Label Grid.Row="3"  Text="Categorie:" VerticalOptions="Center" FontSize="Medium" TextColor="Black"/>
+                                            <Label Grid.Row="3"  Text="Categorie:" VerticalOptions="Center" FontSize="Medium" TextColor="Black"/>
 
-                                                <StackLayout Orientation="Horizontal" Grid.Row="3" Grid.Column="1" BindingContext="{Binding ProdCategory}" HorizontalOptions="Start">
-                                                    <Entry Text="{Binding CategoryName}"  FontSize="20" Margin="5,0" TextColor="Black" />
-                                                </StackLayout>
-                                                <ImageButton Grid.Row="3" Grid.Column="2"  VerticalOptions="Center" HorizontalOptions="Center" 
+                                            <StackLayout Orientation="Horizontal" Grid.Row="3" Grid.Column="1" BindingContext="{Binding ProdCategory}" 
+                                                         HorizontalOptions="Start">
+                                                <Entry Text="{Binding CategoryName}"  FontSize="20" Margin="5,0" TextColor="Black" Placeholder="Nespecificata"/>
+                                            </StackLayout>
+                                            <Frame Grid.Row="3" Grid.Column="2" Padding="0" CornerRadius="5" HasShadow="True">
+                                            <ImageButton VerticalOptions="Center" HorizontalOptions="Center" 
                                                              Source="Garbage.jpg" 
                                                      Background="Transparent" HeightRequest="40"
                                                      Command="{Binding Source={x:Reference ProcessedProductsCollectionView}, Path=BindingContext.DeleteSelectedProcessedProductCommand}" 
                                                      CommandParameter="{Binding}"/>
-                                            </Grid>
-                                        </Frame>
-                                    </DataTemplate>
-                                </BindableLayout.ItemTemplate>
-                            </StackLayout>
-                        </ScrollView>
-                    </Grid>
-                </ScrollView>
-            </RefreshView>
-            <Grid ColumnDefinitions="*, 2*">
+                                            </Frame>
+                                        </Grid>
+                                    </Frame>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                    </ScrollView>
+                </Grid>
+            </ScrollView>
+            <Grid Grid.Row="1" ColumnDefinitions="*, Auto">
                 <Button Text="Anuleaza" Command="{Binding CancelCommand}" Margin="5,5,0,5"
                         VerticalOptions="End" FontSize="18" FontAttributes="Bold" BackgroundColor="#16C6FC" />
 
                 <Button Grid.Column="1" Text="Salveaza Produsele" Command="{Binding SaveProductsCommand}" Margin="5"
-                    VerticalOptions="End" FontSize="18" FontAttributes="Bold" BackgroundColor="#16C6FC" />
+                    VerticalOptions="End" FontSize="18" FontAttributes="Bold" BackgroundColor="#16C6FC" 
+                        IsEnabled="{Binding IsSaveButtonEnabled}" />
             </Grid>
-        </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

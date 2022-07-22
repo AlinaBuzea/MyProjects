@@ -174,7 +174,7 @@ namespace EM.ViewModels.UserAutentication
             }
         }
 
-        private async void OnVerifyEmailAddressCommand()// de modificat
+        private async void OnVerifyEmailAddressCommand()
         {
             if (string.IsNullOrWhiteSpace(Email))
             {

@@ -25,6 +25,7 @@ namespace EM.ViewModels.SubViewModels
 
         private ProductDB productDB;
         List<Product> products;
+        private Color backgroundColor;
         #endregion
 
         #region Commands
@@ -43,10 +44,13 @@ namespace EM.ViewModels.SubViewModels
             ModifyProductCommand = new Command<string>(OnModifyProductCommand);
 
             productDB = new ProductDB();
+            BackgroundColor = Color.White;
+
         }
         public ProductsVM(Product product)
         {
             productDB = new ProductDB();
+            BackgroundColor = Color.White;
 
             Id = product.ProductId.ToString();
             ProductName = product.ProductName;
@@ -113,18 +117,11 @@ namespace EM.ViewModels.SubViewModels
             get => isMarked;
             set => SetProperty(ref isMarked, value);
         }
-
-        //public string ProdId
-        //{
-        //    get => prodId;
-        //    set
-        //    {
-        //        prodId = value;
-        //        LoadProdId(value);
-        //    }
-        //}
-
-
+        public Color BackgroundColor
+        {
+            get => backgroundColor;
+            set => SetProperty(ref backgroundColor, value);
+        }
         public bool IsRefreshing
         {
             get => isRefreshing;
@@ -157,7 +154,6 @@ namespace EM.ViewModels.SubViewModels
         {
             Device.BeginInvokeOnMainThread(async () =>
             {
-                //_ = await Application.Current.MainPage.DisplayAlert("Alert", "View Product: " + index, "OK");
                 await Application.Current.MainPage.Navigation.PushAsync(new AddProductPage());
             });
         }

@@ -23,7 +23,7 @@
                     <Label Text="Selectati luna:" TextColor="White" FontSize="18" VerticalTextAlignment="Center"
                            HorizontalOptions="CenterAndExpand" Margin="5,0"/>
                     <Frame Grid.Column="1" BackgroundColor="Transparent" Padding="0">
-                        <Grid ColumnDefinitions="*,*">
+                        <Grid ColumnDefinitions="2*,*">
                             <Picker ItemsSource="{Binding CurrentMonthYearVM.Months}" SelectedItem="{Binding Month}" 
                                     HorizontalTextAlignment="Center"/>
                             <Picker Grid.Column="1" ItemsSource="{Binding CurrentMonthYearVM.Years}" SelectedItem="{Binding Year}"
@@ -72,7 +72,7 @@
                                                    TextColor="Black" FontSize="20" VerticalTextAlignment="Center"/>
                                             <CheckBox Grid.Row="3" Grid.Column="2" 
                                                       IsChecked="{Binding IsLimitNotificationActive, Mode=TwoWay}"
-                                                      VerticalOptions="CenterAndExpand"/>
+                                                      VerticalOptions="CenterAndExpand" HorizontalOptions="Center"/>
 
                                             <Label Grid.Row="4" Text="Limita minima:" IsVisible="{Binding IsLimitNotificationActive}"
                                                    TextColor="Black" FontSize="20" VerticalOptions="CenterAndExpand"/>
@@ -112,7 +112,7 @@
                         BackgroundColor="#16C6FC"
                         WidthRequest="250"/>
 
-                    <Button Grid.Column="1" Text="Salveaza Datele" Command="{Binding SaveBudgetPlanCommand}" Margin="5"
+                    <Button Grid.Column="1" Text="Salveaza" Command="{Binding SaveBudgetPlanCommand}" Margin="5"
                         VerticalOptions="End" HorizontalOptions="Center" FontSize="18" FontAttributes="Bold" 
                         BackgroundColor="#16C6FC" 
                         WidthRequest="250"/>

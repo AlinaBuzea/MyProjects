@@ -60,11 +60,6 @@ namespace EM.Data
 
         public void DeleteAll()
         {
-            //List<ShoppingItem> list = App.Database.databaseConn.Table<ShoppingItem>().ToListAsync().Result;
-            //foreach (ShoppingItem shoppingItem in list)
-            //{
-            //    await App.Database.databaseConn.DeleteAsync(shoppingItem);
-            //}
             try
             {
                 App.Database.databaseConn.DropTableAsync<ShoppingItem>().Wait();

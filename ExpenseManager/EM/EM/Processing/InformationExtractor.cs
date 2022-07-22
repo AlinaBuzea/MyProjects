@@ -1,6 +1,7 @@
 ﻿using EM.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -28,16 +29,15 @@ namespace EM.Processing
             List<string> lines = receiptText.Split('\n').ToList();
 
             string numberPattern = @"(\d+(\.|,)?\d+|\d{1,3}(,\d{3})*(\.\d+)?)";
-            string measureUnitPattern = @"\s*(KG|BUC|UM|L)(\.)*\s*";// "\s*(KG|BUC|UM|L)*\s*"
+            string measureUnitPattern = @"\s*(KG|BUC|UM|L|LTR|PCS)\s*(\.)*\s*";
             string quantityPattern = numberPattern + measureUnitPattern;
-            //string tvaLetter = @"\s*(C|B|D|A|E)\s*";
             string quantityPricePattern = @"\s*" + numberPattern + measureUnitPattern + @"\s*(X)\s*" + numberPattern + @"\s*";
             string priceQuantityPattern = @"\s*" + numberPattern + @"\s*(X)\s*" + numberPattern + measureUnitPattern + @"\s*";
-            string datePattern = @"(\d{2}\/\d{2}\/\d{4}|\d{4}\/\d{2}\/\d{2}|\d{2}-\d{2}-\d{4}|\d{2}\.\d{2}\.\d{4})"; // cauta prin bonuri si vezi si adauga si alte pattern-uri pt data
+            string datePattern = @"(\d{2}\/\d{2}\/\d{4}|\d{4}\/\d{2}\/\d{2}|\d{2}-\d{2}-\d{4}|\d{2}\.\d{2}\.\d{4})";
 
             List<string> shopNameAbreviations = new List<string>() { "SC", "SRC", "S.C.", "S.R.C", "S. C.", "S. R. C.", "SRL", "S.R.L." };
             List<string> shopAddressWords = new List<string>() { "JUD", "JUDET", "STR", "STRADA", "MUN", "MUNICIPIUL" }; //, "NR"
-            List<string> nameAndAddressLimit = new List<string>() { "NR.CRT", "CIF", "C.I.F.", "COD IDENTIFICARE FISCALA", "TRANZACTIE", "BON", "COD FISCAL", "C.I.F" };
+            List<string> nameAndAddressLimit = new List<string>() { "NR.CRT", "CIF", "C.I.F.", "COD IDENTIFICARE FISCALA", "TRANZACTIE", "BON", "COD FISCAL", "C.I.F", "LEL", "LEI", };
             List<string> endOfReceipt = new List<string>() { "TOTAL" };
 
             List<Tuple<InformationType, string>> filteredInformationTuples = new List<Tuple<InformationType, string>>();
@@ -45,7 +45,7 @@ namespace EM.Processing
 
             bool shopNameAndAddressSaved = false;
             Regex dateRegex = new Regex(datePattern);
-            Regex regex = new Regex(quantityPricePattern + "|" + priceQuantityPattern);
+            Regex quantityAndPriceRegex = new Regex(quantityPricePattern + "|" + priceQuantityPattern);
             bool? isPriceBeforeProductName = null;
             bool foundDate = false;
             bool totalReached = false;
@@ -55,7 +55,6 @@ namespace EM.Processing
                 int linesNo = lines.Count();
                 for (int index = 0; index < linesNo; index++)
                 {
-                    //linia este o data calendaristica
                     if (dateRegex.IsMatch(lines[index]))
                     {
                         filteredInformationTuples.Add(Tuple.Create(InformationType.Date, dateRegex.Match(lines[index]).ToString()));
@@ -63,40 +62,35 @@ namespace EM.Processing
                         if (totalReached)
                             break;
                     }
-                    // daca s-a ajuns la cuvantul "Total"
                     if (!totalReached)
                     {
-                        //linia curenta reprezinta sfarsitul sectiunii cu informatiile magazinului
                         if (nameAndAddressLimit.Any(lines[index].Contains))
                         {
                             shopNameAndAddressSaved = true;
                             continue;
                         }
 
-                        if (!shopNameAndAddressSaved)// daca informatiile magazinului NU au fost salvate
+                        if (!shopNameAndAddressSaved)
                         {
-                            //se gasesc abrevieri obisnuite ale numele magazinului?
                             if (shopNameAbreviations.Any(lines[index].Contains))
                             {
-                                filteredInformationTuples.Add(Tuple.Create(InformationType.ShopName, lines[index]));///"SPATIU COMERCIAL CHIOSC IN SUPRAFATA DE 33,70MP\n" - il pune si pe asta
+                                filteredInformationTuples.Add(Tuple.Create(InformationType.ShopName, lines[index]));
                             }
-                            // se gasesc cuvinte cheie care sa denote adresa unui magazin?
                             else if (shopAddressWords.Any(lines[index].Contains))
                             {
                                 filteredInformationTuples.Add(Tuple.Create(InformationType.Address, lines[index]));
                             }
                         }
-                        else // informatiile magazinului au fost salvate => se concentreaza pe produse si preturi
+                        else 
                         {
-                            /// daca nu s-a ajuns inca la denumirea unui produs sau la lina cu pretul si cantitatea
                             if (isPriceBeforeProductName == null)
                             {
-                                /// linia e de forma PRET X CANTITATE sau CANTITATE X PRET
-                                if (regex.IsMatch(lines[index]))
+                                
+                                if (quantityAndPriceRegex.IsMatch(lines[index]))
                                 {
                                     isPriceBeforeProductName = true;
                                 }
-                                else // denumire produs
+                                else 
                                 {
                                     string productName = FindProductNameInCurrentLine(productDictionaryFileManager.ProductNameList, lines[index]);
                                     if (productName == null || productName.Equals(""))
@@ -107,69 +101,72 @@ namespace EM.Processing
                                 }
                             }
 
-                            /// daca linia e de forma PRET X CANTITATE sau CANTITATE X PRET
-                            //if (regex.IsMatch(lines[index])) // functioneaza bine doaar daca informatia e procesata bine (exista quantity)
-                            Match match = regex.Match(lines[index]);
-                            if (match.Success) // functioneaza bine doaar daca informatia e procesata bine (exista quantity)
-                                               // iar daca ordinea este produs-price (nu price-product)
+                            Match match = quantityAndPriceRegex.Match(lines[index]);
+                            if (match.Success)
                             {
-                                /// verificare caz in care exista informatii inutile pe linie (ex codul produsului) 
                                 string information = match.ToString();
                                 string beforeInfo = lines[index].Remove(lines[index].IndexOf(information));
                                 if (beforeInfo.Length > ProcessingError)
                                 {
-                                    /// linie tip "denumire produs PRET X CANTITATE"
                                     beforeInfo = DeleteUnnecessaryInformation(InformationType.ProductName, beforeInfo);
-                                    //filteredInformationTuples.Add(Tuple.Create(InformationType.ProductName, beforeInfo));// aici e ceva putred (e pus oricum si fara stabilirea categoriei)
                                     string productName = FindProductNameInCurrentLine(productDictionaryFileManager.ProductNameList, beforeInfo);
                                     if (productName == null)
                                     {
                                         continue;
                                     }
-                                    filteredInformationTuples.Add(Tuple.Create(InformationType.ProductName, beforeInfo));// cred ca asa e mai bine
+                                    filteredInformationTuples.Add(Tuple.Create(InformationType.ProductName, beforeInfo));
                                     string currentCateg = productDictionaryFileManager.GetProductCategoryByProductName(productName);
                                     filteredInformationTuples.Add(Tuple.Create(InformationType.Category, currentCateg));
                                 }
                                 else
                                 {
                                     string productName = null;
-                                    /// linia PRET X CANTITATE este inaintea denumirii produsului
-                                    /// linia curenta este cea PRET X CANTITATE
                                     if (isPriceBeforeProductName == true)
                                     {
                                         if (index + 1 >= linesNo)
                                             break;
 
                                         productName = FindProductNameInCurrentLine(productDictionaryFileManager.ProductNameList, lines[index + 1]);
-                                        if (productName == null)// produsul NU e in dictionar => se aplica ALG LEVENSHTEIN
+                                        if (productName == null)
                                         {
                                             ProductDictionary closestProdDict = Levenstein.FindTheClosestWordToTheCurrentOneFromList(lines[index + 1], productDictionaryFileManager.ProductDictionaryList);
                                             filteredInformationTuples.Add(Tuple.Create(InformationType.Category, closestProdDict.ProdCategory));
                                             filteredInformationTuples.Add(Tuple.Create(InformationType.ProductName, closestProdDict.ProdName.ToUpper()));
+
+                                            string quantity1 = new Regex(quantityPattern).Match(information).ToString();
+                                            information = information.Replace(quantity1, "");
+                                            string price1 = new Regex(numberPattern).Match(information).ToString();
+
+                                            filteredInformationTuples.Add(Tuple.Create(InformationType.Price, GetPriceByQuantityAndPricePerKGProduct(quantity1, price1)));
+                                            filteredInformationTuples.Add(Tuple.Create(InformationType.Quantity, quantity1));
                                             index++;
                                             continue;
                                         }
-                                        // produsul ESTE in dictionar => e introdus in lista de tuple
                                         filteredInformationTuples.Add(Tuple.Create(InformationType.ProductName, lines[index + 1]));
-                                        index++; // a fost introdus, deci se trece peste el
+                                        index++;
                                     }
-                                    else /// linia denumirii produsului este inaintea liniei PRET X CANTITATE
-                                         /// linia curenta este cea PRET X CANTITATE
+                                    else
                                     {
                                         productName = FindProductNameInCurrentLine(productDictionaryFileManager.ProductNameList, lines[index - 1]);
-                                        if (productName == null) // produsul NU e in dictionar => se aplica ALG LEVENSHTEIN
+                                        if (productName == null)
                                         {
                                             ProductDictionary closestProdDict = Levenstein.FindTheClosestWordToTheCurrentOneFromList(lines[index - 1], productDictionaryFileManager.ProductDictionaryList);
                                             filteredInformationTuples.Add(Tuple.Create(InformationType.Category, closestProdDict.ProdCategory));
                                             filteredInformationTuples.Add(Tuple.Create(InformationType.ProductName, closestProdDict.ProdName.ToUpper()));
+                                            string quantity1 = new Regex(quantityPattern).Match(information).ToString();
+                                            information = information.Replace(quantity1, "");
+                                            string price1 = new Regex(numberPattern).Match(information).ToString();
+
+                                            filteredInformationTuples.Add(Tuple.Create(InformationType.Price, GetPriceByQuantityAndPricePerKGProduct(quantity1, price1)));
+                                            filteredInformationTuples.Add(Tuple.Create(InformationType.Quantity, quantity1));
+
                                             index++;
                                             continue;
                                         }
-                                        // produsul ESTE in dictionar => e introdus in lista de tuple
                                         filteredInformationTuples.Add(Tuple.Create(InformationType.ProductName, lines[index - 1]));
                                     }
 
-                                    if (productName != null) // produsul ESTE in dictionar => trebuie cautata categoria si introdusa si ea
+                                    if (productName != null)
                                     {
                                         string currentCateg = productDictionaryFileManager.GetProductCategoryByProductName(productName);
                                         filteredInformationTuples.Add(Tuple.Create(InformationType.Category, currentCateg));
@@ -184,7 +181,7 @@ namespace EM.Processing
 
                             }
                         }
-                        totalReached = endOfReceipt.Any(lines[index].Contains); // cauta cuvantul "Total"
+                        totalReached = endOfReceipt.Any(lines[index].Contains);
                     }
                     if (totalReached && foundDate)
                     {
@@ -214,7 +211,8 @@ namespace EM.Processing
             Match match = numberRegex.Match(quantity);
             if (match.Success)
             {
-                return double.Parse(match.Value);
+                double result = double.Parse(match.Value, CultureInfo.InvariantCulture);
+                return result;
             }
             return null;
         }
@@ -226,13 +224,12 @@ namespace EM.Processing
             {
                 return pricePerKG;
             }
-            double realPrice = quantityWithoutMeasurementUnit.Value * double.Parse(pricePerKG);
-            return Math.Round(realPrice, 2).ToString();
+            double realPrice = quantityWithoutMeasurementUnit.Value * double.Parse(pricePerKG, CultureInfo.InvariantCulture);
+            return (Math.Round(realPrice, 2)).ToString();
         }
 
         private string DeleteUnnecessaryInformation(InformationType informationType, string line)
-        {
-            //nu e bun pt cuvintele de o litera si pt denumirile care chiar contin numere in ele 
+        { 
             string result = line;
             if (informationType.Equals(InformationType.ProductName))
             {
@@ -242,7 +239,7 @@ namespace EM.Processing
                 {
                     int digitsNb = word.Count(character => char.IsDigit(character));
                     bool containsLetters = word.Count(character => char.IsLetter(character)) > 0;
-                    if (digitsNb > 2 * word.Length / 3 && word.Length > 3 && !containsLetters) // trec de asta numerele de cel mult 3 cifre si sirurile de caractere fara sens care contin cel putin o litera
+                    if (digitsNb > 2 * word.Length / 3 && word.Length > 3 && !containsLetters)
                         continue;
                     result += word + " ";
                 }

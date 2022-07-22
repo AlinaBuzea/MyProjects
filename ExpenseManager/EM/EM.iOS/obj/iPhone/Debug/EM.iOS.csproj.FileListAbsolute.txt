@@ -80,3 +80,6 @@ C:\Users\Alina\Documents\GitHub\Licenta\ExpenseManager\EM\EM.iOS\obj\iPhone\Debu
 C:\Users\Alina\Documents\GitHub\Licenta\ExpenseManager\EM\EM.iOS\obj\iPhone\Debug\EM.iOS.csproj.CopyComplete
 C:\Users\Alina\Documents\GitHub\Licenta\ExpenseManager\EM\EM.iOS\obj\iPhone\Debug\EM.iOS.exe
 C:\Users\Alina\Documents\GitHub\Licenta\ExpenseManager\EM\EM.iOS\obj\iPhone\Debug\EM.iOS.pdb
+C:\Users\Alina\Documents\GitHub\Licenta\ExpenseManager\EM\EM.iOS\bin\iPhone\Debug\Plugin.LocalNotification.dll
+C:\Users\Alina\Documents\GitHub\Licenta\ExpenseManager\EM\EM.iOS\bin\iPhone\Debug\Plugin.Media.dll
+C:\Users\Alina\Documents\GitHub\Licenta\ExpenseManager\EM\EM.iOS\bin\iPhone\Debug\Plugin.Media.pdb

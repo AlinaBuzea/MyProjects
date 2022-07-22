@@ -67,7 +67,7 @@ namespace EM.ViewModels
                         Application.Current.MainPage.DisplayAlert("Alerta", "Introduceti denumirea magazinului!", "OK"));
                 return;
             }
-            Task.Run(async () => _list = await shopDB.GetListAsync());
+            Task.Run(async () => _list = await shopDB.GetListAsync()).Wait();
 
             if (_list.Find(shop => shop.ShopName.Equals(ShopName) && shop.ShopAddress.Equals(ShopAddress)) != null)
             {
@@ -91,8 +91,6 @@ namespace EM.ViewModels
                 Console.WriteLine("shopId = " + shop.Id + " shopName = " + shop.ShopName + " shopAddress = " + shop.ShopAddress);
             }
             ReinitializeFields();
-
-            //await App.Current.MainPage.Navigation.PopAsync();
         }
 
         private void ReinitializeFields()

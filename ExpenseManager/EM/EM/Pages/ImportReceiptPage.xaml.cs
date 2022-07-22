@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,13 +14,17 @@ namespace EM.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ImportReceiptPage : ContentPage
     {
+        public string PhotoPath;
         public ICommand AccessCameraCommand => new Command(async () =>
         {
             var status = await Permissions.RequestAsync<Permissions.Camera>();
-            if (status.Equals(PermissionStatus.Granted))
+            if (status.Equals(PermissionStatus.Granted) && MediaPicker.IsCaptureSupported)
             {
                 FileResult result = await MediaPicker.CapturePhotoAsync();
-                ShowImage(result);
+                if (result != null)
+                {
+                    ShowImage(result);
+                }
             }
 
         });
@@ -34,7 +39,10 @@ namespace EM.Pages
                     Title = "Selecteaza o poza"
                 });
 
-                ShowImage(result);
+                if (result != null)
+                {
+                    ShowImage(result);
+                }
             }
         });
 

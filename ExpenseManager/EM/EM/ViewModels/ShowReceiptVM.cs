@@ -17,9 +17,6 @@ namespace EM.ViewModels
     public class ShowReceiptVM : BaseViewModel
     {
         #region Fields
-        private readonly string pythonServerHost = "192.168.100.14"; //facultate: "10.146.1.102"
-        private readonly int pythonPort = 9000;
-
         private bool isRunning;
         IEnumerable<FileResult> imageResults;
         private List<Xamarin.Forms.ImageSource> photoCollection;
@@ -39,11 +36,11 @@ namespace EM.ViewModels
         {
             imageResults = new List<FileResult>() { result };
             InitializeCollectionItemsSource();
+            ProccessReceiptCommand = new Command(OnProccessReceiptCommand);
             IsRunning = false;
         }
 
         #region Properties
-
         public bool IsRunning
         {
             get => isRunning;
@@ -56,33 +53,42 @@ namespace EM.ViewModels
         }
         #endregion
 
-        private async void OnProccessReceiptCommand()//nu functioneaza pt mai multe poze
+        private async void OnProccessReceiptCommand()
         {
             IsRunning = true;
             List<string> receiptsText = new List<string>();
             using (MemoryStream memoryStream = new MemoryStream())
             {
-                foreach (FileResult result1 in imageResults)
+                try
                 {
-                    var stream = await result1.OpenReadAsync();
-                    await stream.CopyToAsync(memoryStream);
-                    receiptsText.Add(await ConvertByteArrayImageTextToTextFileText(memoryStream.ToArray()));
-
-                    foreach (string s in receiptsText)
-                        Console.WriteLine("s:" + s);
-                    foreach (string receiptTextString in receiptsText)
+                    foreach (FileResult result1 in imageResults)
                     {
-                        InformationExtractor informationExtractor = new InformationExtractor();
-                        var filteredInformationTuples = informationExtractor.GetFilteredInformation(receiptTextString);
-                        IsRunning = false;
-                        await App.Current.MainPage.Navigation.PushAsync(new ReceiptInformationPage(filteredInformationTuples));
+                        var stream = await result1.OpenReadAsync();
+                        await stream.CopyToAsync(memoryStream);
+                        receiptsText.Add(await ConvertByteArrayImageTextToTextFileText(memoryStream.ToArray()));
+                        foreach (string receiptTextString in receiptsText)
+                        {
+                            InformationExtractor informationExtractor = new InformationExtractor();
+                            var filteredInformationTuples = informationExtractor.GetFilteredInformation(receiptTextString);
+                            var currentPage = App.Current.MainPage.Navigation.NavigationStack[App.Current.MainPage.Navigation.NavigationStack.Count - 1];
+                            IsRunning = false;
+                            if (currentPage==null || !currentPage.GetType().Name.Equals(nameof(ShowReceiptPage)))
+                            {
+                                return;
+                            }
+                            await App.Current.MainPage.Navigation.PushAsync(new ReceiptInformationPage(filteredInformationTuples));
+                        }
                     }
-                    //interpreteaza textul 
-
-                    //introdu elementele intr-o lista de obiecte Product
-
-                    //transmite-le catre o pagina cu lista de Produse(la fiecare cate o optiune de a modifica datele produsului)
-                    // + un buton la sfarsit de "adauga produsele" (doar la apasarea lui, produsele vor fi introduse in BD) - nevoie de ViewModel
+                }
+                catch (Exception)
+                {
+                    int nbOfPagesInTheNavigationStack = App.Current.MainPage.Navigation.NavigationStack.Count;
+                    var currentPage = nbOfPagesInTheNavigationStack > 1 ? App.Current.MainPage.Navigation.NavigationStack[nbOfPagesInTheNavigationStack - 1] : null;
+                    if (currentPage == null || !currentPage.GetType().Name.Equals(nameof(ShowReceiptPage)))
+                    {
+                        IsRunning = false;
+                        return;
+                    }
                 }
             }
         }
@@ -101,7 +107,7 @@ namespace EM.ViewModels
 
         public async Task<string> ConvertByteArrayImageTextToTextFileText(byte[] imageByteArray)
         {
-            var client = new RestClient("http://" + pythonServerHost + ":" + pythonPort);
+            var client = new RestClient("http://" + App.pythonServerHost+ ":" + App.pythonPort);
 
             Dictionary<string, byte[]> body = new Dictionary<string, byte[]>();
             body.Add("imageBytes", imageByteArray);
@@ -111,9 +117,11 @@ namespace EM.ViewModels
             var request = new RestRequest().AddJsonBody(jsonBody);
 
             var responseMessage = await client.PostAsync(request);
-
-            var x = responseMessage.Content.ToString();
-            return x;
+            if (responseMessage != null)
+            {
+                return responseMessage.Content.ToString();
+            }
+            return null;
         }
     }
 }

@@ -54,27 +54,16 @@
                     <DataTemplate>
                         <Frame HasShadow="True" BorderColor="DarkBlue" CornerRadius="0" 
                                    HorizontalOptions="Center" VerticalOptions="CenterAndExpand" BackgroundColor="Transparent">
-                            <Grid RowDefinitions="*,*,*,Auto,Auto,Auto,Auto,*,*" ColumnDefinitions="*,*">
+                            <Grid RowDefinitions="*,*,Auto,Auto,Auto,Auto,*,*" ColumnDefinitions="*,*">
 
                                 <Label Grid.ColumnSpan="2" Text="{Binding BudgetCategory.CategoryName}" FontSize="Title" 
                                        TextColor="DarkBlue" FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
-                                <Label Grid.Row="1" Text="Luna" FontSize="Medium" TextColor="White"
-                                        HorizontalOptions="Center" VerticalOptions="Center"/>
-                                <Frame Grid.Row="1" Grid.Column="1"  BackgroundColor="Transparent" Padding="0" HeightRequest="20">
-                                    <Grid ColumnDefinitions="*,*">
-                                        <Label Text="{Binding Month, Mode=TwoWay}" 
-                                                HorizontalTextAlignment="Center"/>
-                                        <Label Grid.Column="1" Text="{Binding Year, Mode=TwoWay}" 
-                                                HorizontalTextAlignment="Center"/>
-                                    </Grid>
-                                </Frame>
-
-                                <Label Grid.Row="2" Text="Status" FontSize="Medium" TextColor="White" 
+                                <Label Grid.Row="1" Text="Status" FontSize="Medium" TextColor="White" 
                                        VerticalOptions="Center" HorizontalOptions="Center" />
-                                <Label Grid.Row="2" Grid.Column="1" Text="{Binding CurrentStateString}" 
+                                <Label Grid.Row="1" Grid.Column="1" Text="{Binding CurrentStateString}" 
                                        FontSize="Medium" TextColor="White" 
                                        VerticalOptions="Center" HorizontalOptions="Center" />
-                                <Frame Grid.Row="3" Grid.ColumnSpan="2" BackgroundColor="Transparent" Padding="0"
+                                <Frame Grid.Row="2" Grid.ColumnSpan="2" BackgroundColor="Transparent" Padding="0"
                                        VerticalOptions="Center" HorizontalOptions="Center" CornerRadius="30" 
                                        HeightRequest="{Binding Source={x:Reference StatusImage}, Path=Width}" 
                                        WidthRequest="{Binding Source={x:Reference StatusImage}, Path=Width}" >
@@ -83,14 +72,14 @@
                                            HeightRequest="{Binding Source={x:Reference StatusImage}, Path=Width}" 
                                            WidthRequest="170" HorizontalOptions="Center" />
                                 </Frame>
-                                <Label Grid.Row="4" Text="Buget Alocat" />
-                                <Label Grid.Row="4" Grid.Column="1" Text="{Binding AlocatedBudget}" />
-                                <Label Grid.Row="5" Text="Cheltuieli Curente" />
-                                <Label Grid.Row="5" Grid.Column="1" Text="{Binding CurrentValue}" />
-                                <Label Grid.Row="6" Text="Buget Ramas" />
-                                <Label Grid.Row="6" Grid.Column="1" Text="{Binding RemainingAmount}" />
-                                <Label Grid.Row="7"  Text="Limita Stabilita" />
-                                <Label Grid.Row="7" Grid.Column="1" Text="{Binding LimitNotificationValue}" 
+                                <Label Grid.Row="3" Text="Buget Alocat" />
+                                <Label Grid.Row="3" Grid.Column="1" Text="{Binding AlocatedBudget}" />
+                                <Label Grid.Row="4" Text="Cheltuieli Curente" />
+                                <Label Grid.Row="4" Grid.Column="1" Text="{Binding CurrentValue}" />
+                                <Label Grid.Row="5" Text="Buget Ramas" />
+                                <Label Grid.Row="5" Grid.Column="1" Text="{Binding RemainingAmount}" />
+                                <Label Grid.Row="6"  Text="Limita Stabilita" />
+                                <Label Grid.Row="6" Grid.Column="1" Text="{Binding LimitNotificationValue}" 
                                        MaxLines="5" LineBreakMode="TailTruncation" />
                             </Grid>
                         </Frame>

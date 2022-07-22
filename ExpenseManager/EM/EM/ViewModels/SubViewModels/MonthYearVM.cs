@@ -10,7 +10,7 @@ namespace EM.ViewModels.SubViewModels
     {
         public enum MonthEnum
         {
-            Ianuarie = 1,
+            Ianuarie,
             Februarie,
             Martie,
             Aprilie,
@@ -38,14 +38,6 @@ namespace EM.ViewModels.SubViewModels
             maxYear = DateTime.Today.Year;
             Months = new List<string>(Enum.GetNames(typeof(MonthEnum)));
             Years = new List<int>(Enumerable.Range(minYear, maxYear - minYear + 1));
-            //foreach (string x in Months)
-            //{
-            //    Console.WriteLine(x + " ");
-            //}
-            //foreach (int x in Years)
-            //{
-            //    Console.WriteLine(x.ToString() + " ");
-            //}
         }
 
         #region Properties

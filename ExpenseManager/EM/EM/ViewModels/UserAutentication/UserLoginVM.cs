@@ -49,7 +49,7 @@ namespace EM.ViewModels.UserAutentication
         }
         #endregion
 
-        public async void OnLogInCommand()  // de modificat
+        public async void OnLogInCommand()
         {
             User currentUser = await userDB.GetAsync(1);
             if (currentUser == null)

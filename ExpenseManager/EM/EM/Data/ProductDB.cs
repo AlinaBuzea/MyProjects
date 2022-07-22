@@ -42,7 +42,7 @@ namespace EM.Data
         {
             return await App.Database.databaseConn.Table<Product>()
                                                    .OrderByDescending(product => product.AquisitionDate)
-                                                   .OrderBy(product => product.ProductName)
+                                                   .ThenBy(product => product.ProductName)
                                                    .ToListAsync();
         }
 
@@ -78,30 +78,39 @@ namespace EM.Data
             return await App.Database.databaseConn.Table<Product>()
                                                     .Where(product => product.ProdCategoryId == categId)
                                                     .OrderByDescending(product=> product.AquisitionDate)
+                                                    .ThenBy(product=>product.ProductName)
                                                     .ToListAsync();
         }
 
         public async Task<List<Product>> GetProductsWithTheGivenAquisitionShopAsync(int aquisitionShopId)
         {
-            return await App.Database.databaseConn.Table<Product>().Where(product => product.AquisitionShopId == aquisitionShopId).ToListAsync();
+            return await App.Database.databaseConn.Table<Product>()
+                                                  .Where(product => product.AquisitionShopId == aquisitionShopId)
+                                                  .OrderBy(product => product.ProductName)
+                                                  .ToListAsync();
         }
 
         public async Task<List<Product>> GetProductsBoughtInTimePeriodAsync(DateTime limitDay)
         {
             return await App.Database.databaseConn.Table<Product>()
-               .Where(product => product.AquisitionDate >= limitDay).ToListAsync();
+                                                  .Where(product => product.AquisitionDate >= limitDay)
+                                                  .OrderBy(product => product.ProductName)
+                                                  .ToListAsync();
         }
 
         public async Task<List<Product>> GetProductsWithTheGivenCategoryAndBoughtInTimePeriodAsync(int categId, DateTime limitDay)
         {
             return await App.Database.databaseConn.Table<Product>()
-               .Where(product => product.ProdCategoryId == categId && product.AquisitionDate >= limitDay).ToListAsync();
+                                                   .Where(product => product.ProdCategoryId == categId && product.AquisitionDate >= limitDay)
+                                                   .OrderBy(product => product.ProductName)
+                                                   .ToListAsync();
         }
 
         public async Task<List<Product>> GetProductsWithTheGivenCategoryAndBoughtInMonthYearAsync(int categId, int limitYear, int? limitMonth = null)
         {
             List<Product> requestedProducts = await App.Database.databaseConn.Table<Product>()
-                                                    .Where(product => product.ProdCategoryId == categId).ToListAsync();
+                                                    .Where(product => product.ProdCategoryId == categId)
+                                                    .ToListAsync();
 
             List<Product> filteredlist = new List<Product>();
             foreach (Product product1 in requestedProducts)
@@ -117,7 +126,9 @@ namespace EM.Data
                         filteredlist.Add(product1);
                 }
             }
-            return filteredlist.OrderByDescending(product=>product.AquisitionDate).ToList();
+            return filteredlist.OrderByDescending(product=>product.AquisitionDate)
+                                .ThenBy(product => product.ProductName)
+                                .ToList();
         }
 
         public async Task<double> GetTotalPriceFromProductsWithTheGivenCategoryAndBoughtInMonthYearAsync(int categId, int limitYear, int? limitMonth = null)

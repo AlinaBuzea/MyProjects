@@ -17,7 +17,7 @@ namespace EM.Pages
         public ReceiptInformationPage(List<Tuple<InformationExtractor.InformationType, string>> filteredInformationTuples)
         {
             InitializeComponent();
-            BindingContext = new ReceiptInformationVM(filteredInformationTuples);
+            BindingContext = filteredInformationTuples == null? new ReceiptInformationVM():new ReceiptInformationVM(filteredInformationTuples);
         }
     }
 }

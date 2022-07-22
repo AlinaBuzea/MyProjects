@@ -46,7 +46,6 @@ namespace EM.ViewModels
             PeriodOption = new List<string>() { nameof(ProductDB.Period.TOTALE), nameof(ProductDB.Period.PE_LUNA), nameof(ProductDB.Period.PE_AN) };
             selectedOption = PeriodOption[0].ToString();
             currentMonthYearVM = new MonthYearVM();
-            ///selection = "Total";
             Month = currentMonthYearVM.Months[DateTime.Today.Month - 1];
             Year = DateTime.Today.Year;
             InitializeCategoryList();
@@ -176,7 +175,6 @@ namespace EM.ViewModels
         {
             Device.BeginInvokeOnMainThread(async () =>
             {
-                //_= Application.Current.MainPage.DisplayAlert("Alert", "You have been alerted with category name:" + category.CategoryName, "OK");
                 if (selectedOption.Equals(nameof(ProductDB.Period.TOTALE)))
                 {
                     await Application.Current.MainPage.Navigation.PushAsync(new FilterProductsByCategoryPage(category, ProductDB.Period.TOTALE));
@@ -193,10 +191,10 @@ namespace EM.ViewModels
             });
         }
 
-        private void OnDeleteSelectedCategoryCommand(Category category)
+        private async void OnDeleteSelectedCategoryCommand(Category category)
         {
             ProductDB productDB = new ProductDB();
-            category.Products = Task.Run(async () => await productDB.GetProductsWithTheGivenCategoryOrderByDateAsync(category.CategoryId)).Result;
+            category.Products = await productDB.GetProductsWithTheGivenCategoryOrderByDateAsync(category.CategoryId);
             if (category.Products.Count != 0)
             {
                 Device.BeginInvokeOnMainThread(() =>
@@ -204,11 +202,7 @@ namespace EM.ViewModels
                                                                         + category.CategoryName, "OK"));
                 return;
             }
-            Task.Run(async () =>
-            {
-                await categoryDB.DeleteAsync(category);
-                ///poate nu e ok asa
-            });
+            await categoryDB.DeleteAsync(category);
             InitializeCategoryList();
 
         }

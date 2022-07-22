@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ltL69y2bo/OGDwnzj6dl3gWAscqTQeEPXebJk2uPXOskhzM+vhVrfIEpV9Ismzb1p8KI00ulnXyGaD8yHUtvhg==",
+  "dgSpecHash": "y+VHoRPNJK61pUSHaYbLfsV/Mm2mWfNnrM+oxzLwiXGWP9vdvQTYGMszCauO21toEbL5i4+ccO9gFmJG0ZjDvw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Alina\\Documents\\GitHub\\Licenta\\ExpenseManager\\EM\\EM\\EM.csproj",
+  "projectFilePath": "C:\\Users\\Alina\\Documents\\GitHub\\MyProjects\\ExpenseManager\\EM\\EM\\EM.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Alina\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\5.0.0\\microsoft.bcl.asyncinterfaces.5.0.0.nupkg.sha512",
     "C:\\Users\\Alina\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
@@ -40,6 +40,7 @@
     "C:\\Users\\Alina\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",
     "C:\\Users\\Alina\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "C:\\Users\\Alina\\.nuget\\packages\\system.valuetuple\\4.5.0\\system.valuetuple.4.5.0.nupkg.sha512",
+    "C:\\Users\\Alina\\.nuget\\packages\\xam.plugin.media\\5.0.1\\xam.plugin.media.5.0.1.nupkg.sha512",
     "C:\\Users\\Alina\\.nuget\\packages\\xamarin.communitytoolkit\\1.0.0\\xamarin.communitytoolkit.1.0.0.nupkg.sha512",
     "C:\\Users\\Alina\\.nuget\\packages\\xamarin.communitytoolkit.markup\\1.0.0\\xamarin.communitytoolkit.markup.1.0.0.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\xamarin.essentials\\1.6.1\\xamarin.essentials.1.6.1.nupkg.sha512",

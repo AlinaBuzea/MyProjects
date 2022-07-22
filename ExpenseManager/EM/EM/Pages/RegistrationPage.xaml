@@ -39,8 +39,7 @@
                                 InvalidStyle="{StaticResource InvalidEntryStyle}"/>
                 </Entry.Behaviors>
             </Entry>
-            <!--<Label Grid.Row="6" x:Name="mandatoryFieldsLabel" Text="*Toate campurile sunt obligatorii" TextColor="Red" IsVisible="False"/>-->
-
+            
             <Button Grid.Row="7" Text="Inregistreaza-te" FontSize="20" FontAttributes="Bold" BorderRadius="30" Command="{Binding SaveCommand}">
                 <Button.Background>
                     <LinearGradientBrush EndPoint="1,0">

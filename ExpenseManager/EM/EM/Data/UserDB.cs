@@ -13,7 +13,6 @@ namespace EM.Data
         {
             try
             {
-                //App.Database.databaseConn.DropTableAsync<User>().Wait();
                 App.Database.databaseConn.CreateTableAsync<User>().Wait();
             }
             catch (Exception e)

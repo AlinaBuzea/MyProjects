@@ -28,11 +28,16 @@ namespace EM.Data
 
         public async Task<Budget> GetByCategoryMonthYearAsync(int cathegoryId, string month, int year)
         {
-            return await App.Database.databaseConn.Table<Budget>()
-                                                  .Where(budget => budget.Month.Equals(month) &&
-                                                                     budget.Year == year &&
-                                                                     budget.CategoryId == cathegoryId)
-                                                  .FirstOrDefaultAsync();
+            List<Budget> list = await App.Database.databaseConn.Table<Budget>()
+                                                  .Where(budget=> budget.CategoryId == cathegoryId)
+                                                  .ToListAsync();
+            List<Budget> filteredlist = new List<Budget>();
+            foreach (Budget budget in list)
+            {
+                if (budget.Month.Equals(month) && budget.Year == year)
+                    filteredlist.Add(budget);
+            }
+            return filteredlist.Count>0 ? filteredlist[0] : null;
         }
 
         public async Task<List<Budget>> GetListAsync()
